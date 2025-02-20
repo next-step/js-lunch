@@ -14,12 +14,13 @@ console.log(
 
 // 자바스크립트 코드에서 이미지 리소스 로드 테스트
 // index.html 파일의 html 구조를 수정하셔도 됩니다.
-addEventListener("load", () => {
-  const app = document.querySelector("#app");
-  const buttonImage = document.createElement("img");
-  buttonImage.src = image;
 
-  if (app) {
-    app.appendChild(buttonImage);
-  }
+import { createHeader } from "./components/Header";
+
+addEventListener("DOMContentLoaded", () => {
+  const app = document.querySelector("main");
+
+  const header = createHeader();
+  console.log(header);
+  app.prepend(header);
 });
