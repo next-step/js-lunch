@@ -1,13 +1,13 @@
 class Modal {
-  container;
-  open = false;
+  #container;
+  #backdrop;
+  #isOpen = false;
 
   constructor() {
-    this.container = document.createElement("div");
-    this.container.classList.add("modal");
+    this.#container = document.createElement("div");
+    this.#container.classList.add("modal");
 
-    this.container.innerHTML = /*html*/ `
-    <div class="modal-backdrop"></div>
+    this.#container.innerHTML = /*html*/ `
       <div class="modal-container">
         <h2 class="modal-title text-title">새로운 음식점</h2>
         <form>
@@ -67,17 +67,22 @@ class Modal {
         </form>
       </div>
     `;
+
+    this.#backdrop = document.createElement("div");
+    this.#backdrop.classList.add("modal-backdrop");
+    this.#backdrop.addEventListener("click", () => this.toggle());
+    this.#container.prepend(this.#backdrop);
   }
 
   toggle() {
-    this.open = !this.open;
-    console.log("toggled", this.open);
+    this.#isOpen = !this.#isOpen;
+    console.log("toggled", this.#isOpen);
 
     this.rendered.classList.toggle("modal--open");
   }
 
   get rendered() {
-    return this.container;
+    return this.#container;
   }
 }
 
