@@ -11,14 +11,12 @@
     "deploy": "vite build --base=/js-lunch/ --minify=false && npx gh-pages -d dist"
   },
   "devDependencies": {
-    "@types/cypress": "^0.1.6",
     "css-loader": "^6.7.3",
     "cypress": "^12.6.0",
     "eslint": "^8.34.0",
     "file-loader": "^6.2.0",
     "prettier": "^2.8.4",
     "style-loader": "^3.3.1",
-    "typescript": "~5.7.2",
     "vite": "^6.1.0"
   },
   "engines": {
