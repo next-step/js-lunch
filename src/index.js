@@ -1,11 +1,19 @@
 import { createHeader } from "./components/Header";
 import { createRestaurantItem } from "./components/RestaurantItem";
+import Modal from "./components/Modal";
+
+const modal = new Modal();
 
 addEventListener("DOMContentLoaded", () => {
   const app = document.querySelector("main");
 
   const header = createHeader();
   app.prepend(header);
+
+  const restaurantAddButton = document.querySelector(".gnb__button");
+  restaurantAddButton.addEventListener("click", () => {
+    modal.toggle();
+  });
 
   const restaurantList = document.querySelector(".restaurant-list");
   restaurantList.prepend(
@@ -27,4 +35,6 @@ addEventListener("DOMContentLoaded", () => {
         "Since 2004 편리한 교통과 주차, 그리고 관록만큼 깊은 맛과 정성으로 정통 중식의 세계를 펼쳐갑니다",
     })
   );
+
+  app.append(modal.rendered);
 });
