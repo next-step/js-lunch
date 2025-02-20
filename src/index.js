@@ -10,6 +10,7 @@ addEventListener("DOMContentLoaded", () => {
   const restaurantList = document.querySelector(".restaurant-list");
   restaurantList.prepend(
     createRestaurantItem({
+      category: "한식",
       name: "피양콩할마니",
       distance: 5,
       description:
