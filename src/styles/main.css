@@ -1,0 +1,43 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 2rem 3rem;
+}
+
+main > .eating-place-select-and-input-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+main > .eating-place-list-section {
+}
+
+.eating-place-select-and-input-section > .eating-place-radio-group {
+  display: flex;
+  gap: 13px;
+}
+.eating-place-list-section > .eating-place-select {
+  display: flex;
+}
+
+.eating-place-list {
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+}
+
+.eating-place-list img {
+  width: 100px;
+  height: 100px;
+}
+
+.eating-place-list-item {
+  display: flex;
+  gap: 10px;
+}
+
+.eating-place-list-item-box {
+  display: flex;
+  flex-direction: column;
+}
