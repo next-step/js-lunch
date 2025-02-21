@@ -11,9 +11,8 @@ window.addEventListener("load", () => {
   const app = document.querySelector("#app");
   // eslint-disable-next-line spaced-comment
   app.innerHTML = /*html*/ `
-  <div>
     ${Header()}
     ${Main()}
     ${Footer()}
-  </div>`;
+`;
 });

@@ -11,4 +11,6 @@
 
 ### func 2: main 컴포넌트 작성 
 
-### func 2-1: eating place list 작성 
+### func 2-1: eating place list 작성
+
+### func 2-2: eating place radio 작성
