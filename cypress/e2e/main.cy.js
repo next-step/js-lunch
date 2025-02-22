@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("Main Component", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173");
@@ -65,8 +66,66 @@ describe("Main - eating-place-radio-group 검사", () => {
     const firstRadios = cy.get(
       "div[class='eating-place-radio-group'] input[type='radio']:first",
     );
-    firstRadios.click().then(() => {
-      firstRadios.should("not.be.checked");
+    const notSortedList = cy.get(
+      "div[class='eating-place-list-item-box-title']",
+    );
+
+    notSortedList.then((notSortedlistItem) => {
+      const beforeTexts = notSortedlistItem
+        .toArray()
+        .map((el) => el.textContent);
+
+      firstRadios.click().then(() => {
+        const list = cy.get("div[class='eating-place-list-item-box-title']");
+
+        list.then((sortedlistItem) => {
+          const afterTexts = sortedlistItem
+            .toArray()
+            .map((el) => el.textContent);
+
+          const sortedTexts = [...beforeTexts].sort((data1, data2) =>
+            data1.localeCompare(data2, "ko"),
+          );
+
+          // eslint-disable-next-line jest/valid-expect
+          expect(afterTexts).to.deep.equal(sortedTexts);
+        });
+      });
+    });
+  });
+  it("radio 거리순 클릭시 정렬되어야 함", () => {
+    const lastRadios = cy.get(
+      "div[class='eating-place-radio-group'] input[type='radio']:last",
+    );
+    const notSortedList = cy.get(
+      "div[class='eating-place-list'] div[class='time-to-go-label']",
+    );
+
+    notSortedList.then((notSortedlistItem) => {
+      const beforeTexts = notSortedlistItem
+        .toArray()
+        .map((el) => el.textContent);
+
+      lastRadios.click().then(() => {
+        const list = cy.get(
+          "div[class='eating-place-list'] div[class='time-to-go-label']",
+        );
+
+        list.then((sortedlistItem) => {
+          const afterTexts = sortedlistItem
+            .toArray()
+            .map((el) => el.textContent);
+
+          const sortedTexts = [...beforeTexts].sort((data1, data2) => {
+            const data1Number = Number(data1.replace(/\D/g, ""));
+            const data2Number = Number(data2.replace(/\D/g, ""));
+            return data1Number - data2Number;
+          });
+
+          // eslint-disable-next-line jest/valid-expect
+          expect(afterTexts).to.deep.equal(sortedTexts);
+        });
+      });
     });
   });
 });
