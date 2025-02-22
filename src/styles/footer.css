@@ -4,4 +4,7 @@ footer {
   align-items: center;
   padding: 8px;
   height: 64px;
+  color: white;
+  font-weight: bold;
+  background: var(--footer-color);
 }

@@ -18,11 +18,11 @@ main .eating-place-bottom-section {
   overflow: scroll;
 }
 
-.eating-place-top-section > .eating-place-radio-group {
+.eating-place-top-section .eating-place-radio-group {
   display: flex;
   gap: 13px;
 }
-.eating-place-bottom-section > .eating-place-select {
+.eating-place-bottom-section .eating-place-select {
   display: flex;
 }
 
