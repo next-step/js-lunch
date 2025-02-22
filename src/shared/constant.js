@@ -15,6 +15,16 @@ export const IMAGE_TYPE = {
   ETC: ETC_IMG,
 };
 
+export const EATING_PLACE_TYPE = {
+  아시안: IMAGE_TYPE.ASIAN,
+  중식: IMAGE_TYPE.CHINESE,
+  일식: IMAGE_TYPE.JAPANESE,
+  한식: IMAGE_TYPE.KOREAN,
+  양식: IMAGE_TYPE.WESTERN,
+  기타: IMAGE_TYPE.ETC,
+  전체: "전체",
+};
+
 export const ICON_TYPE = {
   ADD_BUTTON_ICON,
 };
