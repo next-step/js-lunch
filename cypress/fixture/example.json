@@ -1,0 +1,39 @@
+{
+  "storeList": [
+    {
+      "category": "한식",
+      "distance": 10,
+      "name": "피양콩 할머니",
+      "description": "피양콩 할머니 콩국수",
+      "link": "naver.com"
+    },
+    {
+      "category": "중식",
+      "distance": 10,
+      "name": "친친",
+      "description": "피양콩 할머니 콩국수",
+      "link": "naver.com"
+    },
+    {
+      "category": "일식",
+      "distance": 10,
+      "name": "잇쇼우",
+      "description": "피양콩 할머니 콩국수",
+      "link": "naver.com"
+    },
+    {
+      "category": "양식",
+      "distance": 5,
+      "name": "이태리 키친",
+      "description": "피양콩 할머니 콩국수",
+      "link": "naver.com"
+    },
+    {
+      "category": "아시안",
+      "distance": 5,
+      "name": "호아빈 삼성점",
+      "description": "피양콩 할머니 콩국수",
+      "link": "naver.com"
+    }
+  ]
+}
