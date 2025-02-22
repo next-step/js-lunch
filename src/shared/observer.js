@@ -2,7 +2,7 @@ export const targetNode = document.querySelector("#app");
 
 export const config = { attributes: true, childList: true, subtree: true };
 
-const checkMutationChildList = (mutation, observer) => {
+const checkMutationChildList = (mutation) => {
   const isDrawer = mutation.target.querySelector(".drawer-button");
   if (isDrawer) {
     const drawerStateEvent = new CustomEvent("drawer-state", {

@@ -93,6 +93,7 @@ describe("Main - eating-place-radio-group 검사", () => {
       });
     });
   });
+
   it("radio 거리순 클릭시 정렬되어야 함", () => {
     const lastRadios = cy.get(
       "div[class='eating-place-radio-group'] input[type='radio']:last",
@@ -125,6 +126,40 @@ describe("Main - eating-place-radio-group 검사", () => {
           // eslint-disable-next-line jest/valid-expect
           expect(afterTexts).to.deep.equal(sortedTexts);
         });
+      });
+    });
+  });
+});
+
+describe("Main - eating-place-select 검사", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:5173");
+  });
+
+  it("select 종류 클릭 시 필터링 되어야 함", () => {
+    const notSortedList = cy.get(
+      "div[class='eating-place-list-item-box-title']",
+    );
+
+    cy.get("select[class='eating-place-select']").select("한식");
+
+    notSortedList.then((notSortedlistItem) => {
+      const beforeTexts = notSortedlistItem
+        .toArray()
+        .map((el) => el.textContent);
+
+      const list = cy.get("div[class='eating-place-list-item-box-title']");
+      console.log(beforeTexts);
+      list.then((sortedlistItem) => {
+        const afterTexts = sortedlistItem.toArray().map((el) => el.textContent);
+
+        const filterState = "한식";
+        const sortedTexts = [...beforeTexts].filter((data) =>
+          data.includes(filterState),
+        );
+
+        // eslint-disable-next-line jest/valid-expect
+        expect(afterTexts).to.deep.equal(sortedTexts);
       });
     });
   });

@@ -14,4 +14,6 @@
 
 ### func 2-2: eating place radio 작성
 
-### func 2-2: eating place radio 이름순, 거리순 작성
+### func 2-3: eating place radio 이름순, 거리순 작성
+
+### func 2-4: eating place select 음식 종류에 따른 필터링 작성
