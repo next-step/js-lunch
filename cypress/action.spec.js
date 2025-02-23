@@ -40,20 +40,39 @@ describe("리스트 UI 테스트", () => {
   });
 
   test("리스트에 아이템들이 렌더링 된다.", () => {
-    cy.get(".store-card").should("have.length.gt", 0);
+    cy.get(".restaurant").should("have.length.gt", 0);
 
-    cy.get(".store-card")
+    cy.get(".restaurant")
       .first()
       .within(() => {
-        cy.get(".store-icon").should("be.visible");
-        cy.get(".store-name").should("be.visible");
-        cy.get(".store-description").should("be.visible");
-        cy.get(".store-distance").should("be.visible");
+        cy.get(".restaurant__category").should("be.visible");
+        cy.get(".restaurant__name").should("be.visible");
+        cy.get(".restaurant__distance").should("be.visible");
+        cy.get(".restaurant__description").should("be.visible");
       });
   });
   test("카테고리를 선택하면 카테고리에 맞는 카드만 렌더링된다.", () => {
     cy.get(".category-select").select("한식");
 
     cy.get(".restaurant-card").should("have.length", 1);
+  });
+});
+describe("모달 UI 테스트", () => {
+  beforeAll(() => {
+    cy.visit("http://localhost:5173/");
+  });
+
+  test("리스트의 아이템을 클릭하면 모달이 열린다.", () => {
+    cy.get(".restaurant").click();
+    cy.get(".modal-container").should("be.visible");
+  });
+
+  test("모달 컨테이너 안에 아이템들이 렌더링된다.", () => {
+    cy.get(".modal-container").within(() => {
+      cy.get(".restaurant__category").should("be.visible");
+      cy.get(".restaurant__info").should("be.visible");
+      cy.get(".restaurant__name").should("be.visible");
+      cy.get(".restaurant__distance").should("be.visible");
+    });
   });
 });

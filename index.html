@@ -3,11 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/assets/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>점심 뭐 먹지</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <main>
+        <nav class="gnb">
+          <span class="gnb__title">점심 뭐 먹지</span>
+          <span class="gnb__button">
+            <img src="/assets/add-button.png" />
+          </span>
+        </nav>
+        <div class="restaurant-filter-container">
+          <select class="restaurant-filter" placeholder="전체">
+            <option value="">전체</option>
+            <option value="한식">한식</option>
+            <option value="중식">중식</option>
+            <option value="일식">일식</option>
+            <option value="아시안">아시안</option>
+            <option value="양식">양식</option>
+            <option value="기타">기타</option>
+          </select>
+          <select class="restaurant-filter" placeholder="전체">
+            <option value="이름순">이름순</option>
+            <option value="거리순">거리순</option>
+          </select>
+        </div>
+        <div class="modal">
+          <div class="modal-backdrop"></div>
+          <div class="modal-container"></div>
+        </div>
+      </main>
+    </div>
     <script type="module" src="./src/index.js"></script>
   </body>
 </html>
