@@ -1,5 +1,5 @@
-import { render } from "./render";
-import { sortingHandler, filteringHandler } from "./selectAction";
+import { render } from "./render.js";
+import { sortingHandler, filteringHandler } from "./selectAction.js";
 
 export const addSelectEvent = () => {
   const sort = document.querySelector("#sorting-filter");

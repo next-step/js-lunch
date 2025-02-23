@@ -1,4 +1,4 @@
-import { showModalContent } from "./modal";
+import { showModalContent } from "./modal.js";
 
 export const cardClickHandler = (restaurant) => {
   const modal = document.querySelector(".modal");

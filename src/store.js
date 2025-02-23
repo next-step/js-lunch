@@ -1,4 +1,4 @@
-import data from "../example.json";
+import data from "../example.json" assert { type: "json" };
 
 export const sortingByDistance = () => {
   return data.storeList.slice().sort((a, b) => a.distance - b.distance);

@@ -1,4 +1,4 @@
-import { makeRestaurant } from "./card";
+import { makeRestaurant } from "./card.js";
 
 export const render = (data) => {
   const main = document.querySelector("main");

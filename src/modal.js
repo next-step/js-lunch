@@ -1,5 +1,5 @@
-import { makeIcon } from "./icon";
-import { makeTitle, makeDistance } from "./card";
+import { makeIcon } from "./icon.js";
+import { makeTitle, makeDistance } from "./card.js";
 export const makeModalContent = (restaurant) => {
   const modalContent = document.createElement("div");
 

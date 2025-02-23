@@ -1,4 +1,8 @@
-import { sortingByDistance, sortingByName, filteringByCategory } from "./store";
+import {
+  sortingByDistance,
+  sortingByName,
+  filteringByCategory,
+} from "./store.js";
 
 export const sortingHandler = (value) => {
   if (value === "거리순") {

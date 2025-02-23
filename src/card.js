@@ -1,5 +1,5 @@
-import { makeIcon } from "./icon";
-import { cardClickHandler } from "./cardAction";
+import { makeIcon } from "./icon.js";
+import { cardClickHandler } from "./cardAction.js";
 
 export const makeRestaurant = (restaurant) => {
   const card = document.createElement("li");
