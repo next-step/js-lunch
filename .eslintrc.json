@@ -1,11 +1,13 @@
 {
   "rules": {},
   "env": {
+    "browser": true,
     "es6": true,
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "ecmaVersion": "latest",
+    "sourceType": "module"
   },
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "prettier", "airbnb-base"]
 }
