@@ -3,23 +3,13 @@ export const useState = (initialState = "") => {
 
   const stateHandler = {
     set(obj, prop, value) {
-      //   if (prop === "value") {
-      //     if (!Number.isInteger(value)) {
-      //       throw new TypeError("The age is not an integer");
-      //     }
-      //     if (value > 200) {
-      //       throw new RangeError("The age seems invalid");
-      //     }
-      //   }
-
-      // 값을 저장하는 기본 동적
       if (prop === "value") {
+        // eslint-disable-next-line no-param-reassign
         obj[prop] = value;
 
         return true;
       }
-      //   setState(obj);
-      // 성공 표시
+
       return false;
     },
   };
@@ -28,7 +18,6 @@ export const useState = (initialState = "") => {
 
   const setState = (newState) => {
     stateProxy.value = newState;
-    console.log(stateProxy.value);
   };
 
   return [stateProxy, setState];

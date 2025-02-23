@@ -1,6 +1,5 @@
 import EatingPlaceListItem from "./eating-place-list-item";
 import { eatingPlaceListData } from "../../shared/data";
-import { EATING_PLACE_TYPE } from "../../shared/constant";
 import { useState } from "../../shared/state";
 
 const hr = () => /* html */ `<hr />`;
@@ -24,9 +23,8 @@ const EatingPlaceList = () => {
       ${eatingPlaceListData
         .filter((data) => {
           if (!filterState) return true;
-          const type = EATING_PLACE_TYPE[filterState];
-          if (type === "전체") return true;
-          return EATING_PLACE_TYPE[filterState] === data.imageType;
+          if (filterState === "전체") return true;
+          return filterState === data.type;
         })
         .sort((data1, data2) => {
           if (radioState === "name") {

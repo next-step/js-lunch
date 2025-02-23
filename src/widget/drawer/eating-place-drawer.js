@@ -3,8 +3,7 @@ import { Input, Label } from "../../shared/ui";
 const EatingPlaceDrawer = () => {
   const container = document.createElement("div");
   container.classList.add("eating-place-drawer");
-  container.addEventListener("drawer-state", (event) => {
-    console.log(event.detail);
+  container.addEventListener("drawer-state", () => {
     container.classList.toggle("open");
     // eslint-disable-next-line no-use-before-define
     render();

@@ -16,13 +16,13 @@ export const IMAGE_TYPE = {
 };
 
 export const EATING_PLACE_TYPE = {
-  아시안: IMAGE_TYPE.ASIAN,
-  중식: IMAGE_TYPE.CHINESE,
-  일식: IMAGE_TYPE.JAPANESE,
-  한식: IMAGE_TYPE.KOREAN,
-  양식: IMAGE_TYPE.WESTERN,
-  기타: IMAGE_TYPE.ETC,
-  전체: "전체",
+  ASIAN: "아시안",
+  CHINESE: "중식",
+  JAPANESE: "일식",
+  KOREAN: "한식",
+  WESTERN: "양식",
+  ETC: "기타",
+  ALL: "전체",
 };
 
 export const ICON_TYPE = {

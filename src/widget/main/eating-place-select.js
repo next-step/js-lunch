@@ -1,17 +1,19 @@
+import { EATING_PLACE_TYPE } from "../../shared/constant";
+
 const EatingPlaceSelect = () => {
   const container = document.createElement("select");
   container.classList.add("eating-place-select");
 
   const render = () => {
     const html = /* html */ `
-      <option value="전체">먹고 싶은 음식을 골라줘</option>
-      <option value="전체">전체</option>
-      <option value="한식">한식</option>
-      <option value="중식">중식</option>
-      <option value="일식">일식</option>
-      <option value="양식">양식</option>
-      <option value="아시안">아시안</option>
-      <option value="기타">기타</option>
+      <option value=${EATING_PLACE_TYPE.ALL}>먹고 싶은 음식을 골라줘</option>
+      <option value=${EATING_PLACE_TYPE.ALL}>전체</option>
+      <option value=${EATING_PLACE_TYPE.KOREAN}>한식</option>
+      <option value=${EATING_PLACE_TYPE.CHINESE}>중식</option>
+      <option value=${EATING_PLACE_TYPE.JAPANESE}>일식</option>
+      <option value=${EATING_PLACE_TYPE.WESTERN}>양식</option>
+      <option value=${EATING_PLACE_TYPE.ASIAN}>아시안</option>
+      <option value=${EATING_PLACE_TYPE.ETC}>기타</option>
     `;
 
     container.innerHTML = html;
