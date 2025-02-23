@@ -6,23 +6,35 @@ import WESTERN_IMG from "../assets/category-western.png";
 import ETC_IMG from "../assets/category-etc.png";
 import ADD_BUTTON_ICON from "../assets/add-button.png";
 
-export const IMAGE_TYPE = {
-  ASIAN: ASIAN_IMG,
-  CHINESE: CHINESE_IMG,
-  JAPANESE: JAPANESE_IMG,
-  KOREAN: KOREAN_IMG,
-  WESTERN: WESTERN_IMG,
-  ETC: ETC_IMG,
-};
-
 export const EATING_PLACE_TYPE = {
-  ASIAN: "아시안",
-  CHINESE: "중식",
-  JAPANESE: "일식",
-  KOREAN: "한식",
-  WESTERN: "양식",
-  ETC: "기타",
-  ALL: "전체",
+  ASIAN: {
+    name: "아시안",
+    image: ASIAN_IMG,
+  },
+  CHINESE: {
+    name: "중식",
+    image: CHINESE_IMG,
+  },
+  JAPANESE: {
+    name: "일식",
+    image: JAPANESE_IMG,
+  },
+  KOREAN: {
+    name: "한식",
+    image: KOREAN_IMG,
+  },
+  WESTERN: {
+    name: "양식",
+    image: WESTERN_IMG,
+  },
+  ETC: {
+    name: "기타",
+    image: ETC_IMG,
+  },
+  ALL: {
+    name: "전체",
+    image: ETC_IMG,
+  },
 };
 
 export const ICON_TYPE = {

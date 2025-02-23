@@ -37,8 +37,8 @@ const EatingPlaceList = () => {
           }
           return 1;
         })
-        .map((val) => {
-          const { imageType, title, timeToGo, description } = val;
+        .map((data) => {
+          const { imageType, title, timeToGo, description } = data;
           return EatingPlaceListItem({
             imageType,
             title,
