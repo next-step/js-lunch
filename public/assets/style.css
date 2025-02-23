@@ -305,3 +305,14 @@ input[name="link"] {
   border: 1px solid black;
   position: relative;
 }
+
+ul {
+  height: calc(880px - 140px);
+  overflow-y: scroll;
+}
+
+.modal-restaurant {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

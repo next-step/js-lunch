@@ -4,14 +4,14 @@ describe("헤더 UI 테스트", () => {
   });
 
   test("헤더에 제목과 버튼이 렌더링 된다.", () => {
-    cy.get(".header").contains("점심 뭐 먹지");
-    cy.get(".header-btn").should("be.visible");
+    cy.get(".gnb__title").contains("점심 뭐 먹지");
+    cy.get(".gnb__button").should("be.visible");
   });
 
   test("헤더의 버튼을 클릭하면 모달이 나타난다.", () => {
-    cy.get(".bottom-modal").should("not.be.visible");
-    cy.get(".header-btn").click();
-    cy.get(".bottom-modal").should("be.visible");
+    cy.get(".modal").should("not.be.visible");
+    cy.get(".gnb__button").click();
+    cy.get(".modal").should("be.visible");
   });
 });
 
@@ -21,17 +21,17 @@ describe("드롭 다운 UI 테스트", () => {
   });
 
   test("카테고리 드롭다운이 렌더링 된다.", () => {
-    cy.get(".category-select").should("have.value", "전체");
-    cy.get(".category-select").find("option").its("length").should("be.gt", 0);
-    cy.get(".category-select").select("한식");
-    cy.get(".category-select").should("have.value", "한식");
+    cy.get("#category-filter").should("have.value", "전체");
+    cy.get("#category-filter").find("option").its("length").should("be.gt", 0);
+    cy.get("#category-filter").select("한식");
+    cy.get("#category-filter").should("have.value", "한식");
   });
 
   test("정렬 기준 드롭다운이 렌더링 된다.", () => {
-    cy.get(".sorting-select").should("have.value", "이름순");
-    cy.get(".sorting-select").find("option").its("length").should("be.gt", 0);
-    cy.get(".sorting-select").select("거리순");
-    cy.get(".sorting-select").should("have.value", "거리순");
+    cy.get("#sorting-select").should("have.value", "이름순");
+    cy.get("#sorting-select").find("option").its("length").should("be.gt", 0);
+    cy.get("#sorting-select").select("거리순");
+    cy.get("#sorting-select").should("have.value", "거리순");
   });
 });
 describe("리스트 UI 테스트", () => {

@@ -18,7 +18,11 @@
           </span>
         </nav>
         <div class="restaurant-filter-container">
-          <select class="restaurant-filter" placeholder="전체">
+          <select
+            class="restaurant-filter"
+            id="category-filter"
+            placeholder="전체"
+          >
             <option value="">전체</option>
             <option value="한식">한식</option>
             <option value="중식">중식</option>
@@ -27,11 +31,16 @@
             <option value="양식">양식</option>
             <option value="기타">기타</option>
           </select>
-          <select class="restaurant-filter" placeholder="전체">
+          <select
+            class="restaurant-filter"
+            id="sorting-filter"
+            placeholder="전체"
+          >
             <option value="이름순">이름순</option>
             <option value="거리순">거리순</option>
           </select>
         </div>
+        <ul></ul>
         <div class="modal">
           <div class="modal-backdrop"></div>
           <div class="modal-container"></div>

@@ -1,11 +1,14 @@
-export const sortingByDistance = (ObjArr) => {
-  return ObjArr.slice().sort((a, b) => a.distance - b.distance);
+import data from "../example.json";
+
+export const sortingByDistance = () => {
+  return data.storeList.slice().sort((a, b) => a.distance - b.distance);
 };
 
-export const sortingByName = (ObjArr) => {
-  return ObjArr.slice().sort((a, b) => a.name - b.name);
+export const sortingByName = () => {
+  return data.storeList.slice().sort((a, b) => a.name - b.name);
 };
 
-export const filteringByCategory = (ObjArr) => {
-  return ObjArr.slice().filter((item) => item.category === "한식");
+export const filteringByCategory = (category) => {
+  if (!category.length) return data.storeList;
+  return data.storeList.slice().filter((item) => item.category === category);
 };
