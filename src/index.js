@@ -20,6 +20,6 @@ addEventListener("load", () => {
   buttonImage.src = image;
 
   if (app) {
-    app.appendChild(buttonImage);
+    app.innerHTML = "<p>Vanilla JS Component 테스트</p>";
   }
 });
