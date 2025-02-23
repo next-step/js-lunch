@@ -1,34 +1,43 @@
 import { ICON_TYPE } from "../shared/constant";
-import { useState } from "../shared/state";
+import { getFragment } from "../shared/createDOM";
+import { createHeaderState } from "../shared/state";
 
 const Header = () => {
-  const [state, setState] = useState(false);
-
-  const container = document.createElement("header");
+  const state = createHeaderState(true);
 
   const handleClick = (event) => {
     if (event.target && event.target.closest(".drawer-button")) {
-      setState(!state.value);
-      // eslint-disable-next-line no-use-before-define
-      render();
+      state.setState(!state.getState());
     }
   };
 
   const render = () => {
-    const html = /* html */ `
-      <div>
-      점심 뭐먹지
-      </div>
-      <div data-drawer-state="${state.value}" class="drawer-button"
-      >
-          <img src=${ICON_TYPE.ADD_BUTTON_ICON} alt="header-drawer-img"/>
-      </div>
-    `;
-    container.innerHTML = html;
-    container.addEventListener("click", handleClick);
+    const drawerButton = document.querySelector(".drawer-button");
+    if (drawerButton) {
+      drawerButton.setAttribute("data-drawer-state", state.getState());
+    }
   };
 
-  render();
+  state.addListener(() => {
+    render();
+  });
+
+  const container = getFragment();
+
+  const header = document.createElement("header");
+
+  const html = /* html */ `
+    <div>
+    점심 뭐먹지
+    </div>
+    <div data-drawer-state="${state.getState()}" class="drawer-button">
+      <img src=${ICON_TYPE.ADD_BUTTON_ICON} alt="header-drawer-img"/>
+    </div>
+  `;
+
+  header.innerHTML = html;
+  header.addEventListener("click", handleClick);
+  container.appendChild(header);
 
   return container;
 };
