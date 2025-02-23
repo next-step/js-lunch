@@ -1,10 +1,3 @@
-import ASIAN_IMG from "./assets/category-asian.png";
-import CHINESE_IMG from "./assets/category-chinese.png";
-import JAPANESE_IMG from "./assets/category-japanese.png";
-import KOREAN_IMG from "./assets/category-korean.png";
-import WESTERN_IMG from "./assets/category-western.png";
-import ETC_IMG from "./assets/category-etc.png";
-
 export const makeIcon = (category) => {
   const iconContainer = document.createElement("div");
 
@@ -23,21 +16,21 @@ export const makeIcon = (category) => {
 const setIconUrl = (category) => {
   switch (category) {
     case "한식":
-      return KOREAN_IMG;
+      return "../public/assets/category-korean.png";
 
     case "중식":
-      return CHINESE_IMG;
+      return "../public/assets/category-chinese.png";
 
     case "일식":
-      return JAPANESE_IMG;
+      return "../public/assets/category-japanese.png";
 
     case "양식 ":
-      return WESTERN_IMG;
+      return "../public/assets/category-western.png";
 
     case "아시안":
-      return ASIAN_IMG;
+      return "../public/assets/category-asian.png";
 
     default:
-      return ETC_IMG;
+      return "../public/assets/category-etc.png";
   }
 };
