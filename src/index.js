@@ -20,10 +20,10 @@ window.addEventListener("load", () => {
   const footer = Footer();
   const eatingPlaceDrawer = EatingPlaceDrawer();
 
-  app.appendChild(header); // Append the header to the app container
-  app.appendChild(main); // Append the header to the app container
-  app.appendChild(footer); // Append the header to the app container
-  app.appendChild(eatingPlaceDrawer); // Append the header to the app container
+  app.appendChild(header);
+  app.appendChild(main);
+  app.appendChild(footer);
+  app.appendChild(eatingPlaceDrawer);
 });
 
 window.addEventListener("unload", () => {

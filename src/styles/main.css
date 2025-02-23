@@ -14,10 +14,6 @@ main > .eating-place-top-section {
   gap: 10px;
 }
 
-main .eating-place-bottom-section {
-  overflow: scroll;
-}
-
 .eating-place-top-section .eating-place-radio-group {
   display: flex;
   gap: 13px;
@@ -36,6 +32,10 @@ main .eating-place-bottom-section {
     display: flex;
     flex-direction: column;
   }
+}
+
+.eating-place-list::-webkit-scrollbar {
+  display: none;
 }
 
 .eating-place-list {

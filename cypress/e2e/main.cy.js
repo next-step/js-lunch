@@ -149,7 +149,6 @@ describe("Main - eating-place-select 검사", () => {
         .map((el) => el.textContent);
 
       const list = cy.get("div[class='eating-place-list-item-box-title']");
-      console.log(beforeTexts);
       list.then((sortedlistItem) => {
         const afterTexts = sortedlistItem.toArray().map((el) => el.textContent);
 
