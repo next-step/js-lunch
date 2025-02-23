@@ -1,5 +1,7 @@
 # 🍚 점심 뭐 먹지
 
+- 배포 URL : https://imhojeong.github.io/js-lunch/
+
 ## 1. UI 설계
 
 - 컴포넌트 설계

@@ -28,5 +28,6 @@
   "engines": {
     "npm": ">=10.8.2",
     "node": ">=20.17.0"
-  }
+  },
+  "homepage": "https://imhojeong.github.io/js-lunch/"
 }
