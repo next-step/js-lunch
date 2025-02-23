@@ -16,21 +16,21 @@ export const makeIcon = (category) => {
 const setIconUrl = (category) => {
   switch (category) {
     case "한식":
-      return "../templates/category-korean.png";
+      return "./assets/category-korean.png";
 
     case "중식":
-      return "../templates/category-chinese.png";
+      return "./assets/category-chinese.png";
 
     case "일식":
-      return "../templates/category-japanese.png";
+      return "./assets/category-japanese.png";
 
     case "양식 ":
-      return "../templates/category-western.png";
+      return "./assets/category-western.png";
 
     case "아시안":
-      return "../templates/category-asian.png";
+      return "./assets/category-asian.png";
 
     default:
-      return "../templates/category-etc.png";
+      return "./assets/category-etc.png";
   }
 };
