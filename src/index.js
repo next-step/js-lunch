@@ -1,5 +1,4 @@
-import image from "../public/assets/favorite-icon-filled.png";
-
+import { createHeaderComponent } from "./components/header/header";
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
   "%c ___       ___  ___  ________   ________  ___  ___     \n" +
@@ -16,10 +15,6 @@ console.log(
 // index.html 파일의 html 구조를 수정하셔도 됩니다.
 addEventListener("load", () => {
   const app = document.querySelector("#app");
-  const buttonImage = document.createElement("img");
-  buttonImage.src = image;
 
-  if (app) {
-    app.appendChild(buttonImage);
-  }
+  app.prepend(createHeaderComponent());
 });
