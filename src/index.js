@@ -16,6 +16,7 @@ import {
   RADIO_CLASSES,
 } from "./shared/constant";
 import { filterEatingPlaceList, handleClassList } from "./shared/util";
+import EatingPlaceDrawer from "./widget/drawer/eating-place-drawer";
 
 window.addEventListener("load", () => {
   const app = document.querySelector("#app");
@@ -23,17 +24,18 @@ window.addEventListener("load", () => {
   const header = Header();
   const main = Main();
   const footer = Footer();
-  // const eatingPlaceDrawer = EatingPlaceDrawer();
+  const drawer = EatingPlaceDrawer();
 
   app.appendChild(header);
   app.appendChild(main);
   app.appendChild(footer);
-  // app.appendChild(eatingPlaceDrawer);
+  app.appendChild(drawer);
 
-  // createObserver({
-  //   publisher: document.querySelector(".drawer-button"),
-  //   subscribers: [document.querySelector(".eating-place-list")],
-  // });
+  createObserver({
+    publisher: document.querySelector(".drawer-button"),
+    subscribers: [document.querySelector(".eating-place-drawer")],
+    event: EVENT_TYPE.TO_DRAWER,
+  });
   createObserver({
     publisher: document.querySelector(".eating-place-radio-group"),
     subscribers: [document.querySelector(".eating-place-list")],
@@ -61,6 +63,11 @@ window.addEventListener("load", () => {
         radioState,
       });
     }
+  });
+
+  const eatingPlaceDrawer = document.querySelector(".eating-place-drawer");
+  eatingPlaceDrawer.addEventListener(EVENT_TYPE.TO_DRAWER, (event) => {
+    eatingPlaceDrawer.classList.toggle("open");
   });
 });
 

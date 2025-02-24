@@ -53,5 +53,5 @@ export const ICON_TYPE = {
 
 export const EVENT_TYPE = {
   TO_LIST: "TO_LIST",
-  DRAWE_TO_LIST: "SELECT_TO_LIST",
+  TO_DRAWER: "TO_DRAWER",
 };
