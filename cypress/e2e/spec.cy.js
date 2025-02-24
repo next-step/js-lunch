@@ -1,3 +1,5 @@
+import { restaurantData } from "../../src/data/restaurantData";
+
 describe("헤더 컴포넌트", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173/");
@@ -41,5 +43,19 @@ describe("정적 콘텐츠 테스트", () => {
     sortingOptions.forEach((option) =>
       cy.get("#sorting-filter").find("option").contains(option).should("exist"),
     );
+  });
+});
+
+describe("리스트 아이템", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:5173/");
+  });
+
+  it("리스트 아이템이 잘 로드 되는지 확인한다.", () => {
+    restaurantData.forEach((restaurant) => {
+      cy.get(".restaurant__name").contains(restaurant.name);
+      cy.get(".restaurant__distance").contains(restaurant.distance);
+      cy.get(".restaurant__description").contains(restaurant.description);
+    });
   });
 });
