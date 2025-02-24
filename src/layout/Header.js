@@ -1,9 +1,9 @@
 import { ICON_TYPE } from "../shared/constant";
 import { getFragment } from "../shared/createDOM";
-import { createHeaderState } from "../shared/state";
+import { createState } from "../shared/state";
 
 const Header = () => {
-  const state = createHeaderState(true);
+  const state = createState(true);
 
   const handleClick = (event) => {
     if (event.target && event.target.closest(".drawer-button")) {
@@ -23,7 +23,6 @@ const Header = () => {
   });
 
   const container = getFragment();
-
   const header = document.createElement("header");
 
   const html = /* html */ `

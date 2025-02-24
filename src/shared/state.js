@@ -23,7 +23,7 @@ export const useState = (initialState = "") => {
   return [stateProxy, setState];
 };
 
-export const createHeaderState = (initialState = "") => {
+export const createState = (initialState = "") => {
   const state = { value: initialState };
 
   const listeners = [];
