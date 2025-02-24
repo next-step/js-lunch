@@ -20,8 +20,14 @@ export const handleClassList = (classesToCheck, target, newClass) => {
 
 const hr = () => /* html */ `<hr />`;
 
-export const filterEatingPlaceList = ({ filterState = "", radioState = "" }) =>
-  eatingPlaceListData
+export const filterEatingPlaceList = ({
+  filterState = "",
+  radioState = "",
+}) => {
+  const localStorageData = localStorage.getItem("eatingPlaceList");
+  const data = JSON.parse(localStorageData) || eatingPlaceListData;
+
+  return data
     .filter((data) => {
       if (filterState === "전체" || filterState === "") return true;
       return filterState === data.type;
@@ -47,3 +53,4 @@ export const filterEatingPlaceList = ({ filterState = "", radioState = "" }) =>
       }).outerHTML;
     })
     .join(hr());
+};

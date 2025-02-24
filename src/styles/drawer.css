@@ -50,3 +50,11 @@
   content: " * ";
   color: red;
 }
+
+.eating-place-drawer-submit-button {
+  background: black;
+  color: white;
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+}

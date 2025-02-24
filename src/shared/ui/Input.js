@@ -3,7 +3,7 @@ export const Input = ({
   className,
   placeholder = "",
   required = false,
-}) => /* html */ `<input class=${className} name=${name}
-    required=${required}
-    placeholder="${placeholder}" 
+}) => /* html */ `<input class='${className}' name=${name}
+required=${required}
+placeholder="${placeholder}" 
 />`;

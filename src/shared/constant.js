@@ -54,4 +54,13 @@ export const ICON_TYPE = {
 export const EVENT_TYPE = {
   TO_LIST: "TO_LIST",
   TO_DRAWER: "TO_DRAWER",
+  ADD_TO_LIST: "ADD_TO_LIST",
+};
+
+export const TIME_TO_GO = {
+  FIVE: 5,
+  TEN: 10,
+  FIFTEEN: 15,
+  TWENTY: 20,
+  THIRTY: 30,
 };
