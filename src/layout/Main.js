@@ -16,7 +16,9 @@ const Main = () => {
 
     container.innerHTML = html;
     const topSection = container.querySelector(".eating-place-top-section");
-    topSection.appendChild(EatingPlaceSelect());
+    topSection.appendChild(
+      EatingPlaceSelect({ className: "eating-place-select" }),
+    );
     topSection.appendChild(EatingPlaceRadioGroup());
 
     const bottomSection = container.querySelector(

@@ -1,9 +1,9 @@
 import { EATING_PLACE_TYPE } from "../../shared/constant";
 
-const EatingPlaceSelect = () => {
+const EatingPlaceSelect = ({ className = "eating-place-select" }) => {
   const container = document.createDocumentFragment();
   const selectElement = document.createElement("select");
-  selectElement.classList.add("eating-place-select");
+  selectElement.classList.add(className);
 
   const handleChange = (event) => {
     if (event.target && event.target.closest(".eating-place-select")) {
