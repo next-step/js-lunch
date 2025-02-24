@@ -1,0 +1,123 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.0.15">
+  <diagram name="페이지-1" id="PL736ladDROT4HT-vAkC">
+    <mxGraphModel dx="3578" dy="3014" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="QkPFNQEc3246noxsaqky-44" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="101" y="-176" width="1480" height="1700" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-1" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Header&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="327" y="209" width="491" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-2" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Main&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="327" y="294" width="491" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-3" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Section - Box&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="340" y="314" width="465" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-5" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Section - List&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="340" y="441" width="465" height="426" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-6" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;Eating Place : 음식점&amp;nbsp;&lt;br&gt;&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="326.5" y="111" width="491.5" height="77.08" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-7" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;Select&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="350" y="324" width="186" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-8" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;radio group&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="605" y="327.5" width="186" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="QkPFNQEc3246noxsaqky-10" target="QkPFNQEc3246noxsaqky-13">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="148" y="498" />
+              <mxPoint x="148" y="1041" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-10" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;List Item&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="357" y="455" width="434" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-11" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;List Item&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="355.5" y="606" width="434" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-12" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;List Item&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="357" y="738" width="434" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-13" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Eating Place List Item&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="340" y="998" width="434" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-14" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;List Item&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="337" y="1103" width="440" height="247" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-15" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Icon&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="366" y="1155" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-16" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;title&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="467" y="1122" width="284" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-17" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;timeToGo-label&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="467" y="1171" width="284" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-18" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;description&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="467" y="1225" width="284" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-19" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Eating Place Drawer&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="917.5" y="107.03999999999999" width="453" height="85" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-21" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;Drawer&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=bottom;align=center;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="923" y="226" width="453" height="1148" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-25" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-label&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="946" y="248" width="402" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-26" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-category-label&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="946" y="337" width="162" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-28" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.522;exitY=0.005;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="QkPFNQEc3246noxsaqky-6" target="QkPFNQEc3246noxsaqky-29">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="592" y="-38" as="sourcePoint" />
+            <mxPoint x="800" y="-75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-29" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255)); font-weight: normal;&quot;&gt;restaurant 보다 더 직관적이라서 keyword를 변경&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="-45" width="279" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-30" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-category-select&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="946" y="431" width="396" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-32" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-name-label&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="948" y="523" width="162" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-33" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-name-input&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="948" y="617" width="398" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-34" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-distance-label&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="948" y="705" width="162" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-35" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-name-input&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="948" y="799" width="396" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-36" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-&lt;/span&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;description&lt;/span&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;-label&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="948" y="911" width="216" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-37" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-description-textarea&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="948" y="1005" width="396" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-38" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-&lt;/span&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;reference&lt;/span&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;-label&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="945" y="1133" width="216" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-39" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-&lt;/span&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;reference&lt;/span&gt;&lt;span style=&quot;font-size: 24px;&quot;&gt;-input&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="945" y="1227" width="396" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-40" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-cancel&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="949" y="1301" width="182" height="63" as="geometry" />
+        </mxCell>
+        <mxCell id="QkPFNQEc3246noxsaqky-41" value="&lt;span style=&quot;font-size: 24px;&quot;&gt;drawer-register&lt;/span&gt;" style="rounded=0;whiteSpace=wrap;html=1;labelPosition=center;verticalLabelPosition=middle;align=center;verticalAlign=middle;direction=south;" vertex="1" parent="1">
+          <mxGeometry x="1162" y="1298.87" width="180" height="67.25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

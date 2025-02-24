@@ -8,19 +8,26 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "cypress open",
-    "deploy": "vite build --base=/js-lunch/ --minify=false && npx gh-pages -d dist"
+    "deploy": "vite build --base=/js-lunch/ --minify=false && npx gh-pages -d dist",
+    "cy:open": "cypress open"
   },
   "devDependencies": {
     "css-loader": "^6.7.3",
     "cypress": "^12.6.0",
-    "eslint": "^8.34.0",
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.11.0",
+    "eslint-plugin-prettier": "^5.2.3",
     "file-loader": "^6.2.0",
-    "prettier": "^2.8.4",
+    "prettier": "3.4.2",
     "style-loader": "^3.3.1",
     "vite": "^6.1.0"
   },
   "engines": {
     "npm": ">=10.8.2",
     "node": ">=20.17.0"
-  }
+  },
+  "homepage": "https://imhojeong.github.io/js-lunch/"
 }
