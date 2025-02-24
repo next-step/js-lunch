@@ -13,14 +13,19 @@
   "devDependencies": {
     "css-loader": "^6.7.3",
     "cypress": "^12.6.0",
-    "eslint": "^8.34.0",
+    "eslint": "^9.19.0",
     "file-loader": "^6.2.0",
-    "prettier": "^2.8.4",
+    "prettier": "3.4.2",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
     "style-loader": "^3.3.1",
     "vite": "^6.1.0"
   },
   "engines": {
     "npm": ">=10.8.2",
     "node": ">=20.17.0"
+  },
+  "dependencies": {
+    "lit-html": "^3.2.1"
   }
 }
