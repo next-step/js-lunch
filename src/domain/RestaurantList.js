@@ -67,12 +67,12 @@ class RestaurantList {
 
     sortBy(value) {
         if (value === 'name') {
-            this.#restaurants = [...this.#restaurants].sort((a, b) => b.name.localeCompare(a.name));
+            this.#restaurants = [...this.#restaurants].sort((a, b) => a.name.localeCompare(b.name));
         } else if (value === 'distance') {
             this.#restaurants = [...this.#restaurants].sort((a, b) => {
                 const timeA = a.time;
                 const timeB = b.time;
-                return timeB - timeA;
+                return timeA - timeB;
             });
         }
     }
