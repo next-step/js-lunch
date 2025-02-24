@@ -1,6 +1,6 @@
-function createOption({ category }) {
+function createOption({ category, value }) {
   const option = document.createElement("option");
-  option.value = category;
+  option.value = value;
   option.textContent = category;
   return option;
 }
@@ -11,8 +11,10 @@ export function createSelectComponent({ className, attName, id, options }) {
   select.name = attName;
   select.id = id;
 
-  options.forEach((element) => {
-    select.appendChild(createOption({ category: element }));
+  Object.keys(options).forEach((value) => {
+    select.appendChild(
+      createOption({ category: options[value], value: value })
+    );
   });
 
   return select;

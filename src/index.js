@@ -35,14 +35,14 @@ addEventListener("load", () => {
     })
   );
 
-  // section.appendChild(
-  //   createSelectComponent({
-  //     attName: "sorting",
-  //     className: "restaurant-filter",
-  //     id: "sorting-filter",
-  //     options: SORT_OPTION_LIST,
-  //   })
-  // );
+  section.appendChild(
+    createSelectComponent({
+      attName: "sorting",
+      className: "restaurant-filter",
+      id: "sorting-filter",
+      options: SORT_OPTION_LIST,
+    })
+  );
 
   const restaurantList = document.querySelector(".restaurant-list");
 
