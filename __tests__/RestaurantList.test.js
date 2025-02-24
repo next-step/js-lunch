@@ -141,7 +141,6 @@ describe("RestaurantList Class 테스트", () => {
                 time: 20,
                 description: '늘 변화를 추구하는 이태리키친입니다.'
             },
-
             {
                 category: '아시안',
                 name: '호아빈 삼성점',

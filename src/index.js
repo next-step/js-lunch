@@ -1,6 +1,6 @@
-import { headerRender } from "./components/Header";
-import { filterRestaurant, restaurantRender } from "./components/Restaurant";
-import RestaurantList from "./domain/RestaurantList";
+import { headerRender } from "./components/Header.js";
+import { filterRestaurant, restaurantRender } from "./components/Restaurant.js";
+import RestaurantList from "./domain/RestaurantList.js";
 
 addEventListener("load", () => {
   headerRender('점심 뭐 먹지');
