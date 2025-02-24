@@ -1,6 +1,11 @@
 import { createHeaderComponent } from "./components/header/header";
 import { createRestaurantListComponent } from "./components/restaurantList./createRestaurantList";
 import { RESTAURANT_LIST } from "./components/restaurantList./constant";
+import { createSelectComponent } from "./components/select/select";
+import {
+  RESTAURANT_CATEGORY_LIST,
+  SORT_OPTION_LIST,
+} from "./components/select/constant";
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
   "%c ___       ___  ___  ________   ________  ___  ___     \n" +
@@ -19,6 +24,25 @@ console.log(
 addEventListener("load", () => {
   const app = document.querySelector("main");
   app.prepend(createHeaderComponent());
+
+  const section = document.querySelector(".restaurant-filter-container");
+  section.appendChild(
+    createSelectComponent({
+      attName: "category",
+      className: "restaurant-filter",
+      id: "category-filter",
+      options: RESTAURANT_CATEGORY_LIST,
+    })
+  );
+
+  // section.appendChild(
+  //   createSelectComponent({
+  //     attName: "sorting",
+  //     className: "restaurant-filter",
+  //     id: "sorting-filter",
+  //     options: SORT_OPTION_LIST,
+  //   })
+  // );
 
   const restaurantList = document.querySelector(".restaurant-list");
 
