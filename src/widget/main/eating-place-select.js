@@ -6,14 +6,14 @@ const EatingPlaceSelect = () => {
 
   const render = () => {
     const html = /* html */ `
-      <option value=${EATING_PLACE_TYPE.ALL}>먹고 싶은 음식을 골라줘</option>
-      <option value=${EATING_PLACE_TYPE.ALL}>전체</option>
-      <option value=${EATING_PLACE_TYPE.KOREAN}>한식</option>
-      <option value=${EATING_PLACE_TYPE.CHINESE}>중식</option>
-      <option value=${EATING_PLACE_TYPE.JAPANESE}>일식</option>
-      <option value=${EATING_PLACE_TYPE.WESTERN}>양식</option>
-      <option value=${EATING_PLACE_TYPE.ASIAN}>아시안</option>
-      <option value=${EATING_PLACE_TYPE.ETC}>기타</option>
+      <option value=${EATING_PLACE_TYPE.ALL.name}>먹고 싶은 음식을 골라줘</option>
+      <option value=${EATING_PLACE_TYPE.ALL.name}>전체</option>
+      <option value=${EATING_PLACE_TYPE.KOREAN.name}>한식</option>
+      <option value=${EATING_PLACE_TYPE.CHINESE.name}>중식</option>
+      <option value=${EATING_PLACE_TYPE.JAPANESE.name}>일식</option>
+      <option value=${EATING_PLACE_TYPE.WESTERN.name}>양식</option>
+      <option value=${EATING_PLACE_TYPE.ASIAN.name}>아시안</option>
+      <option value=${EATING_PLACE_TYPE.ETC.name}>기타</option>
     `;
 
     container.innerHTML = html;
