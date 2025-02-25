@@ -3,6 +3,10 @@ import { createRestaurantListComponent } from "./components/restaurantList./crea
 import { RESTAURANT_LIST } from "./components/restaurantList./constant";
 import { createSelectComponent } from "./components/select/select";
 import {
+  SORTING_FILTER_VALUE,
+  INIT_CATEGORY_FILTER_VALUE,
+} from "./components/header/constant";
+import {
   RESTAURANT_CATEGORY_LIST,
   SORT_OPTION_LIST,
 } from "./components/select/constant";
@@ -20,8 +24,10 @@ console.log(
 
 // 자바스크립트 코드에서 이미지 리소스 로드 테스트
 // index.html 파일의 html 구조를 수정하셔도 됩니다.
-
 addEventListener("load", () => {
+  let categoryFilterValue = INIT_CATEGORY_FILTER_VALUE;
+  let sortingFilterValue = SORTING_FILTER_VALUE;
+
   const app = document.querySelector("main");
   app.prepend(createHeaderComponent());
 
@@ -46,7 +52,28 @@ addEventListener("load", () => {
 
   const restaurantList = document.querySelector(".restaurant-list");
 
-  RESTAURANT_LIST.forEach((restaurant) => {
-    restaurantList.appendChild(createRestaurantListComponent(restaurant));
+  function renderRestaurantList() {
+    restaurantList.innerHTML = "";
+    const filteredRestaurants = RESTAURANT_LIST.filter((item) =>
+      categoryFilterValue === "전체"
+        ? true
+        : item.category === categoryFilterValue
+    );
+    filteredRestaurants.forEach((restaurant) => {
+      restaurantList.appendChild(createRestaurantListComponent(restaurant));
+    });
+  }
+
+  renderRestaurantList();
+
+  document.addEventListener("change", (e) => {
+    if (e.target.id === "category-filter") {
+      categoryFilterValue = e.target.value;
+      renderRestaurantList();
+    }
+    if (e.target.id === "sorting-filter") {
+      sortingFilterValue = e.target.value;
+      renderRestaurantList();
+    }
   });
 });
