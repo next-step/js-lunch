@@ -59,6 +59,20 @@ addEventListener("load", () => {
         ? true
         : item.category === categoryFilterValue
     );
+    filteredRestaurants.sort((a, b) => {
+      if (sortingFilterValue === "distance") {
+        const findNumber = (str) => {
+          return Number(str.match(/\d+/)[0]);
+        };
+        return findNumber(a.distance) > findNumber(b.distance) ? 1 : -1;
+      }
+
+      if (sortingFilterValue === "name") {
+        return a.name > b.name ? 1 : -1;
+      }
+      return 0;
+    });
+
     filteredRestaurants.forEach((restaurant) => {
       restaurantList.appendChild(createRestaurantListComponent(restaurant));
     });

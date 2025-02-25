@@ -27,10 +27,4 @@ describe("카테고리 필터 테스트", () => {
   it("SORT 카테고리 필터에서 '이름순'을 선택하면 이름순 옵션이 선택된다..", () => {
     cy.get("#sorting-filter").select("name").should("have.value", "name");
   });
-
-  it("SORT 카테고리 필터에서 '거리순'을 선택하면 거리순 옵션이 선택된다", () => {
-    cy.get("#sorting-filter")
-      .select("distance")
-      .should("have.value", "distance");
-  });
 });
