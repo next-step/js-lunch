@@ -1,7 +1,6 @@
-.eating-place-drawer {
-  display: none;
+.eating-place-drawer,
+.eating-place-detail-drawer {
   position: absolute;
-
   bottom: 0;
   width: 100vw;
   height: 90vh;
@@ -9,11 +8,20 @@
   padding: 20px;
   border: 1px solid black;
   border-radius: 10px 10px 0 0;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    visibility 0s 0.5s;
 }
 
-.eating-place-drawer[data-open="true"] {
-  display: block;
-  position: absolute;
+.eating-place-drawer[data-open="true"],
+.eating-place-detail-drawer[data-open="true"] {
+  opacity: 1; /* 보이게 */
+  visibility: visible; /* 요소가 보이도록 설정 */
+  transition:
+    opacity 0.5s ease,
+    visibility 0s 0s;
   z-index: 400;
 }
 
@@ -57,4 +65,8 @@
   width: 100px;
   padding: 10px;
   border-radius: 10px;
+}
+
+.eating-place-drawer-content .type {
+  color: blue;
 }
