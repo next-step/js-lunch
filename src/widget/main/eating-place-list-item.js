@@ -1,8 +1,8 @@
 const EatingPlaceListItem = ({ imageType, title, timeToGo, description }) => {
   const container = document.createElement("div");
   container.classList.add("eating-place-list-item");
-  const render = () => {
-    const html = /* html */ `
+
+  const html = /* html */ `
       <img src=${imageType} alt="eating-place-list-item-img"/>
       <div class="eating-place-list-item-box">
         <div>
@@ -13,12 +13,7 @@ const EatingPlaceListItem = ({ imageType, title, timeToGo, description }) => {
       </div>
     `;
 
-    container.innerHTML = html;
-
-    return container;
-  };
-
-  render();
+  container.innerHTML = html;
 
   return container;
 };

@@ -1,15 +1,14 @@
 import { ICON_TYPE } from "../../shared/constant";
 
 export const DrawerToggleButton = () => {
-  //   const state = createState(true);
-
   const container = document.createDocumentFragment();
   const divElement = document.createElement("div");
   divElement.classList.add("drawer-button");
 
   const handleClick = (event) => {
     if (event.target && event.target.closest(".drawer-button")) {
-      divElement.classList.toggle("open");
+      const isOpen = divElement.dataset.open;
+      divElement.dataset.open = isOpen === "true" ? "false" : "true";
     }
   };
 

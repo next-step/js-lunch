@@ -1,36 +1,46 @@
 import EatingPlaceListItem from "../widget/main/eating-place-list-item";
+import { EATING_PLACE_TYPE } from "./constant";
 import { eatingPlaceListData } from "./data";
 
-export const handleClassList = (classesToCheck, target, newClass) => {
-  if (!classesToCheck.includes(newClass)) {
-    return;
-  }
+const hr = () => /* html */ `<hr />`;
 
-  // eslint-disable-next-line no-restricted-syntax
-  for (const cls of classesToCheck) {
-    if (target.classList.contains(cls)) {
-      target.classList.remove(cls);
-      break;
-    }
-  }
+export const LOCAL_STORAGE_KEY = "eatingPlaceList";
 
-  // 새로운 클래스를 추가
-  target.classList.add(newClass);
+export const VALIDATION = {
+  START: 0,
+  END: 3,
 };
 
-const hr = () => /* html */ `<hr />`;
+export const makeEatingPlaceList = (data) => {
+  const newData = [...data];
+  const imageType = Object.values(EATING_PLACE_TYPE)
+    .filter((value) => value.name === newData.at(0))
+    .map((value) => value.image)[0];
+  const newPlaceLists = [
+    ...eatingPlaceListData,
+    {
+      type: newData.at(0),
+      imageType,
+      title: newData.at(1),
+      timeToGo: newData.at(2),
+      description: newData.at(3),
+      referenceLink: newData.at(4),
+    },
+  ];
+  return JSON.stringify(newPlaceLists);
+};
 
 export const filterEatingPlaceList = ({
   filterState = "",
   radioState = "",
 }) => {
-  const localStorageData = localStorage.getItem("eatingPlaceList");
+  const localStorageData = localStorage.getItem(LOCAL_STORAGE_KEY);
   const data = JSON.parse(localStorageData) || eatingPlaceListData;
 
   return data
-    .filter((data) => {
+    .filter((data1) => {
       if (filterState === "전체" || filterState === "") return true;
-      return filterState === data.type;
+      return filterState === data1.type;
     })
     .sort((data1, data2) => {
       if (radioState === "name") {
@@ -43,8 +53,8 @@ export const filterEatingPlaceList = ({
       }
       return 1;
     })
-    .map((data) => {
-      const { imageType, title, timeToGo, description } = data;
+    .map((data1) => {
+      const { imageType, title, timeToGo, description } = data1;
       return EatingPlaceListItem({
         imageType,
         title,

@@ -38,10 +38,6 @@ main > .eating-place-top-section {
   }
 }
 
-/* .eating-place-list::-webkit-scrollbar {
-  display: none;
-} */
-
 .eating-place-list {
   display: flex;
   gap: 15px;

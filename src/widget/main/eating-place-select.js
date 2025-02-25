@@ -7,15 +7,7 @@ const EatingPlaceSelect = ({ className = "eating-place-select" }) => {
 
   const handleChange = (event) => {
     if (event.target && event.target.closest(".eating-place-select")) {
-      const classListsLength = selectElement.classList.length;
-      if (classListsLength > 1) {
-        selectElement.classList.replace(
-          selectElement.classList[1],
-          event.target.value,
-        );
-      } else {
-        selectElement.classList.add(event.target.value);
-      }
+      selectElement.dataset.select = event.target.value;
     }
   };
 

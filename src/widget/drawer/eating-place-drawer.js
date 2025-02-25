@@ -7,15 +7,12 @@ const EatingPlaceDrawer = () => {
   divElement.classList.add("eating-place-drawer");
 
   const handleClick = () => {
-    const datas = divElement.querySelectorAll(
+    const inputDataArray = divElement.querySelectorAll(
       ".eating-place-drawer-content .data",
     );
-    const results = [...datas].map((data) => data.value);
-    const resultElement = divElement.querySelector(
-      ".eating-place-drawer-content ",
-    );
-    resultElement.dataset.result = results;
-    divElement.classList.toggle("open");
+    const results = [...inputDataArray].map((data) => data.value);
+    divElement.dataset.result = results;
+    divElement.dataset.open = false;
   };
 
   const html = /* html */ `

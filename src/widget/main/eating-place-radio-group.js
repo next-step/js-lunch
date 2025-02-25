@@ -5,12 +5,10 @@ const EatingPlaceRadioGroup = () => {
 
   const handleClick = (event) => {
     if (event.target && event.target.closest(".name")) {
-      divElement.classList.add("name");
-      divElement.classList.remove("distance");
+      divElement.dataset.radio = "name";
     }
     if (event.target && event.target.closest(".distance")) {
-      divElement.classList.add("distance");
-      divElement.classList.remove("name");
+      divElement.dataset.radio = "distance";
     }
   };
 

@@ -1,4 +1,9 @@
-export const createObserver = ({ publisher, subscribers, event }) => {
+export const createObserver = ({
+  publisher,
+  subscribers,
+  event,
+  attributeName = "",
+}) => {
   const publisherElement = publisher;
   const subscriberElements = subscribers;
   const config = { attributes: true, childList: true, subtree: true };
@@ -6,12 +11,12 @@ export const createObserver = ({ publisher, subscribers, event }) => {
   const callback = (mutationList) => {
     // eslint-disable-next-line no-restricted-syntax
     for (const mutation of mutationList) {
-      if (mutation.type === "attributes") {
+      if (
+        mutation.type === "attributes" &&
+        mutation.attributeName === attributeName
+      ) {
         subscriberElements.forEach((subscriberElement) => {
-          const checkedClass = publisherElement.classList.item(1);
-          const customEvent = new CustomEvent(event, {
-            detail: checkedClass,
-          });
+          const customEvent = new CustomEvent(event);
           subscriberElement.dispatchEvent(customEvent);
         });
       }
