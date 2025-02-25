@@ -13,6 +13,8 @@ export const Icon = (props) => {
   return `
     <div 
       style="
+        width: ${_size * 1.4}px; 
+        height: ${_size * 1.4}px;
         display: inline-flex;
         align-items: center;
         justify-content: center;

@@ -41,6 +41,7 @@ addEvent('change', `#category`, (event) => {
   const selectedCategory = event.target.value;
 
   store.set({
+    ...store.get(),
     category: selectedCategory,
     restaurants: RESTAURANTS.filter(
       ({ category }) =>
@@ -66,6 +67,7 @@ addEvent('change', `#sorting`, (event) => {
   }
 
   store.set({
+    ...store.get(),
     sorting: selectedSorting,
     restaurants: copiedRestaurants,
   });

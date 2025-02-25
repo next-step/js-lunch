@@ -1,5 +1,5 @@
 export const Button = (props) => {
-  const { size, content, variant } = props;
+  const { name, size, content, variant } = props;
 
   const _size = (() => {
     if (size === 'lg') return 44;
@@ -25,6 +25,7 @@ export const Button = (props) => {
 
   return `
     <button
+      id="${name}"
       style="
         width: 100%;
         height: ${_size}px;
