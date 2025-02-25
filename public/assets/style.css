@@ -65,6 +65,9 @@ body {
 
 .gnb__title {
   color: #fcfcfd;
+  font-weight: 600;
+  line-height: 24px;
+  font-size: 20px;
 }
 
 .gnb__button {
@@ -84,8 +87,6 @@ body {
   height: 40px;
   object-fit: contain;
 }
-
-/* 음식점 목록 *****************************************/
 
 /* 카테고리/정렬 필터 */
 .restaurant-filter-container {
@@ -179,12 +180,12 @@ body {
   display: none;
 }
 
-.modal--open {
+.modal__open {
   display: block;
 }
 
 .modal-backdrop {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -194,7 +195,7 @@ body {
 }
 
 .modal-container {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
 
@@ -295,4 +296,23 @@ input[name="link"] {
   background: var(--primary-color);
 
   color: var(--grey-100);
+}
+
+#app {
+  margin: 30px auto;
+  width: 400px;
+  height: 880px;
+  border: 1px solid black;
+  position: relative;
+}
+
+ul {
+  height: calc(880px - 140px);
+  overflow-y: scroll;
+}
+
+.modal-restaurant {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
