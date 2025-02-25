@@ -24,7 +24,7 @@ export const Icon = (props) => {
       "
     >
       <img
-        src="/assets/${name}.png"
+        src="${import.meta.env.BASE_URL}assets/${name}.png"
         alt="${name} icon"
         style="
           width: ${_size}px; 
