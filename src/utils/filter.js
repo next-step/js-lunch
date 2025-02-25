@@ -1,9 +1,5 @@
-import { restaurantData } from '../data/restaurantData';
+export const filterByCategory = (category, restaurants) => {
+  if (category === "전체") return restaurants;
 
-export const filterByCategory = (category) => {
-  if (category === "전체") return restaurantData;
-
-  return restaurantData.filter(
-    (restaurant) => restaurant.category === category,
-  );
+  return restaurants.filter((restaurant) => restaurant.category === category);
 };

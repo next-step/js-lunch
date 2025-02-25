@@ -1,9 +1,15 @@
-import { restaurantData } from '../data/restaurantData';
+export const sortingBy = (value, restaurants) => {
+  const dataToSort = [...restaurants];
 
-export const sortingByName = () => {
-    return [...restaurantData.sort((restaurantA, restaurantB)=> restaurantA.name.localeCompare(restaurantB.name))];
-}
+  if (value === "distance") {
+    return dataToSort.sort(
+      (restaurantA, restaurantB) => restaurantA.distance - restaurantB.distance,
+    );
+  }
 
-export const sortingByDistance = () => {
-    return [...restaurantData.sort((restaurantA, restaurantB)=> restaurantA.distance - restaurantB.distance)];
-}
+  if (value === "name") {
+    return dataToSort.sort((restaurantA, restaurantB) =>
+      restaurantA.name.localeCompare(restaurantB.name),
+    );
+  }
+};
