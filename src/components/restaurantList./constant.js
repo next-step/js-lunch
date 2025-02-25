@@ -41,3 +41,4 @@ export const RESTAURANT_LIST = [
     desc: "최고급 식자재로 만든 건강한 피자와 파스타",
   },
 ];
+// git@github.com-me:rjsdnql123/js-racingcar.git

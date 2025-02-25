@@ -52,42 +52,67 @@ addEventListener("load", () => {
 
   const restaurantList = document.querySelector(".restaurant-list");
 
-  function renderRestaurantList() {
-    restaurantList.innerHTML = "";
-    const filteredRestaurants = RESTAURANT_LIST.filter((item) =>
-      categoryFilterValue === "전체"
-        ? true
-        : item.category === categoryFilterValue
-    );
-    filteredRestaurants.sort((a, b) => {
-      if (sortingFilterValue === "distance") {
-        const findNumber = (str) => {
-          return Number(str.match(/\d+/)[0]);
-        };
-        return findNumber(a.distance) > findNumber(b.distance) ? 1 : -1;
-      }
-
-      if (sortingFilterValue === "name") {
-        return a.name > b.name ? 1 : -1;
-      }
-      return 0;
-    });
-
-    filteredRestaurants.forEach((restaurant) => {
-      restaurantList.appendChild(createRestaurantListComponent(restaurant));
-    });
-  }
-
-  renderRestaurantList();
+  renderRestaurantList({
+    restaurantList,
+    sortingFilterValue,
+    categoryFilterValue,
+  });
 
   document.addEventListener("change", (e) => {
     if (e.target.id === "category-filter") {
       categoryFilterValue = e.target.value;
-      renderRestaurantList();
+      renderRestaurantList({
+        restaurantList,
+        sortingFilterValue,
+        categoryFilterValue,
+      });
     }
     if (e.target.id === "sorting-filter") {
       sortingFilterValue = e.target.value;
-      renderRestaurantList();
+      renderRestaurantList({
+        restaurantList,
+        sortingFilterValue,
+        categoryFilterValue,
+      });
     }
   });
 });
+
+function renderRestaurantList({
+  restaurantList,
+  sortingFilterValue,
+  categoryFilterValue,
+}) {
+  restaurantList.innerHTML = "";
+  const restaurants = filteredRestaurants(categoryFilterValue);
+
+  sortedRestaurants(restaurants, sortingFilterValue);
+
+  restaurants.forEach((restaurant) => {
+    restaurantList.appendChild(createRestaurantListComponent(restaurant));
+  });
+}
+
+function filteredRestaurants(categoryFilterValue) {
+  return RESTAURANT_LIST.filter((item) =>
+    categoryFilterValue === "전체"
+      ? true
+      : item.category === categoryFilterValue
+  );
+}
+
+function sortedRestaurants(restaurants, sortingFilterValue) {
+  restaurants.sort((a, b) => {
+    if (sortingFilterValue === "distance") {
+      const findNumber = (str) => {
+        return Number(str.match(/\d+/)[0]);
+      };
+      return findNumber(a.distance) > findNumber(b.distance) ? 1 : -1;
+    }
+
+    if (sortingFilterValue === "name") {
+      return a.name > b.name ? 1 : -1;
+    }
+    return 0;
+  });
+}
