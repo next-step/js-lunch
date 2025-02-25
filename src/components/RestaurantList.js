@@ -2,13 +2,13 @@ import { restaurantData } from "../data/restaurantData";
 import { createFragment } from '../utils';
 import { createRestaurantListItem } from "./RestaurantListItem";
 
-export const createRestaurantList = () => {
+export const createRestaurantList = (restaurants = restaurantData) => {
   const restaurantList = document.createElement("ul");
   restaurantList.classList.add("restaurant-list");
 
   const fragment = createFragment();
 
-  restaurantData.forEach((item) => {
+  restaurants.forEach((item) => {
     const listItem = createRestaurantListItem({
       category: item.category,
       name: item.name,
