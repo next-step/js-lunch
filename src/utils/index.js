@@ -7,7 +7,8 @@ const handleEvents = (event) => {
   if (!handlers) return;
 
   for (const target in handlers) {
-    if (event.target.matches(target)) {
+    const matchedElement = event.target.closest(target);
+    if (matchedElement) {
       handlers[target](event);
       break;
     }

@@ -28,7 +28,12 @@ export const RestaurantItem = (props) => {
 };
 
 addEvent('click', '.restaurant', (event) => {
-  const { json } = event.target.dataset;
+  const restaurantElement = event.target.closest('.restaurant');
+  if (!restaurantElement) return;
+
+  const { json } = restaurantElement.dataset;
+  if (!json) return;
+
   const props = JSON.parse(json);
 
   const handleDelete = () => {
