@@ -55,6 +55,7 @@ export const EVENT_TYPE = {
   TO_LIST: "TO_LIST",
   TO_DRAWER: "TO_DRAWER",
   ADD_TO_LIST: "ADD_TO_LIST",
+  SHOW_DETAIL: "SHOW_DETAIL",
 };
 
 export const TIME_TO_GO = {

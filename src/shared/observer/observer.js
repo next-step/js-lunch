@@ -1,10 +1,10 @@
 export const createObserver = ({
-  publisher,
+  publishers,
   subscribers,
   event,
   attributeName = "",
 }) => {
-  const publisherElement = publisher;
+  const publisherElements = publishers;
   const subscriberElements = subscribers;
   const config = { attributes: true, childList: true, subtree: true };
 
@@ -24,5 +24,7 @@ export const createObserver = ({
   };
 
   const observer = new MutationObserver(callback);
-  observer.observe(publisherElement, config);
+  publisherElements.forEach((publisherElement) => {
+    observer.observe(publisherElement, config);
+  });
 };

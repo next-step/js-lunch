@@ -52,12 +52,29 @@ export const filterEatingPlaceList = ({
       return 1;
     })
     .map((data1) => {
-      const { imageType, title, timeToGo, description } = data1;
+      const { type, imageType, title, timeToGo, description, referenceLink } =
+        data1;
       return EatingPlaceListItem({
+        type,
         imageType,
         title,
         timeToGo,
         description,
+        referenceLink,
       });
     });
 };
+
+export const makeEatingDetailInfo = ({
+  type,
+  title,
+  timeToGo,
+  description,
+  referenceLink,
+}) => /* html */ `
+  <h3>${title}</h3>
+  <div class="type">${type}</div>
+  <div class="timeToGo">${timeToGo}</div>
+  <div class="description">${description}</div>
+  <div class="referenceLink">${referenceLink}</div>
+`;

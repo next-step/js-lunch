@@ -4,6 +4,7 @@ import { MESSAGE } from "./message";
 import {
   filterEatingPlaceList,
   LOCAL_STORAGE_KEY,
+  makeEatingDetailInfo,
   makeEatingPlaceList,
   VALIDATION,
 } from "./util";
@@ -57,8 +58,15 @@ export const addEvent = () => {
   const eatingPlaceDetailDrawer = document.querySelector(
     ".eating-place-detail-drawer",
   );
+
   eatingPlaceDetailDrawer.addEventListener(EVENT_TYPE.SHOW_DETAIL, () => {
-    const isOpen = eatingPlaceDetailDrawer.dataset.open;
-    eatingPlaceDetailDrawer.dataset.open = isOpen === "true" ? "false" : "true";
+    eatingPlaceDetailDrawer.dataset.open = "true";
+    const eatingDetailItem = eatingPlaceDetailDrawer.dataset.item;
+    const eatingPlaceDetailDrawerContent = document.querySelector(
+      ".eating-place-detail-drawer .eating-place-drawer-content",
+    );
+    eatingPlaceDetailDrawerContent.innerHTML = makeEatingDetailInfo(
+      JSON.parse(eatingDetailItem),
+    );
   });
 };
