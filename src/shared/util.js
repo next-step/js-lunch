@@ -2,8 +2,6 @@ import EatingPlaceListItem from "../widget/main/eating-place-list-item";
 import { EATING_PLACE_TYPE } from "./constant";
 import { eatingPlaceListData } from "./data";
 
-const hr = () => /* html */ `<hr />`;
-
 export const LOCAL_STORAGE_KEY = "eatingPlaceList";
 
 export const VALIDATION = {
@@ -60,7 +58,6 @@ export const filterEatingPlaceList = ({
         title,
         timeToGo,
         description,
-      }).outerHTML;
-    })
-    .join(hr());
+      });
+    });
 };

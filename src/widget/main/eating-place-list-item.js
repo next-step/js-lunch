@@ -1,6 +1,12 @@
 const EatingPlaceListItem = ({ imageType, title, timeToGo, description }) => {
-  const container = document.createElement("div");
-  container.classList.add("eating-place-list-item");
+  const divElement = document.createElement("div");
+  divElement.classList.add("eating-place-list-item");
+
+  const handleClick = () => {
+    console.log("data");
+    const isOpen = divElement.dataset.open;
+    divElement.dataset.open = isOpen === "true" ? "false" : "true";
+  };
 
   const html = /* html */ `
       <img src=${imageType} alt="eating-place-list-item-img"/>
@@ -13,9 +19,10 @@ const EatingPlaceListItem = ({ imageType, title, timeToGo, description }) => {
       </div>
     `;
 
-  container.innerHTML = html;
+  divElement.innerHTML = html;
+  divElement.addEventListener("click", handleClick);
 
-  return container;
+  return divElement;
 };
 
 export default EatingPlaceListItem;

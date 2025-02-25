@@ -5,8 +5,12 @@ const EatingPlaceList = () => {
   const divElement = document.createElement("div");
   divElement.classList.add("eating-place-list");
 
-  const html = /* html */ `${filterEatingPlaceList({})}`;
-  divElement.innerHTML = html;
+  divElement.innerHTML = "";
+  const items = filterEatingPlaceList({});
+  items.forEach((item) => {
+    divElement.appendChild(item);
+  });
+
   container.appendChild(divElement);
 
   return container;
