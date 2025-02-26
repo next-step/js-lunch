@@ -57,7 +57,8 @@ class RestaurantListModel {
           data.category,
           data.name,
           data.time,
-          data.description
+          data.description,
+          data.link
         )
     );
     this.#initRestaurantsFilterData();
@@ -94,6 +95,12 @@ class RestaurantListModel {
         }
       );
     }
+  }
+
+  addRestaurant(category, name, time, description, link) {
+    this.#restaurantsInitData.push(
+      new RestaurantModel(category, name, time, description, link)
+    );
   }
 }
 
