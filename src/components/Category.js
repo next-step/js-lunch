@@ -1,6 +1,12 @@
-export function categoryRender(categoryListInstance) {
-  const select = document.querySelector("#category-filter");
-  select.innerHTML = "";
+export function categoryRender(
+  firstCatoryValue,
+  categoryId,
+  categoryListInstance
+) {
+  const select = document.querySelector(categoryId);
+  select.innerHTML = /*html*/ `<option value="${
+    firstCatoryValue === "선택해 주세요" ? "" : firstCatoryValue
+  }">${firstCatoryValue}</option>`;
 
   const fragment = document.createDocumentFragment();
 
