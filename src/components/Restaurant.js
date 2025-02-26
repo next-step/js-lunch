@@ -42,9 +42,7 @@ function createRestaurant(restaurant) {
   return item;
 }
 
-export function filterRestaurant() {
-  const restaurantListInstance = new RestaurantList();
-
+export function filterRestaurant(restaurantListInstance) {
   const categoryValue = document.getElementById("category-filter").value;
   const sortingValue = document.getElementById("sorting-filter").value;
 

@@ -1,7 +1,8 @@
 import RestaurantModel from "./RestaurantModel.js";
 
 class RestaurantListModel {
-  #restaurants;
+  #restaurantsInitData;
+  #restaurantsFilterData;
 
   constructor() {
     this.#initData();
@@ -50,7 +51,7 @@ class RestaurantListModel {
       },
     ];
 
-    this.#restaurants = initialData.map(
+    this.#restaurantsInitData = initialData.map(
       (data) =>
         new RestaurantModel(
           data.category,
@@ -59,31 +60,39 @@ class RestaurantListModel {
           data.description
         )
     );
+    this.#initRestaurantsFilterData();
   }
 
   get restaurants() {
-    return this.#restaurants;
+    return this.#restaurantsFilterData;
+  }
+
+  #initRestaurantsFilterData() {
+    this.#restaurantsFilterData = this.#restaurantsInitData;
   }
 
   filterByCategory(category) {
+    this.#initRestaurantsFilterData();
     if (category === "전체") {
       this.#initData;
       return;
     }
-    this.#restaurants = this.#restaurants.filter(
+    this.#restaurantsFilterData = this.#restaurantsInitData.filter(
       (restaurant) => restaurant.category === category
     );
   }
 
   sortBy(value) {
     if (value === "name") {
-      this.#restaurants = [...this.#restaurants].sort((a, b) =>
-        a.name.localeCompare(b.name)
+      this.#restaurantsFilterData = [...this.#restaurantsFilterData].sort(
+        (a, b) => a.name.localeCompare(b.name)
       );
     } else if (value === "distance") {
-      this.#restaurants = [...this.#restaurants].sort((a, b) => {
-        return a.time - b.time;
-      });
+      this.#restaurantsFilterData = [...this.#restaurantsFilterData].sort(
+        (a, b) => {
+          return a.time - b.time;
+        }
+      );
     }
   }
 }
