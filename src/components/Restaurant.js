@@ -13,10 +13,14 @@ export function restaurantRender(restaurantListInstance) {
     const restaurantList = document.querySelector(".restaurant-list");
     restaurantList.innerHTML = "";
 
+    const fragment = document.createDocumentFragment();
+
     restaurantListInstance.restaurants.forEach(restaurant => {
         const restaurantElement = createRestaurant(restaurant);
-        restaurantList.append(restaurantElement);
+        fragment.appendChild(restaurantElement);
     });
+
+    restaurantList.appendChild(fragment);
 }
 
 export function createRestaurant(restaurant) {
