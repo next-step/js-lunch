@@ -3,8 +3,7 @@ export function headerRender(name) {
   const header = createHeader(name);
   body.prepend(header);
 }
-
-export function createHeader(name) {
+function createHeader(name) {
   const header = document.createElement("header");
   header.classList.add("gnb");
 
