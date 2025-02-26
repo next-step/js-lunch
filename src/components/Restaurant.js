@@ -23,7 +23,7 @@ export function restaurantRender(restaurantListInstance) {
     restaurantList.appendChild(fragment);
 }
 
-export function createRestaurant(restaurant) {
+function createRestaurant(restaurant) {
     const item = document.createElement("li");
     item.classList.add("restaurant");
 
