@@ -1,10 +1,10 @@
 import { headerRender } from "./components/Header.js";
 import { filterRestaurant, restaurantRender } from "./components/Restaurant.js";
-import RestaurantList from "./domain/RestaurantList.js";
+import RestaurantListModel from "./domain/RestaurantListModel.js";
 
 addEventListener("load", () => {
   headerRender('점심 뭐 먹지');
-  const restaurantListInstance = new RestaurantList();
+  const restaurantListInstance = new RestaurantListModel();
   restaurantRender(restaurantListInstance);
 });
 

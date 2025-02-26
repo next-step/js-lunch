@@ -1,4 +1,4 @@
-import RestaurantList from "../domain/RestaurantList.js";
+import RestaurantList from "../domain/RestaurantListModel.js";
 
 const categoryImages = {
     한식: "./templates/category-korean.png",

@@ -1,4 +1,4 @@
-import RestaurantList from "../src/domain/RestaurantList.js";
+import RestaurantList from "../src/domain/RestaurantListModel.js";
 
 describe("RestaurantList Class 테스트", () => {
     it("레스토랑 정보를 초기세팅 한다.", () => {

@@ -1,4 +1,4 @@
-class Restaurant {
+class RestaurantModel {
 
     #category;
     #name;
@@ -30,4 +30,4 @@ class Restaurant {
 
 }
 
-export default Restaurant;
+export default RestaurantModel;

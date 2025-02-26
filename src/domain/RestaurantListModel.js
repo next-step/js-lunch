@@ -1,6 +1,6 @@
-import Restaurant from "./Restaurant.js";
+import RestaurantModel from "./RestaurantModel.js";
 
-class RestaurantList {
+class RestaurantListModel {
 
     #restaurants;
 
@@ -49,7 +49,7 @@ class RestaurantList {
         ];
 
         this.#restaurants = initialData.map(data =>
-            new Restaurant(data.category, data.name, data.time, data.description)
+            new RestaurantModel(data.category, data.name, data.time, data.description)
         );
     }
 
@@ -77,4 +77,4 @@ class RestaurantList {
 
 }
 
-export default RestaurantList;
+export default RestaurantListModel;
