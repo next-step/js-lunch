@@ -108,3 +108,39 @@ describe("음식점 리스트 테스트", () => {
       .should("contain", "호아빈 삼성점");
   });
 });
+
+describe("카테고리 리스트 테스트", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:5173/");
+  });
+  it("카테고리 리스트 확인", () => {
+    cy.get("#category-filter")
+      .find("option")
+      .eq(0)
+      .should("have.value", "전체");
+    cy.get("#category-filter")
+      .find("option")
+      .eq(1)
+      .should("have.value", "한식");
+    cy.get("#category-filter")
+      .find("option")
+      .eq(2)
+      .should("have.value", "중식");
+    cy.get("#category-filter")
+      .find("option")
+      .eq(3)
+      .should("have.value", "일식");
+    cy.get("#category-filter")
+      .find("option")
+      .eq(4)
+      .should("have.value", "양식");
+    cy.get("#category-filter")
+      .find("option")
+      .eq(5)
+      .should("have.value", "아시안");
+    cy.get("#category-filter")
+      .find("option")
+      .eq(6)
+      .should("have.value", "기타");
+  });
+});
