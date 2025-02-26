@@ -2,7 +2,7 @@ import {
   sortingByDistance,
   sortingByName,
   filteringByCategory,
-} from "./store.js";
+} from "../domain/store.js";
 
 export const sortingHandler = (value) => {
   if (value === "거리순") {

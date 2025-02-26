@@ -1,5 +1,5 @@
 import { makeIcon } from "./icon.js";
-import { cardClickHandler } from "./cardAction.js";
+import {showModalContent} from "../controller/modalController.js"
 
 export const makeRestaurant = (restaurant) => {
   const card = document.createElement("li");
@@ -22,7 +22,7 @@ export const makeRestaurant = (restaurant) => {
 
   info.append(title, distance, description);
   card.appendChild(info);
-  card.addEventListener("click", () => cardClickHandler(restaurant));
+  card.addEventListener("click", () => showModalContent(restaurant));
 
   return card;
 };
@@ -47,3 +47,6 @@ const makeDescription = (desc) => {
   element.innerText = desc;
   return element;
 };
+
+
+

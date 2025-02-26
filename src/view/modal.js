@@ -1,5 +1,7 @@
 import { makeIcon } from "./icon.js";
 import { makeTitle, makeDistance } from "./card.js";
+import { removeModal } from "../controller/modalController.js";
+
 export const makeModalContent = (restaurant) => {
   const modalContent = document.createElement("div");
 
@@ -47,29 +49,8 @@ const makeModalBottomBtns = () => {
   rightBtn.innerText = "닫기";
 
   rightBtn.addEventListener("click", () => removeModal());
-
   btnContainer.append(leftBtn, rightBtn);
 
   return btnContainer;
 };
 
-export const showModalContent = (restaurant) => {
-  const modalContainer = document.querySelector(".modal-container");
-
-  const modalContent = makeModalContent(restaurant);
-
-  modalContainer.appendChild(modalContent);
-
-  const main = document.querySelector("main");
-};
-
-const removeModalContent = () => {
-  const modalContainer = document.querySelector(".modal-container");
-  modalContainer.innerHTML = "";
-};
-
-const removeModal = () => {
-  const modal = document.querySelector(".modal");
-  modal.classList.remove("modal__open");
-  removeModalContent();
-};

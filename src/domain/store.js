@@ -1,4 +1,4 @@
-import data from "./data.js";
+import data from "../data.js";
 
 export const sortingByDistance = () => {
   return data.storeList.slice().sort((a, b) => a.distance - b.distance);

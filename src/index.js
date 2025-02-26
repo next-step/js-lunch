@@ -1,6 +1,6 @@
 import data from "./data.js";
-import { render } from "./render.js";
-import { addSelectEvent } from "./select.js";
+import { render } from "./view/render.js";
+import { addSelectEvent } from "./view/select.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 
