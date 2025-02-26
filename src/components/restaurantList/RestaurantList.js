@@ -1,5 +1,5 @@
-import { restaurantData } from "../data/restaurantData";
-import { createFragment } from '../utils';
+import { restaurantData } from "../../data/restaurantData";
+import { createFragment } from '../../utils';
 import { createRestaurantListItem } from "./RestaurantListItem";
 
 export const createRestaurantList = (restaurants = restaurantData) => {

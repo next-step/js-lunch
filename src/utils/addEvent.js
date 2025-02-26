@@ -1,7 +1,7 @@
-import { createRestaurantList } from "../components/RestaurantList";
+import { createRestaurantList } from "../components/restaurantList/RestaurantList";
 import { restaurantData } from "../data/restaurantData";
-import { filterByCategory } from "./filter";
-import { sortingBy } from "./sorting";
+import { filterByCategory } from "../domain/restaurant/filterByCategory";
+import { sortingBy } from "../domain/restaurant/sortingBy";
 
 export const addEvent = () => {
   const categoryFilter = document.getElementById("category-filter");

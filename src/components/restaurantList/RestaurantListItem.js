@@ -1,4 +1,4 @@
-import { CATEGORY_IMG_SRC } from "../utils/constants";
+import { CATEGORY_IMG_SRC } from "../../utils/constants";
 
 export const createRestaurantListItem = ({
   category,

@@ -1,4 +1,4 @@
-import { sortingBy } from '../utils/sorting';
+import { sortingBy } from '../../domain/restaurant/sortingBy';
 import { createRestaurantList } from "./RestaurantList";
 
 export const createRestaurantListSection = (restaurants) => {

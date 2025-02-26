@@ -1,5 +1,5 @@
 import { createHeader } from "./components/Header";
-import { createRestaurantListSection } from "./components/RestaurantListSection";
+import { createRestaurantListSection } from "./components/restaurantList/RestaurantListSection";
 import { restaurantData } from './data/restaurantData';
 import { addEvent } from "./utils/addEvent";
 
