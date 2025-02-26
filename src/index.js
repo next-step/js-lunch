@@ -1,6 +1,8 @@
 import { headerRender } from "./components/Header.js";
 import { filterRestaurant, restaurantRender } from "./components/Restaurant.js";
+import { categoryRender } from "./components/Category.js";
 import RestaurantListModel from "./domain/RestaurantListModel.js";
+import CategoryListModel from "./domain/CategoryListModel.js";
 
 class Index {
   #restaurantListInstance;
@@ -8,6 +10,7 @@ class Index {
   init() {
     addEventListener("load", () => {
       headerRender("점심 뭐 먹지");
+      categoryRender(new CategoryListModel());
       this.#restaurantListInstance = new RestaurantListModel();
       restaurantRender(this.#restaurantListInstance);
     });
