@@ -57,6 +57,8 @@ describe("리스트 UI 테스트", () => {
     cy.get(".restaurant").should("have.length", 1);
   });
 });
+
+
 describe("모달 UI 테스트", () => {
   beforeEach(() => {
     cy.visit("https://mandarin-sep.github.io/js-lunch/");
@@ -75,4 +77,47 @@ describe("모달 UI 테스트", () => {
       cy.get(".restaurant__distance").should("be.visible");
     });
   });
+});
+
+describe("음식점 추가 UI 테스트", () => {
+  beforeEach(() => {
+    cy.visit("https://mandarin-sep.github.io/js-lunch/");
+  });
+
+  it("헤더의 플러스 버튼을 누르면 음식점 추가 모달이 열린다.", () => {
+    cy.get(".gnb__button").click();
+    cy.get(".modal-container").should("be.visible");
+  });
+
+  it("모달 컨테이너 안에 아이템들이 렌더링된다.", () => {
+    const expectedForValues = ['category', 'name', 'distance', 'description','link'];
+
+    cy.get(".gnb__button").click();
+    cy.get(".modal-container").within(() => {
+      cy.get('label').each(($label, index) => {
+        cy.wrap($label).should('have.attr', 'for', expectedForValues[index]);
+      });
+      cy.get(".button-container").should("be.visible")
+    })
+  });
+
+  it("저장 버튼을 클릭하면 카드 리스트에 음식점이 추가된다.", () => {
+    cy.get('.restaurant-list li').its('length').as('initialCount');
+
+    cy.get(".gnb__button").click();
+    cy.get(".modal-container").within(() => {
+      cy.get('#category').select('한식');
+      cy.get('#name').type('원할머니 보쌈');
+      cy.get('#distance').select(10);
+      cy.get('#description').type('맛있는 보쌈입니다.');
+      cy.get('#link').type('naver.com');
+
+      cy.get('.button-container').find('button').eq(1).click();
+    })
+
+    cy.get('@initialCount').then((initialCount) => {
+      cy.get('.restaurant-list li').its('length').should('be.gt', initialCount);
+    });
+
+  })
 });
