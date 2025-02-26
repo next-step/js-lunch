@@ -54,19 +54,19 @@ describe("음식점 리스트 테스트", () => {
     cy.get(".restaurant")
       .eq(0)
       .find(".restaurant__name.text-subtitle")
-      .should("contain", "도스타코스 선릉점");
+      .should("contain", "친친");
     cy.get(".restaurant")
       .eq(1)
       .find(".restaurant__name.text-subtitle")
-      .should("contain", "친친");
+      .should("contain", "도스타코스 선릉점");
     cy.get(".restaurant")
       .eq(2)
       .find(".restaurant__name.text-subtitle")
-      .should("contain", "잇쇼우");
+      .should("contain", "피양콩할마니");
     cy.get(".restaurant")
       .eq(3)
       .find(".restaurant__name.text-subtitle")
-      .should("contain", "피양콩할마니");
+      .should("contain", "잇쇼우");
     cy.get(".restaurant")
       .eq(4)
       .find(".restaurant__name.text-subtitle")
