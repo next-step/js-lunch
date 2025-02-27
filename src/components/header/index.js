@@ -1,4 +1,4 @@
-export function createHeader() {
+export const createHeader = () => {
   const header = document.createElement("header");
   header.innerHTML = /*html*/ `
     <header class="gnb">
@@ -10,4 +10,4 @@ export function createHeader() {
   `;
 
   return header;
-}
+};

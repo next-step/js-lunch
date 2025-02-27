@@ -1,4 +1,4 @@
-export function createSelect({ name, id, className, values, labels }) {
+export const createSelect = ({ name, id, className, values, labels }) => {
   const select = document.createElement("select");
 
   select.name = name;
@@ -10,4 +10,4 @@ export function createSelect({ name, id, className, values, labels }) {
     .join("");
 
   return select;
-}
+};
