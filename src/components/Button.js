@@ -1,27 +1,27 @@
+const BUTTON_SIZES = {
+  lg: 44,
+  md: 36,
+  sm: 30,
+};
+
+const BUTTON_VARIANTS = {
+  primary: {
+    border: 'none',
+    background: 'var(--primary-color)',
+    color: 'var(--grey-100)',
+  },
+  outlined: {
+    border: '1px solid var(--grey-300)',
+    background: 'transparent',
+    color: 'var(--grey-300)',
+  },
+};
+
 export const Button = (props) => {
-  const { name, size, content, variant } = props;
+  const { name, size = 'md', content, variant = 'primary' } = props;
 
-  const _size = (() => {
-    if (size === 'lg') return 44;
-    if (size === 'sm') return 30;
-    return 36;
-  })();
-
-  const { border, background, color } = (() => {
-    if (variant === 'outlined') {
-      return {
-        border: '1px solid var(--grey-300)',
-        background: 'transparent',
-        color: 'var(--grey-300)',
-      };
-    }
-
-    return {
-      border: 'none',
-      background: 'var(--primary-color)',
-      color: 'var(--grey-100)',
-    };
-  })();
+  const _size = BUTTON_SIZES[size];
+  const { border, background, color } = BUTTON_VARIANTS[variant];
 
   return `
     <button

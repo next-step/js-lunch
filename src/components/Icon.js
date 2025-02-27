@@ -1,14 +1,15 @@
+const ICON_SIZES = {
+  xl: 36,
+  lg: 32,
+  md: 26,
+  sm: 20,
+  xs: 14,
+};
+
 export const Icon = (props) => {
-  const { name, size } = props;
+  const { name, size = 'md' } = props;
 
-  const _size = (() => {
-    if (size === 'xl') return 36;
-    if (size === 'lg') return 32;
-    if (size === 'sm') return 20;
-    if (size === 'xs') return 14;
-
-    return 26;
-  })();
+  const _size = ICON_SIZES[size];
 
   return `
     <div 

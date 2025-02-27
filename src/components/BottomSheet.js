@@ -22,13 +22,13 @@ export const BottomSheet = () => {
             name: 'bottom-sheet-confirm',
             size: 'lg',
             variant: 'outlined',
-            content: store.get().bottomSheetLeftButtonText,
+            content: store.get().bottomSheetLeftButtonText ?? '확인',
           })}
           ${Button({
             name: 'bottom-sheet-cancel',
             size: 'lg',
-            variant: 'plain',
-            content: store.get().bottomSheetRightButtonText,
+            variant: 'primary',
+            content: store.get().bottomSheetRightButtonText ?? '취소',
           })}
         </div>
       </div>
@@ -42,8 +42,8 @@ addEvent('click', '#bottom-sheet-confirm', () => {
   store.set({
     ...store.get(),
     isBottomSheetOpen: false,
-    bottomSheetLeftButtonText: '취소',
-    bottomSheetRightButtonText: '확인',
+    bottomSheetLeftButtonText: null,
+    bottomSheetRightButtonText: null,
   });
 });
 
@@ -53,7 +53,7 @@ addEvent('click', '#bottom-sheet-cancel', () => {
   store.set({
     ...store.get(),
     isBottomSheetOpen: false,
-    bottomSheetLeftButtonText: '취소',
-    bottomSheetRightButtonText: '확인',
+    bottomSheetLeftButtonText: null,
+    bottomSheetRightButtonText: null,
   });
 });

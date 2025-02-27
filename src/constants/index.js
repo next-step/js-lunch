@@ -1,4 +1,4 @@
-export const CATEGORIES = [
+export const RESTAURANT_CATEGORIES = [
   {
     label: '전체',
     value: '전체',
@@ -29,7 +29,7 @@ export const CATEGORIES = [
   },
 ];
 
-export const SORTINGS = [
+export const RESTAURANT_SORTINGS = [
   {
     label: '이름순',
     value: 'name',

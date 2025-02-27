@@ -1,10 +1,10 @@
 import { BottomSheet } from './components/BottomSheet';
-import { Header } from './layouts/Header';
+import { MainHeader } from './layouts/MainHeader';
 import { Home } from './pages/home';
 import { initializeEventManager } from './utils';
 
 export const App = () => {
-  return ` ${Header()} ${Home()} ${BottomSheet()}`;
+  return ` ${MainHeader()} ${Home()} ${BottomSheet()}`;
 };
 
 initializeEventManager();

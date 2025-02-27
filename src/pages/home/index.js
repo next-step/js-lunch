@@ -1,6 +1,6 @@
 import { List } from '../../components/List';
 import { Select } from '../../components/Select';
-import { CATEGORIES, SORTINGS } from '../../constants';
+import { RESTAURANT_CATEGORIES, RESTAURANT_SORTINGS } from '../../constants';
 import { RestaurantItem } from '../../domains/restaurant/components/RestaurantItem';
 import { RESTAURANTS } from '../../domains/restaurant/constants';
 import { store } from '../../stores';
@@ -15,14 +15,14 @@ export const Home = () => {
         ${Select({
           name: 'category',
           children: () =>
-            CATEGORIES.map((props) =>
+            RESTAURANT_CATEGORIES.map((props) =>
               Select.Item({ ...props, selected: props.value === category }),
             ).join(''),
         })}
         ${Select({
           name: 'sorting',
           children: () =>
-            SORTINGS.map((props) =>
+            RESTAURANT_SORTINGS.map((props) =>
               Select.Item({ ...props, selected: props.value === sorting }),
             ).join(''),
         })}        
