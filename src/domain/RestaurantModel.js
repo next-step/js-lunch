@@ -3,12 +3,14 @@ class RestaurantModel {
   #name;
   #time;
   #description;
+  #link;
 
-  constructor(categogry, name, time, description) {
+  constructor(categogry, name, time, description, link) {
     this.#category = categogry;
     this.#name = name;
     this.#time = time;
     this.#description = description;
+    this.#link = link;
   }
 
   get category() {
