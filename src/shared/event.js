@@ -2,11 +2,13 @@ import { EVENT_TYPE } from "./constant";
 import { ERROR_MESSAGE } from "./error";
 import { MESSAGE } from "./message";
 import {
+  checkValidationInputFields,
+  clearInputData,
   filterEatingPlaceList,
   LOCAL_STORAGE_KEY,
   makeEatingDetailInfo,
   makeEatingPlaceList,
-  VALIDATION,
+  toggleElement,
 } from "./util";
 
 export const addEvent = () => {
@@ -36,12 +38,9 @@ export const addEvent = () => {
     const drawerValue = drawerElement.dataset.result;
     const data = drawerValue.split(",");
 
-    const validation = data
-      .slice(VALIDATION.START, VALIDATION.END)
-      .every((value) => value !== "");
-
+    const isInputValid = checkValidationInputFields(data);
     // 유효성 검사
-    if (validation) {
+    if (isInputValid) {
       localStorage.setItem(LOCAL_STORAGE_KEY, makeEatingPlaceList(data));
 
       eatingPlaceList.innerHTML = "";
@@ -59,8 +58,11 @@ export const addEvent = () => {
   // 음식점 등록 Drawer 열고 닫는 이벤트 listener
   const eatingPlaceDrawer = document.querySelector(".eating-place-drawer");
   eatingPlaceDrawer.addEventListener(EVENT_TYPE.TO_DRAWER, () => {
-    const isOpen = eatingPlaceDrawer.dataset.open;
-    eatingPlaceDrawer.dataset.open = isOpen === "true" ? "false" : "true";
+    toggleElement(eatingPlaceDrawer);
+    const inputDataArray = eatingPlaceDrawer.querySelectorAll(
+      ".eating-place-drawer-content .data",
+    );
+    clearInputData(inputDataArray);
   });
 
   // 음식점 상세 정보 보는 이벤트 listener

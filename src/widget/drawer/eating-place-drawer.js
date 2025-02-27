@@ -10,6 +10,7 @@ const EatingPlaceDrawer = () => {
     const inputDataArray = divElement.querySelectorAll(
       ".eating-place-drawer-content .data",
     );
+
     const results = [...inputDataArray].map((data) => data.value);
     divElement.dataset.result = results;
     divElement.dataset.open = false;

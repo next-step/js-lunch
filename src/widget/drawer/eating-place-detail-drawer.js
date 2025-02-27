@@ -1,4 +1,4 @@
-import { makeEatingDetailInfo } from "../../shared/util";
+import { makeEatingDetailInfo, toggleElement } from "../../shared/util";
 
 const EatingPlaceDetailDrawer = () => {
   const container = document.createDocumentFragment();
@@ -6,13 +6,11 @@ const EatingPlaceDetailDrawer = () => {
   divElement.classList.add("eating-place-detail-drawer");
 
   const handleDelete = () => {
-    const isOpen = divElement.dataset.open;
-    divElement.dataset.open = isOpen === "true" ? "false" : "true";
+    toggleElement(divElement);
   };
 
   const handleClose = () => {
-    const isOpen = divElement.dataset.open;
-    divElement.dataset.open = isOpen === "true" ? "false" : "true";
+    toggleElement(divElement);
   };
 
   const html = /* html */ `

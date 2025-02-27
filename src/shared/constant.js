@@ -10,6 +10,7 @@ export const NAME_OR_DISTANCE = {
   NAME: "name",
   DISTANCE: "distance",
 };
+
 export const RADIO_CLASSES = Object.values(NAME_OR_DISTANCE);
 
 export const EATING_PLACE_TYPE = {

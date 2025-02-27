@@ -2,7 +2,7 @@ export const createObserver = ({
   publishers,
   subscribers,
   event,
-  attributeName = "",
+  attributeName = [""],
 }) => {
   const publisherElements = publishers;
   const subscriberElements = subscribers;
@@ -13,7 +13,7 @@ export const createObserver = ({
     for (const mutation of mutationList) {
       if (
         mutation.type === "attributes" &&
-        mutation.attributeName === attributeName
+        attributeName.includes(mutation.attributeName)
       ) {
         subscriberElements.forEach((subscriberElement) => {
           const customEvent = new CustomEvent(event);

@@ -10,7 +10,6 @@ const EatingPlaceListItem = ({
   divElement.classList.add("eating-place-list-item");
 
   const handleClick = () => {
-    // divElement.dataset.open = "true";
     const eatingPlaceDetailDrawer = document.querySelector(
       ".eating-place-detail-drawer",
     );

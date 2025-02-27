@@ -2,12 +2,31 @@ import EatingPlaceListItem from "../widget/main/eating-place-list-item";
 import { EATING_PLACE_TYPE } from "./constant";
 import { eatingPlaceListData } from "./data";
 
-export const LOCAL_STORAGE_KEY = "eatingPlaceList";
+export const toggleElement = (element) => {
+  const isOpen = element.dataset.open;
+  element.dataset.open = isOpen === "true" ? "false" : "true";
+};
 
-export const VALIDATION = {
+export const clearInputData = (elements) => {
+  elements.forEach((element) => {
+    element.value = "";
+  });
+};
+
+export const INPUT_FIELDS_VALIDATION_RANGE = {
   START: 0,
   END: 3,
 };
+
+export const checkValidationInputFields = (data) =>
+  data
+    .slice(
+      INPUT_FIELDS_VALIDATION_RANGE.START,
+      INPUT_FIELDS_VALIDATION_RANGE.END,
+    )
+    .every((value) => value !== "");
+
+export const LOCAL_STORAGE_KEY = "eatingPlaceList";
 
 export const makeEatingPlaceList = (data) => {
   const newData = [...data];
