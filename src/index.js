@@ -18,14 +18,19 @@ class Index {
     addEventListener("load", () => {
       headerRender("점심 뭐 먹지");
       categoryRender("전체", "#category-filter", new CategoryListModel());
-      restaurantRender(this.#restaurantListInstance);
-
+      this.#restaurantRender();
       this.#clickEvent();
     });
   }
 
   get restaurantListInstance() {
     return this.#restaurantListInstance;
+  }
+
+  #restaurantRender() {
+    restaurantRender(this.#restaurantListInstance);
+    this.#favoriteIconClick();
+    this.#restaurentInfolick();
   }
 
   #clickEvent() {
@@ -51,6 +56,31 @@ class Index {
   #sortFilterChange() {
     document.getElementById("sorting-filter").addEventListener("change", () => {
       filterRestaurant(this.#restaurantListInstance);
+    });
+  }
+
+  #favoriteIconClick() {
+    const favoriteIcons = document.querySelectorAll(".favorite-icon");
+
+    favoriteIcons.forEach((icon) => {
+      icon.addEventListener("click", () => {
+        const restaurantItem = icon.closest(".restaurant");
+        const value = restaurantItem.querySelector("#id").value;
+
+        this.#restaurantListInstance.changeFavorite(value);
+        this.#restaurantRender();
+      });
+    });
+  }
+  #restaurentInfolick() {
+    const restaurantInfo = document.querySelectorAll(".restaurant__info");
+
+    restaurantInfo.forEach((info) => {
+      info.addEventListener("click", () => {
+        const restaurantItem = info.closest(".restaurant");
+        const value = restaurantItem.querySelector("#id").value;
+        console.log(value);
+      });
     });
   }
 }
