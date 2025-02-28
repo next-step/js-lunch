@@ -1,10 +1,31 @@
-const EatingPlaceListItem = ({ imageType, title, timeToGo, description }) => {
-  const container = document.createElement("div");
-  container.classList.add("eating-place-list-item");
-  const render = () => {
-    const html = /* html */ `
-      <img src=${imageType} alt="eating-place-list-item-img"/>
-      <div class="eating-place-list-item-box">
+const EatingPlaceListItem = ({
+  type,
+  imageType,
+  title,
+  timeToGo,
+  description,
+  referenceLink,
+}) => {
+  const divElement = document.createElement("div");
+  divElement.classList.add("eating-place-list-item");
+
+  const handleClick = () => {
+    const eatingPlaceDetailDrawer = document.querySelector(
+      ".eating-place-detail-drawer",
+    );
+    divElement.dataset.open = "true";
+    eatingPlaceDetailDrawer.dataset.item = JSON.stringify({
+      type,
+      title,
+      timeToGo,
+      description,
+      referenceLink,
+    });
+  };
+
+  const html = /* html */ `
+      <img src=${imageType} alt="eating-place-list-item-img" />
+      <div class="eating-place-list-item-box" data-type=${type} data-reference-link=${referenceLink}>
         <div>
           <div class="eating-place-list-item-box-title">${title}</div>
           <div class="time-to-go-label">${timeToGo}</div>
@@ -13,14 +34,10 @@ const EatingPlaceListItem = ({ imageType, title, timeToGo, description }) => {
       </div>
     `;
 
-    container.innerHTML = html;
+  divElement.innerHTML = html;
+  divElement.addEventListener("click", handleClick);
 
-    return container;
-  };
-
-  render();
-
-  return container;
+  return divElement;
 };
 
 export default EatingPlaceListItem;

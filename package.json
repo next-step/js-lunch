@@ -8,6 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "cypress open",
+    "fix": "eslint --fix --ext .js .",
+    "format:check": "prettier **/*.js --check",
+    "format:write": "prettier **/*.js --write",
     "deploy": "vite build --base=/js-lunch/ --minify=false && npx gh-pages -d dist",
     "cy:open": "cypress open"
   },

@@ -1,2 +1,2 @@
-export const Select = ({ name, htmlFor, children }) =>
-  /* html */ `<Select>${name}</Select>`;
+export const Select = ({ className, children }) =>
+  /* html */ `<Select class='${className}'>${children}</Select>`;
