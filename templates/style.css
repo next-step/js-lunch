@@ -144,7 +144,16 @@ body {
   background: var(--lighten-color);
 }
 
+.restaurant__favorite {
+  margin-left: auto;
+}
+
 .category-icon {
+  width: 36px;
+  height: 36px;
+}
+
+.favorite-icon {
   width: 36px;
   height: 36px;
 }
