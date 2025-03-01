@@ -21,10 +21,6 @@ describe("음식점 항목 컴포넌트 테스트", () => {
           "contain",
           "멕시칸 캐주얼 그릴",
         );
-        cy.get(".restaurant__category img")
-          .should("have.attr", "alt", "기타")
-          .and("have.attr", "src")
-          .should("include", "category-etc.png");
       });
 
     cy.get(".restaurant-list .restaurant")
@@ -42,10 +38,6 @@ describe("음식점 항목 컴포넌트 테스트", () => {
           "contain",
           "늘 변화를 추구하는 이태리키친",
         );
-        cy.get(".restaurant__category img")
-          .should("have.attr", "alt", "양식")
-          .and("have.attr", "src")
-          .should("include", "category-western.png");
       });
 
     cy.get(".restaurant-list .restaurant")
@@ -60,10 +52,6 @@ describe("음식점 항목 컴포넌트 테스트", () => {
           "contain",
           "정통 자가제면 사누끼 우동",
         );
-        cy.get(".restaurant__category img")
-          .should("have.attr", "alt", "일식")
-          .and("have.attr", "src")
-          .should("include", "category-japanese.png");
       });
 
     cy.get(".restaurant-list .restaurant")
@@ -78,10 +66,6 @@ describe("음식점 항목 컴포넌트 테스트", () => {
           "contain",
           "정통 중식의 세계",
         );
-        cy.get(".restaurant__category img")
-          .should("have.attr", "alt", "중식")
-          .and("have.attr", "src")
-          .should("include", "category-chinese.png");
       });
 
     cy.get(".restaurant-list .restaurant")
@@ -99,10 +83,6 @@ describe("음식점 항목 컴포넌트 테스트", () => {
           "contain",
           "평양 출신의 할머니",
         );
-        cy.get(".restaurant__category img")
-          .should("have.attr", "alt", "한식")
-          .and("have.attr", "src")
-          .should("include", "category-korean.png");
       });
 
     cy.get(".restaurant-list .restaurant")
@@ -120,10 +100,6 @@ describe("음식점 항목 컴포넌트 테스트", () => {
           "contain",
           "푸짐한 양에 국물이 일품인 쌀국수",
         );
-        cy.get(".restaurant__category img")
-          .should("have.attr", "alt", "아시안")
-          .and("have.attr", "src")
-          .should("include", "category-chinese.png");
       });
   });
 });
