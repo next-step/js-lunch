@@ -1,4 +1,9 @@
-import image from "../public/assets/favorite-icon-filled.png";
+// 자바스크립트 코드에서 이미지 리소스 로드 테스트
+// index.html 파일의 html 구조를 수정하셔도 됩니다.
+import { createHeader } from "./components/Header.js";
+import { createRestaurantItem } from "./components/RestaurantItem.js";
+import Modal from "./components/Modal.js";
+import { restaurantsData } from "./data/restaurants.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
@@ -11,13 +16,6 @@ console.log(
     "    \\|_______|\\|_______|\\|__| \\|__|\\|_______|\\|__|\\|__|",
   "color: #d81b60; font-size: 14px; font-weight: bold;",
 );
-
-// 자바스크립트 코드에서 이미지 리소스 로드 테스트
-// index.html 파일의 html 구조를 수정하셔도 됩니다.
-import { createHeader } from "./components/Header.js";
-import { createRestaurantItem } from "./components/RestaurantItem.js";
-import Modal from "./components/Modal.js";
-import { restaurantsData } from "./data/restaurants.js";
 
 const modal = new Modal();
 
@@ -36,6 +34,42 @@ addEventListener("DOMContentLoaded", () => {
   restaurantsData.forEach((restaurant) => {
     const restaurantItem = createRestaurantItem(restaurant);
     restaurantList.append(restaurantItem);
+  });
+
+  let selectedCategory = "전체";
+  let selectedSort = "name";
+
+  const categorySelect = document.querySelector("#category-filter");
+  const sortSelect = document.querySelector("#sorting-filter");
+
+  const updateRestaurantList = () => {
+    const filteredData =
+      selectedCategory === "전체"
+        ? restaurantsData
+        : restaurantsData.filter((r) => r.category === selectedCategory);
+
+    const sortedData =
+      selectedSort === "name"
+        ? [...filteredData].sort((a, b) => a.name.localeCompare(b.name))
+        : [...filteredData].sort((a, b) => a.distance - b.distance);
+
+    const restaurantList = document.querySelector(".restaurant-list");
+    restaurantList.innerHTML = "";
+    sortedData.forEach((restaurant) => {
+      const restaurantItem = createRestaurantItem(restaurant);
+      restaurantList.append(restaurantItem);
+    });
+  };
+  updateRestaurantList();
+
+  categorySelect.addEventListener("change", (e) => {
+    selectedCategory = e.target.value;
+    updateRestaurantList();
+  });
+
+  sortSelect.addEventListener("change", (e) => {
+    selectedSort = e.target.value;
+    updateRestaurantList();
   });
 
   app.append(modal.rendered);
