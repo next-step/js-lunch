@@ -1,6 +1,5 @@
 import CategoryListModel from "./domain/CategoryListModel.js";
 import { categoryRender } from "./components/Category.js";
-import { restaurantRender } from "./components/Restaurant.js";
 
 class Modal {
   #restaurantListInstance;
@@ -58,7 +57,7 @@ class Modal {
   #closeModal() {
     const modal = document.querySelector(".modal");
     modal.classList.remove("modal--open");
-    restaurantRender(this.#restaurantListInstance);
+    document.dispatchEvent(new Event("modalClosed"));
   }
 
   #validationCategory() {
