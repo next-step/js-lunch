@@ -67,7 +67,7 @@ export const createRestaurantListSection = (data) => {
     },
   });
 
-  const restaurantList = createRestaurantListView(data);
+  const restaurantList = createRestaurantListView(sortingList(data));
 
   return [restaurantFilter, restaurantList];
 };
