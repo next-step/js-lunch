@@ -12,13 +12,13 @@ const favoriteImages = {
   false: "./templates/favorite-icon-lined.png",
 };
 
-export function restaurantRender(restaurantListInstance) {
+export function restaurantRender(restaurants) {
   const restaurantList = document.querySelector(".restaurant-list");
   restaurantList.innerHTML = "";
 
   const fragment = document.createDocumentFragment();
 
-  restaurantListInstance.restaurants.forEach((restaurant) => {
+  restaurants.forEach((restaurant) => {
     const restaurantElement = createRestaurant(restaurant);
     fragment.appendChild(restaurantElement);
   });
@@ -56,6 +56,4 @@ export function filterRestaurant(restaurantListInstance) {
 
   restaurantListInstance.filterByCategory(categoryValue);
   restaurantListInstance.sortBy(sortingValue);
-
-  restaurantRender(restaurantListInstance);
 }

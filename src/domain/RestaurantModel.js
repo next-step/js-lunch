@@ -33,6 +33,10 @@ class RestaurantModel {
     return this.#description;
   }
 
+  get link() {
+    return this.#link;
+  }
+
   get favorite() {
     return this.#favorite;
   }
