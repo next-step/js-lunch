@@ -21,15 +21,22 @@ describe("레스토랑 필터 선택 기능 테스트", () => {
 
   it("정렬 필터 변경 시 이름순으로 정렬되어야 한다", () => {
     cy.get("#sorting-filter").select("name");
-    cy.get(".restaurant-list .restaurant").first().within(() => {
-      cy.get(".restaurant__name.text-subtitle").should("contain", "도스타코스 선릉점");
-    });
+    cy.get(".restaurant-list .restaurant")
+      .first()
+      .within(() => {
+        cy.get(".restaurant__name.text-subtitle").should(
+          "contain",
+          "도스타코스 선릉점",
+        );
+      });
   });
 
   it("정렬 필터 변경 시 거리순으로 정렬되어야 한다", () => {
     cy.get("#sorting-filter").select("distance");
-    cy.get(".restaurant-list .restaurant").first().within(() => {
-      cy.get(".restaurant__distance.text-body").should("contain", "5분 내");
-    });
+    cy.get(".restaurant-list .restaurant")
+      .first()
+      .within(() => {
+        cy.get(".restaurant__distance.text-body").should("contain", "5분 내");
+      });
   });
 });
