@@ -14,7 +14,7 @@ export const BottomSheet = () => {
   return `
     <div class="modal ${open}">
       ${Backdrop()}
-      <div class="modal-container">
+      <div class="modal-container" style="max-height: 90%;">
         ${store.get().bottomSheetContent}
         
         <div class="button-container" style="margin-top: 16px; gap: 8px;">

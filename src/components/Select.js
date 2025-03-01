@@ -1,3 +1,5 @@
+import { Label } from './Label';
+
 const SelectItem = (props) => {
   const { label, value, selected } = props;
   const _selected = selected ? 'selected' : '';
@@ -8,13 +10,13 @@ const SelectItem = (props) => {
 };
 
 const SelectContainer = (props) => {
-  const { name, label, children, fullWidth } = props;
+  const { name, label, children, required, fullWidth } = props;
 
   const width = fullWidth ? 'width: 100%;' : '';
 
   return `
-    <div>
-      ${label ? `<label>${label}</label>` : ''}
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      ${label ? Label({ name, content: label, required }) : ''}
       <select
         id="${name}"
         name="${name}"

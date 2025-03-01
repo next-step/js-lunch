@@ -45,3 +45,68 @@ export const RESTAURANTS = [
     description: '멕시칸 캐주얼 그릴.',
   },
 ];
+
+export const RESTAURANT_CATEGORIES = [
+  {
+    label: '전체',
+    value: 'ALL',
+  },
+  {
+    label: '한식',
+    value: 'KOREAN',
+  },
+  {
+    label: '중식',
+    value: 'CHINESE',
+  },
+  {
+    label: '일식',
+    value: 'JAPANESE',
+  },
+  {
+    label: '양식',
+    value: 'WESTERN',
+  },
+  {
+    label: '아시안',
+    value: 'ASIAN',
+  },
+  {
+    label: '기타',
+    value: 'ETC',
+  },
+];
+
+export const RESTAURANT_SORTINGS = [
+  {
+    label: '이름순',
+    value: 'name',
+  },
+  {
+    label: '거리순',
+    value: 'distance',
+  },
+];
+
+export const RESTAURANT_DISTANCES = [
+  {
+    label: '5분',
+    value: 5,
+  },
+  {
+    label: '10분',
+    value: 10,
+  },
+  {
+    label: '15분',
+    value: 15,
+  },
+  {
+    label: '20분',
+    value: 20,
+  },
+  {
+    label: '30분',
+    value: 30,
+  },
+];

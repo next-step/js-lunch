@@ -1,8 +1,11 @@
 import { List } from '../../components/List';
 import { Select } from '../../components/Select';
-import { RESTAURANT_CATEGORIES, RESTAURANT_SORTINGS } from '../../constants';
 import { RestaurantItem } from '../../domains/restaurant/components/RestaurantItem';
-import { RESTAURANTS } from '../../domains/restaurant/constants';
+import {
+  RESTAURANT_CATEGORIES,
+  RESTAURANT_SORTINGS,
+  RESTAURANTS,
+} from '../../domains/restaurant/constants';
 import { store } from '../../stores';
 import { addEvent } from '../../utils';
 

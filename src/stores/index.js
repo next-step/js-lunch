@@ -1,5 +1,8 @@
-import { RESTAURANT_CATEGORIES, RESTAURANT_SORTINGS } from '../constants';
-import { RESTAURANTS } from '../domains/restaurant/constants';
+import {
+  RESTAURANT_CATEGORIES,
+  RESTAURANT_SORTINGS,
+  RESTAURANTS,
+} from '../domains/restaurant/constants';
 import { createObserver } from '../utils';
 
 export const store = createObserver({

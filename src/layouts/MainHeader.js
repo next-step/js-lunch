@@ -21,6 +21,15 @@ addEvent('click', `#add-button_icon`, (event) => {
     bottomSheetLeftButtonText: '취소',
     bottomSheetRightButtonText: '등록하기',
     bottomSheetContent: RestaurantEnroll(),
-    bottomSheetConfirm: null,
+    bottomSheetCancel: () => {
+      const targetForm = document.querySelector('#restaurant_enroll_form');
+
+      const formValues = {};
+      new FormData(targetForm).forEach((value, key) => {
+        formValues[key] = value;
+      });
+
+      console.log(formValues);
+    },
   });
 });
