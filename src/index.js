@@ -37,8 +37,6 @@ addEventListener("DOMContentLoaded", () => {
     restaurantList.append(restaurantItem);
   });
 
-
-
   const categorySelect = document.querySelector("#category-filter");
   const sortSelect = document.querySelector("#sorting-filter");
 
@@ -56,16 +54,19 @@ addEventListener("DOMContentLoaded", () => {
     sortSelect.appendChild(option);
   });
 
-  let selectedCategory = "전체";
-  let selectedSort = "name";
+  const state = {
+    category: "전체",
+    sort: "name",
+  };
+
   const updateRestaurantList = () => {
     const filteredData =
-      selectedCategory === "전체"
+      state.category === "전체"
         ? restaurantsData
-        : restaurantsData.filter((r) => r.category === selectedCategory);
+        : restaurantsData.filter((value) => value.category === state.category);
 
     const sortedData =
-      selectedSort === "name"
+      state.sort === "name"
         ? [...filteredData].sort((a, b) => a.name.localeCompare(b.name))
         : [...filteredData].sort((a, b) => a.distance - b.distance);
 
@@ -76,15 +77,16 @@ addEventListener("DOMContentLoaded", () => {
       restaurantList.append(restaurantItem);
     });
   };
+
   updateRestaurantList();
 
   categorySelect.addEventListener("change", (e) => {
-    selectedCategory = e.target.value;
+    state.category = e.target.value;
     updateRestaurantList();
   });
 
   sortSelect.addEventListener("change", (e) => {
-    selectedSort = e.target.value;
+    state.sort = e.target.value;
     updateRestaurantList();
   });
 
