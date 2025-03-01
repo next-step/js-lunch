@@ -1,7 +1,7 @@
 import { sortingByDistance, sortingByName, filteringByCategory } from '../model/restaurant.js'
 import { render } from '../view/render.js'
 import { getInitData } from '../model/saveData.js'
-import { getData, editData } from './saveData.js'
+import { getData, editData } from '../model/saveData.js'
 
 export const addSelectEvent = () => {
 	const sort = document.querySelector('#sorting-filter')
