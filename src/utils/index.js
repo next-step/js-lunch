@@ -1,3 +1,5 @@
+import { storage } from '../libs/storage';
+
 let isInitialized = false;
 
 const eventManager = {};
@@ -32,7 +34,10 @@ export const initializeEventManager = () => {
   });
 };
 
-export const createObserver = (initialValue) => {
+export const createObserver = (
+  initialValue,
+  options = { enableStorage: false },
+) => {
   let value = initialValue;
 
   const observers = new Set();
@@ -46,6 +51,13 @@ export const createObserver = (initialValue) => {
 
   const set = (newValue) => {
     value = newValue;
+
+    if (options.enableStorage) {
+      for (const [key, objectValue] of Object.entries(value)) {
+        storage.update(key, objectValue);
+      }
+    }
+
     notify();
   };
 
