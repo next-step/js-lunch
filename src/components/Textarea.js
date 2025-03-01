@@ -19,6 +19,7 @@ export const Textarea = (props) => {
     <div style="display: flex; flex-direction: column; gap: 8px;">
       ${label ? Label({ name, content: label, required }) : ''}
       <textarea
+        id=${name}
         name=${name}
         rows=${rows}
         style="${width} padding: 8px; border: 1px solid var(--grey-200); border-radius: 8px; font-size: 16px;"

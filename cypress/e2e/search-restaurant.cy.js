@@ -1,13 +1,14 @@
-describe('점심 뭐 먹지 어플리케이션 테스트', () => {
+describe('식당 조회하는 시나리오 테스트', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173');
+    cy.clearAllSessionStorage();
   });
 
   it('카테고리가 한식인 식당들을 보여줄 수 있다.', () => {
-    cy.get('#category').select('한식');
+    cy.get('#category_filter').select('한식');
 
     cy.contains('피양콩할마니').should('exist');
-    cy.get('#category').should('have.value', '한식');
+    cy.get('#category_filter').should('have.value', 'KOREAN');
   });
 
   it('거리순으로 정렬해서 보여줄 수 있다.', () => {

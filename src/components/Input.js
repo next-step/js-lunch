@@ -11,6 +11,7 @@ export const Input = (props) => {
     <div style="display: flex; flex-direction: column; gap: 8px;">
       ${label ? Label({ name, content: label, required }) : ''}
       <input
+        id=${name}
         name=${name}
         style="${width} height: 44px; padding: 8px; border: 1px solid var(--grey-200); border-radius: 8px; font-size: 16px;"
         ${_placeholder}
