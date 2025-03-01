@@ -59,7 +59,7 @@ const createRestaurantInfoSection = (restaurant) => {
   return infoContainer;
 };
 
-export const createRestaurantList = (restaurant) => {
+export const createRestaurantListItem = (restaurant) => {
   const restaurantElement = createList();
 
   const categoryImage = createRestaurantCategoryImage(restaurant.category);
@@ -71,13 +71,15 @@ export const createRestaurantList = (restaurant) => {
   return restaurantElement;
 };
 
+export const createRestaurantListGroup = () => {
+  const restaurantListGroup = document.createElement("ul");
+  restaurantListGroup.classList.add("restaurant-list");
+  return restaurantListGroup;
+};
+
 export const createRestaurantListContainer = () => {
   const restaurantListContainer = document.createElement("section");
   restaurantListContainer.classList.add("restaurant-list-container");
-
-  const restaurantList = document.createElement("ul");
-  restaurantList.classList.add("restaurant-list");
-  restaurantListContainer.append(restaurantList);
 
   return restaurantListContainer;
 };

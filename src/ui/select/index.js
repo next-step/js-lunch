@@ -5,12 +5,16 @@ export const createSelectContainer = () => {
   return selectContainer;
 };
 
-export const createSelect = ({ name, id, className, values, labels }) => {
+export const createSelect = ({ name, id, onChange, values, labels }) => {
   const select = document.createElement("select");
 
+  select.classList.add("restaurant-filter");
   select.name = name;
   select.id = id;
-  select.className = className ?? "restaurant-filter";
+
+  select.addEventListener("change", (e) => {
+    onChange?.(e);
+  });
 
   select.innerHTML = values
     .map((value) => `<option value="${value}">${labels[value]}</option>`)

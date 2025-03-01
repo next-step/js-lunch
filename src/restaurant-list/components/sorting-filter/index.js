@@ -5,11 +5,12 @@ export const SORTING = {
   distance: "거리순",
 };
 
-export const createSortingFilter = () => {
+export const createSortingFilter = ({ onChange }) => {
   return createSelect({
     name: "sorting",
     id: "sorting-filter",
     values: Object.keys(SORTING),
     labels: SORTING,
+    onChange: (e) => onChange?.(e),
   });
 };
