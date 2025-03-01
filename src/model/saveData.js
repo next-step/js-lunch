@@ -7,12 +7,12 @@ export const saveinitData = () => {
 export const addData = (newItem) => {
 	const currentData = JSON.parse(localStorage.getItem('restaurantData'))
 	currentData.storeList.push(newItem)
-	localStorage.setItem('restaurantData', currentData)
+	localStorage.setItem('restaurantData', JSON.stringify(currentData))
 }
 
 export const deleteData = (name) => {
 	const currentData = JSON.parse(localStorage.getItem('restaurantData'))
-	const newData = currentData.storeList.filter((item) => item.name !== name)
+	const newData = JSON.stringify(currentData.storeList.filter((item) => item.name !== name))
 	localStorage.setItem('restaurantData', newData)
 }
 

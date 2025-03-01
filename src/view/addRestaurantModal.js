@@ -13,6 +13,8 @@ export const makeAddModal = () => {
 
 	const title = document.createElement('h2')
 	title.classList.add('modal-title', 'text-title')
+	title.innerText = '새로운 음식점'
+	modalContainer.appendChild(title)
 
 	const category = makeSelect('category', CATEGORY_OPTIONS)
 	const categoryContainer = makeForm('category')
@@ -111,8 +113,8 @@ const makeBottomBtnArea = () => {
 	const btnLeft = document.createElement('button')
 	const btnRight = document.createElement('button')
 
-	btnLeft.classList.add('button', 'button--secondary', 'text-caption')
-	btnRight.classList.add('button', 'button--primary', 'text-caption')
+	btnLeft.classList.add('button', 'button--secondary', 'text-caption', 'cancle')
+	btnRight.classList.add('button', 'button--primary', 'text-caption', 'add')
 	btnLeft.innerText = '취소하기'
 	btnRight.innerText = '추가하기'
 	container.appendChild(btnLeft)

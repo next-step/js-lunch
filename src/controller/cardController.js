@@ -1,19 +1,15 @@
-import {
-  sortingByDistance,
-  sortingByName,
-  filteringByCategory,
-} from "../domain/store.js";
+import { sortingByDistance, sortingByName, filteringByCategory } from '../model/restaurant.js'
 
 export const sortingHandler = (value) => {
-  if (value === "거리순") {
-    return sortingByDistance();
-  }
+	if (value === '거리순') {
+		return sortingByDistance()
+	}
 
-  if (value === "이름순") {
-    return sortingByName();
-  }
-};
+	if (value === '이름순') {
+		return sortingByName()
+	}
+}
 
 export const filteringHandler = (category) => {
-  return filteringByCategory(category);
-};
+	return filteringByCategory(category)
+}
