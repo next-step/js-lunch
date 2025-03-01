@@ -1,7 +1,7 @@
 export const RESTAURANTS = [
   {
     icon: { name: 'category-korean', alt: '한식' },
-    category: '한식',
+    category: 'KOREAN',
     name: '피양콩할마니',
     distance: 10,
     description:
@@ -9,7 +9,7 @@ export const RESTAURANTS = [
   },
   {
     icon: { name: 'category-chinese', alt: '중식' },
-    category: '중식',
+    category: 'CHINESE',
     name: '친친',
     distance: 5,
     description:
@@ -17,7 +17,7 @@ export const RESTAURANTS = [
   },
   {
     icon: { name: 'category-japanese', alt: '일식' },
-    category: '일식',
+    category: 'JAPANESE',
     name: '잇쇼우',
     distance: 10,
     description:
@@ -25,21 +25,21 @@ export const RESTAURANTS = [
   },
   {
     icon: { name: 'category-western', alt: '양식' },
-    category: '양식',
+    category: 'WESTERN',
     name: '이태리키친',
     distance: 20,
     description: '늘 변화를 추구하는 이태리키친입니다.',
   },
   {
     icon: { name: 'category-asian', alt: '아시안' },
-    category: '아시안',
+    category: 'ASIAN',
     name: '호아빈 삼성점',
     distance: 15,
     description: '푸짐한 양에 국물이 일품인 쌀국수.',
   },
   {
     icon: { name: 'category-etc', alt: '기타' },
-    category: '기타',
+    category: 'ETC',
     name: '도스타코스 선릉점',
     distance: 5,
     description: '멕시칸 캐주얼 그릴.',
@@ -54,26 +54,32 @@ export const RESTAURANT_CATEGORIES = [
   {
     label: '한식',
     value: 'KOREAN',
+    icon: { name: 'category-korean', alt: '한식' },
   },
   {
     label: '중식',
     value: 'CHINESE',
+    icon: { name: 'category-chinese', alt: '중식' },
   },
   {
     label: '일식',
     value: 'JAPANESE',
+    icon: { name: 'category-japanese', alt: '일식' },
   },
   {
     label: '양식',
     value: 'WESTERN',
+    icon: { name: 'category-western', alt: '양식' },
   },
   {
     label: '아시안',
     value: 'ASIAN',
+    icon: { name: 'category-asian', alt: '아시안' },
   },
   {
     label: '기타',
     value: 'ETC',
+    icon: { name: 'category-etc', alt: '기타' },
   },
 ];
 

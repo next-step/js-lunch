@@ -1,6 +1,9 @@
 import { Icon } from '../components/Icon';
 import { RestaurantEnroll } from '../domains/restaurant/components/RestaurantEnroll';
-import { store } from '../stores';
+import { RESTAURANT_CATEGORIES } from '../domains/restaurant/constants';
+import { restaurantStore } from '../domains/restaurant/stores';
+import { validateRestaurantEnrollForm } from '../domains/restaurant/utils';
+import { globalStore } from '../stores';
 import { addEvent } from '../utils';
 
 export const MainHeader = () => {
@@ -15,21 +18,40 @@ export const MainHeader = () => {
 addEvent('click', `#add-button_icon`, (event) => {
   event.preventDefault();
 
-  store.set({
-    ...store.get(),
+  const handleSubmit = async () => {
+    const targetForm = document.querySelector('#restaurant_enroll_form');
+
+    const formValues = {};
+    new FormData(targetForm).forEach((value, key) => {
+      formValues[key] = value;
+    });
+
+    try {
+      await validateRestaurantEnrollForm(formValues);
+
+      restaurantStore.set({
+        ...restaurantStore.get(),
+        restaurants: [
+          ...restaurantStore.get().restaurants,
+          {
+            ...formValues,
+            ...RESTAURANT_CATEGORIES.filter(
+              ({ value }) => formValues.category === value,
+            )[0],
+          },
+        ],
+      });
+    } catch ({ reason }) {
+      alert(reason);
+    }
+  };
+
+  globalStore.set({
+    ...globalStore.get(),
     isBottomSheetOpen: true,
     bottomSheetLeftButtonText: '취소',
     bottomSheetRightButtonText: '등록하기',
     bottomSheetContent: RestaurantEnroll(),
-    bottomSheetCancel: () => {
-      const targetForm = document.querySelector('#restaurant_enroll_form');
-
-      const formValues = {};
-      new FormData(targetForm).forEach((value, key) => {
-        formValues[key] = value;
-      });
-
-      console.log(formValues);
-    },
+    bottomSheetCancel: handleSubmit,
   });
 });

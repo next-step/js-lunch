@@ -1,14 +1,24 @@
 import { Input } from '../../../components/Input';
 import { Select } from '../../../components/Select';
 import { Textarea } from '../../../components/Textarea';
+import { addEvent } from '../../../utils';
 import { RESTAURANT_CATEGORIES, RESTAURANT_DISTANCES } from '../constants';
 
+const initializeLocalStore = () => ({
+  category: 'ALL',
+  distance: 5,
+});
+
+const localStore = initializeLocalStore();
+
 export const RestaurantEnroll = () => {
+  const { category, distance } = initializeLocalStore();
+
   return `
     <div>
       <h4 class="text-subtitle" style="padding-bottom: 12px;">새로운 음식점</h4>
 
-      <form id="restaurant_enroll_form" style="display: flex; flex-direction: column; gap: 24px;">
+      <form action="#" id="restaurant_enroll_form" style="display: flex; flex-direction: column; gap: 24px;">
           ${Select({
             name: 'category',
             label: '카테고리',
@@ -16,7 +26,10 @@ export const RestaurantEnroll = () => {
             fullWidth: true,
             children: () =>
               RESTAURANT_CATEGORIES.map((props) =>
-                Select.Item({ ...props, selected: props.value === category }),
+                Select.Item({
+                  ...props,
+                  selected: props.value === category,
+                }),
               ).join(''),
           })}
 
@@ -28,13 +41,13 @@ export const RestaurantEnroll = () => {
           })}
 
           ${Select({
-            name: 'direction',
+            name: 'distance',
             label: '거리(도보 이동 시간)',
             required: true,
             fullWidth: true,
             children: () =>
               RESTAURANT_DISTANCES.map((props) =>
-                Select.Item({ ...props, selected: props.value === category }),
+                Select.Item({ ...props, selected: props.value === distance }),
               ).join(''),
           })}
 
@@ -55,3 +68,17 @@ export const RestaurantEnroll = () => {
     </div>
   `;
 };
+
+addEvent('change', `#category`, (event) => {
+  event.preventDefault();
+  const selectedCategory = event.target.value;
+
+  localStore.category = selectedCategory;
+});
+
+addEvent('change', `#distance`, (event) => {
+  event.preventDefault();
+  const selectedDistance = event.target.value;
+
+  localStore.distance = selectedDistance;
+});

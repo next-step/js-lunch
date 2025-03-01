@@ -1,5 +1,5 @@
 import { App } from './app';
-import { store } from './stores';
+import { globalStore } from './stores';
 import './styles/index.css';
 
 console.log('npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요');
@@ -26,4 +26,4 @@ const render = () => {
 
 render();
 
-store.subscribe(render);
+globalStore.subscribe(render);
