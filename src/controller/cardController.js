@@ -1,6 +1,7 @@
 import { sortingByDistance, sortingByName, filteringByCategory } from '../model/restaurant.js'
 import { render } from '../view/render.js'
 import { getInitData } from '../model/saveData.js'
+import { getData, editData } from './saveData.js'
 
 export const addSelectEvent = () => {
 	const sort = document.querySelector('#sorting-filter')
@@ -20,15 +21,23 @@ export const addSelectEvent = () => {
 }
 
 const sortingHandler = (value) => {
+	const data = getData()
+	let editedData
 	if (value === '거리순') {
-		return sortingByDistance()
+		editedData = sortingByDistance(data)
 	}
 
 	if (value === '이름순') {
-		return sortingByName()
+		sortingByName(data)
 	}
+	editData(editedData)
+
+	return editedData
 }
 
 const filteringHandler = (category) => {
-	return filteringByCategory(category)
+	const data = getData()
+	const editedData = filteringByCategory(category, data)
+
+	return editedData
 }

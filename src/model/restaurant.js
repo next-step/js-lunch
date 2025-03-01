@@ -1,4 +1,4 @@
-import { addData, getData, editData } from './saveData.js'
+import { addData } from './saveData.js'
 
 export default class restaurant {
 	constructor() {
@@ -36,27 +36,15 @@ export default class restaurant {
 	}
 }
 
-export const sortingByDistance = () => {
-	const data = getData()
-	const editedData = data.slice().sort((a, b) => a.distance - b.distance)
-
-	editData(editedData)
-	return editedData
+export const sortingByDistance = (data) => {
+	return data.slice().sort((a, b) => a.distance - b.distance)
 }
 
-export const sortingByName = () => {
-	const data = getData()
-	const editedData = data.slice().sort((a, b) => a.name - b.name)
-
-	editData(editedData)
-	return editedData
+export const sortingByName = (data) => {
+	return data.slice().sort((a, b) => a.name - b.name)
 }
 
-export const filteringByCategory = (category) => {
-	const data = getData()
+export const filteringByCategory = (category, data) => {
 	if (!category.length) return data.storeList
-	const editedData = data.slice().filter((item) => item.category === category)
-
-	editData(editedData)
-	return editedData
+	return data.slice().filter((item) => item.category === category)
 }
