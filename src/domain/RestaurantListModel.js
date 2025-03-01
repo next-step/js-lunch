@@ -82,6 +82,12 @@ class RestaurantListModel {
     return this.#restaurantsFilterData;
   }
 
+  get favoriteRestaurants() {
+    return this.#restaurantsFilterData.filter(
+      (restaurant) => restaurant.favorite
+    );
+  }
+
   #initRestaurantsFilterData() {
     this.#restaurantsFilterData = this.#restaurantsInitData;
   }
@@ -112,8 +118,15 @@ class RestaurantListModel {
   }
 
   addRestaurant(category, name, time, description, link) {
+    const maxId =
+      this.#restaurantsInitData.length > 0
+        ? Math.max(
+            ...this.#restaurantsInitData.map((restaurant) => restaurant.id)
+          )
+        : 0;
+    const newId = maxId + 1;
     this.#restaurantsInitData.push(
-      new RestaurantModel(category, name, time, description, link)
+      new RestaurantModel(maxId, category, name, time, description, link, false)
     );
   }
 
@@ -123,6 +136,21 @@ class RestaurantListModel {
     });
 
     restaurant.changeFavorite(!restaurant.favorite);
+  }
+
+  findById(id) {
+    const restaurant = this.#restaurantsFilterData.find((restaurant) => {
+      return restaurant.id === parseInt(id);
+    });
+    return restaurant;
+  }
+
+  remove(id) {
+    this.#restaurantsInitData = this.#restaurantsInitData.filter(
+      (restaurant) => restaurant.id !== parseInt(id)
+    );
+
+    this.#restaurantsFilterData = this.#restaurantsInitData;
   }
 }
 
