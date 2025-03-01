@@ -1,5 +1,5 @@
 import { makeIcon } from './icon.js'
-import { showModalContent } from '../controller/restaurantDetailController.js'
+import { showRestaurantDetail } from '../controller/restaurantDetailController.js'
 
 export const makeRestaurant = (restaurant) => {
 	const card = document.createElement('li')
@@ -22,7 +22,7 @@ export const makeRestaurant = (restaurant) => {
 
 	info.append(title, distance, description)
 	card.appendChild(info)
-	card.addEventListener('click', () => showModalContent(restaurant))
+	card.addEventListener('click', () => showRestaurantDetail(restaurant))
 
 	return card
 }

@@ -1,6 +1,6 @@
 import { makeIcon } from './icon.js'
 import { makeTitle, makeDistance } from './card.js'
-import { removeModal } from '../controller/restaurantDetailController.js'
+import { removeRestaurantDetail } from '../controller/restaurantDetailController.js'
 
 export const makeModalContent = (restaurant) => {
 	const modalContent = document.createElement('div')
@@ -48,7 +48,7 @@ const makeModalBottomBtns = () => {
 	leftBtn.innerText = '삭제하기'
 	rightBtn.innerText = '닫기'
 
-	rightBtn.addEventListener('click', () => removeModal())
+	rightBtn.addEventListener('click', () => removeRestaurantDetail())
 	btnContainer.append(leftBtn, rightBtn)
 
 	return btnContainer
