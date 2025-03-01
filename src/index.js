@@ -4,6 +4,7 @@ import { createHeader } from "./components/Header.js";
 import { createRestaurantItem } from "./components/RestaurantItem.js";
 import Modal from "./components/Modal.js";
 import { restaurantsData } from "./data/restaurants.js";
+import { categoryOptions, sortOptions } from "./data/filters.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
@@ -36,12 +37,27 @@ addEventListener("DOMContentLoaded", () => {
     restaurantList.append(restaurantItem);
   });
 
-  let selectedCategory = "전체";
-  let selectedSort = "name";
+
 
   const categorySelect = document.querySelector("#category-filter");
   const sortSelect = document.querySelector("#sorting-filter");
 
+  categoryOptions.forEach((category) => {
+    const option = document.createElement("option");
+    option.value = category;
+    option.textContent = category;
+    categorySelect.appendChild(option);
+  });
+
+  sortOptions.forEach(({ value, text }) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = text;
+    sortSelect.appendChild(option);
+  });
+
+  let selectedCategory = "전체";
+  let selectedSort = "name";
   const updateRestaurantList = () => {
     const filteredData =
       selectedCategory === "전체"
