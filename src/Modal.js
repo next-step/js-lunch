@@ -21,7 +21,7 @@ class Modal {
 
   #clickEvent() {
     this.#cancelButtonClick();
-    this.#submitButtionClick();
+    this.#submitButtonClick();
   }
 
   #cancelButtonClick() {
@@ -31,27 +31,50 @@ class Modal {
     });
   }
 
-  #submitButtionClick() {
+  #submitButtonClick() {
     document
       .querySelector(".button--primary")
       .addEventListener("click", (event) => {
-        const category = this.#validationCategory();
-        const name = this.#validationName();
-        const time = this.#validationTime();
-        const description = document.getElementById("description").value;
-        const link = document.getElementById("link").value;
-
-        if (category && name && time) {
-          this.#restaurantListInstance.addRestaurant(
-            category,
-            name,
-            time,
-            description,
-            link
-          );
-          this.#closeModal();
-        }
+        this.#addRestaurant();
       });
+  }
+
+  #addRestaurant() {
+    const restaurantData = this.#validateRestaurantData();
+
+    if (!restaurantData) {
+      return;
+    }
+
+    this.#restaurantListInstance.addRestaurant(
+      restaurantData.category,
+      restaurantData.name,
+      restaurantData.time,
+      restaurantData.description,
+      restaurantData.link
+    );
+
+    this.#closeModal();
+  }
+
+  #validateRestaurantData() {
+    const category = this.#validationCategory();
+    const name = this.#validationName();
+    const time = this.#validationTime();
+    const description = document.getElementById("description").value;
+    const link = document.getElementById("link").value;
+
+    if (!category || !name || !time) {
+      return null;
+    }
+
+    return {
+      category,
+      name,
+      time,
+      description,
+      link,
+    };
   }
 
   #closeModal() {
