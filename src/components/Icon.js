@@ -7,12 +7,13 @@ const ICON_SIZES = {
 };
 
 export const Icon = (props) => {
-  const { name, size = 'md' } = props;
+  const { name, size = 'md', removeBackground = false } = props;
 
   const _size = ICON_SIZES[size];
 
   return `
     <div 
+      id="${name}_icon"
       style="
         width: ${_size * 1.4}px; 
         height: ${_size * 1.4}px;
@@ -21,7 +22,9 @@ export const Icon = (props) => {
         justify-content: center;
         padding: 6px;
         border-radius: 50%;
-        background-color: var(--lighten-color);
+        background-color: ${
+          removeBackground ? 'transparent' : 'var(--lighten-color)'
+        };
       "
     >
       <img
