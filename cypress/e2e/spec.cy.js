@@ -107,6 +107,29 @@ describe("음식점 리스트 테스트", () => {
       .find(".restaurant__name.text-subtitle")
       .should("contain", "호아빈 삼성점");
   });
+
+  it("자주가는 식당 별 이미지 클릭 테스트", () => {
+    cy.get(".favorite-icon").eq(0).click();
+    cy.get(".favorite-icon")
+      .eq(0)
+      .invoke("attr", "src")
+      .should("contain", "favorite-icon-filled.png");
+  });
+
+  it("자주가는 식당 클릭 테스트", () => {
+    cy.get(".favorite-icon").eq(0).click();
+    cy.get(".favorite-icon").eq(1).click();
+    cy.get(".favorite-restaurant").click();
+
+    cy.get(".restaurant")
+      .eq(0)
+      .find(".restaurant__name.text-subtitle")
+      .should("contain", "피양콩할마니");
+    cy.get(".restaurant")
+      .eq(1)
+      .find(".restaurant__name.text-subtitle")
+      .should("contain", "친친");
+  });
 });
 
 describe("카테고리 리스트 테스트", () => {
@@ -170,5 +193,34 @@ describe("모달창 테스트", () => {
     cy.on("window:alert", (txt) => {
       expect(txt).to.contains("카테고리를 입력하십시오");
     });
+  });
+});
+
+describe("음식점 상세 모달창 테스트", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:5173/");
+  });
+  it("모달 창 오픈 확인", () => {
+    cy.get("li.restaurant").first().click();
+    cy.get(".detail").should("have.class", "modal--open");
+  });
+  it("모달 창 닫기 확인", () => {
+    cy.get("li.restaurant").first().click();
+    cy.get("#cancel__button__detail").click();
+    cy.get(".detail").should("not.have.class", "modal--open");
+  });
+  it("1번 음식점 클릭 후 삭제됐는지 확인", () => {
+    cy.get("li.restaurant").first().click();
+    cy.get("#remove__button_detail").click();
+
+    cy.get(".restaurant")
+      .eq(0)
+      .find(".restaurant__name.text-subtitle")
+      .should("not.contain", "피양콩할마니");
+
+    cy.get(".restaurant")
+      .eq(0)
+      .find(".restaurant__name.text-subtitle")
+      .should("contain", "친친");
   });
 });

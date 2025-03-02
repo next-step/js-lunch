@@ -1,16 +1,20 @@
 class RestaurantModel {
+  #id;
   #category;
   #name;
   #time;
   #description;
   #link;
+  #favorite;
 
-  constructor(categogry, name, time, description, link) {
+  constructor(id, categogry, name, time, description, link, favorite) {
+    this.#id = id;
     this.#category = categogry;
     this.#name = name;
     this.#time = time;
     this.#description = description;
     this.#link = link;
+    this.#favorite = favorite;
   }
 
   get category() {
@@ -27,6 +31,22 @@ class RestaurantModel {
 
   get description() {
     return this.#description;
+  }
+
+  get link() {
+    return this.#link;
+  }
+
+  get favorite() {
+    return this.#favorite;
+  }
+
+  get id() {
+    return this.#id;
+  }
+
+  changeFavorite(favorite) {
+    this.#favorite = favorite;
   }
 }
 
