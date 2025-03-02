@@ -13,7 +13,7 @@ export const Textarea = (props) => {
   } = props;
 
   const width = fullWidth ? 'width: 100%;' : '';
-  const _placeholder = placeholder ? `placeholder: ${placeholder}` : '';
+  const _placeholder = placeholder ? `placeholder=${placeholder}` : '';
 
   return `
     <div style="display: flex; flex-direction: column; gap: 8px;">

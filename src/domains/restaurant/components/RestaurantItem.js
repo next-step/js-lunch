@@ -1,5 +1,5 @@
 import { Icon } from '../../../components/Icon';
-import { globalStore } from '../../../stores';
+import { bottomSheetStore } from '../../../stores/bottom-sheet';
 import { addEvent } from '../../../utils';
 import { restaurantStore } from '../stores';
 import { RestaurantInfo } from './RestaurantInfo';
@@ -48,8 +48,8 @@ addEvent('click', '.restaurant', (event) => {
     });
   };
 
-  globalStore.set({
-    ...globalStore.get(),
+  bottomSheetStore.set({
+    ...bottomSheetStore.get(),
     isBottomSheetOpen: true,
     bottomSheetLeftButtonText: '삭제하기',
     bottomSheetRightButtonText: '닫기',

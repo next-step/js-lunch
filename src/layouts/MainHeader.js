@@ -3,7 +3,7 @@ import { RestaurantEnroll } from '../domains/restaurant/components/RestaurantEnr
 import { RESTAURANT_CATEGORIES } from '../domains/restaurant/constants';
 import { restaurantStore } from '../domains/restaurant/stores';
 import { validateRestaurantEnrollForm } from '../domains/restaurant/utils';
-import { globalStore } from '../stores';
+import { bottomSheetStore } from '../stores/bottom-sheet';
 import { addEvent } from '../utils';
 
 export const MainHeader = () => {
@@ -46,8 +46,8 @@ addEvent('click', `#add-button_icon`, (event) => {
     }
   };
 
-  globalStore.set({
-    ...globalStore.get(),
+  bottomSheetStore.set({
+    ...bottomSheetStore.get(),
     isBottomSheetOpen: true,
     bottomSheetLeftButtonText: '취소',
     bottomSheetRightButtonText: '등록하기',
