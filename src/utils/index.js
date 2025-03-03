@@ -1,4 +1,4 @@
-import { storage } from '../libs/storage';
+import { sessionStorageUtil } from '../libs/storage';
 
 let isInitialized = false;
 
@@ -54,7 +54,7 @@ export const createObserver = (
 
     if (options.enableStorage) {
       for (const [key, objectValue] of Object.entries(value)) {
-        storage.update(key, objectValue);
+        sessionStorageUtil.update(key, objectValue);
       }
     }
 

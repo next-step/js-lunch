@@ -1,4 +1,4 @@
-export const storage = {
+export const sessionStorageUtil = {
   get: (key, defaultValue = null) => {
     try {
       const item = sessionStorage.getItem(key);

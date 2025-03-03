@@ -1,4 +1,4 @@
-import { storage } from '../../../libs/storage';
+import { sessionStorageUtil } from '../../../libs/storage';
 import { createObserver } from '../../../utils';
 import {
   RESTAURANT_CATEGORIES,
@@ -9,9 +9,12 @@ import {
 export const restaurantStore = createObserver(
   {
     // Domains
-    category: storage.get('category', RESTAURANT_CATEGORIES[0].value),
-    sorting: storage.get('sorting', RESTAURANT_SORTINGS[0].value),
-    restaurants: storage.get('restaurants', RESTAURANTS),
+    category: sessionStorageUtil.get(
+      'category',
+      RESTAURANT_CATEGORIES[0].value,
+    ),
+    sorting: sessionStorageUtil.get('sorting', RESTAURANT_SORTINGS[0].value),
+    restaurants: sessionStorageUtil.get('restaurants', RESTAURANTS),
   },
   { enableStorage: true },
 );
