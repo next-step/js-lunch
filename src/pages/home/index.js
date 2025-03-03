@@ -1,19 +1,22 @@
 import { List } from '../../components/List';
 import { Select } from '../../components/Select';
-import { RESTAURANT_CATEGORIES, RESTAURANT_SORTINGS } from '../../constants';
 import { RestaurantItem } from '../../domains/restaurant/components/RestaurantItem';
-import { RESTAURANTS } from '../../domains/restaurant/constants';
-import { store } from '../../stores';
+import {
+  RESTAURANT_CATEGORIES,
+  RESTAURANT_SORTINGS,
+  RESTAURANTS,
+} from '../../domains/restaurant/constants';
+import { restaurantStore } from '../../domains/restaurant/stores';
 import { addEvent } from '../../utils';
 
 export const Home = () => {
-  const { category, sorting, restaurants } = store.get();
+  const { category, sorting, restaurants } = restaurantStore.get();
 
   return `
-    <section style="padding: 20px 16px; display: flex; flex-direction: column; flex: 1; gap: 16px;">
+    <section id="home-container" style="padding: 20px 16px; display: flex; flex-direction: column; flex: 1; gap: 16px;">
       <div style="width: 100%; display:flex; justify-content: space-between;">
         ${Select({
-          name: 'category',
+          name: 'category_filter',
           children: () =>
             RESTAURANT_CATEGORIES.map((props) =>
               Select.Item({ ...props, selected: props.value === category }),
@@ -36,16 +39,29 @@ export const Home = () => {
   `;
 };
 
-addEvent('change', `#category`, (event) => {
+const render = () => {
+  const oldContainer = document.querySelector('#home-container');
+  if (!oldContainer) return;
+
+  const newContainer = document.createElement('div');
+  newContainer.id = 'home-container';
+  newContainer.innerHTML = Home();
+
+  oldContainer.replaceWith(newContainer);
+};
+
+restaurantStore.subscribe(render);
+
+addEvent('change', `#category_filter`, (event) => {
   event.preventDefault();
   const selectedCategory = event.target.value;
 
-  store.set({
-    ...store.get(),
+  restaurantStore.set({
+    ...restaurantStore.get(),
     category: selectedCategory,
     restaurants: RESTAURANTS.filter(
       ({ category }) =>
-        category === selectedCategory || selectedCategory === '전체',
+        category === selectedCategory || selectedCategory === 'ALL',
     ),
   });
 });
@@ -54,7 +70,7 @@ addEvent('change', `#sorting`, (event) => {
   event.preventDefault();
   const selectedSorting = event.target.value;
 
-  const copiedRestaurants = [...store.get().restaurants];
+  const copiedRestaurants = [...restaurantStore.get().restaurants];
 
   if (selectedSorting === 'name') {
     copiedRestaurants.sort((a, b) =>
@@ -66,8 +82,8 @@ addEvent('change', `#sorting`, (event) => {
     copiedRestaurants.sort((a, b) => a.distance - b.distance);
   }
 
-  store.set({
-    ...store.get(),
+  restaurantStore.set({
+    ...restaurantStore.get(),
     sorting: selectedSorting,
     restaurants: copiedRestaurants,
   });

@@ -1,4 +1,4 @@
-import { store } from '../stores';
+import { bottomSheetStore } from '../stores/bottom-sheet';
 import { addEvent } from '../utils';
 import { Button } from './Button';
 
@@ -9,26 +9,33 @@ const Backdrop = () => {
 };
 
 export const BottomSheet = () => {
-  const open = store.get().isBottomSheetOpen ? 'modal--open' : '';
+  const {
+    isBottomSheetOpen,
+    bottomSheetContent,
+    bottomSheetLeftButtonText,
+    bottomSheetRightButtonText,
+  } = bottomSheetStore.get();
+
+  const open = isBottomSheetOpen ? 'modal--open' : '';
 
   return `
     <div class="modal ${open}">
       ${Backdrop()}
-      <div class="modal-container">
-        ${store.get().bottomSheetContent}
+      <div class="modal-container" style="max-height: 90%;">
+        ${bottomSheetContent}
         
         <div class="button-container" style="margin-top: 16px; gap: 8px;">
           ${Button({
             name: 'bottom-sheet-confirm',
             size: 'lg',
             variant: 'outlined',
-            content: store.get().bottomSheetLeftButtonText ?? '확인',
+            content: bottomSheetLeftButtonText ?? '확인',
           })}
           ${Button({
             name: 'bottom-sheet-cancel',
             size: 'lg',
             variant: 'primary',
-            content: store.get().bottomSheetRightButtonText ?? '취소',
+            content: bottomSheetRightButtonText ?? '취소',
           })}
         </div>
       </div>
@@ -37,10 +44,10 @@ export const BottomSheet = () => {
 };
 
 addEvent('click', '#bottom-sheet-confirm', () => {
-  store.get().bottomSheetConfirm?.();
+  bottomSheetStore.get().bottomSheetConfirm?.();
 
-  store.set({
-    ...store.get(),
+  bottomSheetStore.set({
+    ...bottomSheetStore.get(),
     isBottomSheetOpen: false,
     bottomSheetLeftButtonText: null,
     bottomSheetRightButtonText: null,
@@ -48,10 +55,10 @@ addEvent('click', '#bottom-sheet-confirm', () => {
 });
 
 addEvent('click', '#bottom-sheet-cancel', () => {
-  store.get().bottomSheetCancel?.();
+  bottomSheetStore.get().bottomSheetCancel?.();
 
-  store.set({
-    ...store.get(),
+  bottomSheetStore.set({
+    ...bottomSheetStore.get(),
     isBottomSheetOpen: false,
     bottomSheetLeftButtonText: null,
     bottomSheetRightButtonText: null,

@@ -1,6 +1,7 @@
 import { Icon } from '../../../components/Icon';
-import { store } from '../../../stores';
+import { bottomSheetStore } from '../../../stores/bottom-sheet';
 import { addEvent } from '../../../utils';
+import { restaurantStore } from '../stores';
 import { RestaurantInfo } from './RestaurantInfo';
 
 export const RestaurantItem = (props) => {
@@ -37,18 +38,18 @@ addEvent('click', '.restaurant', (event) => {
   const props = JSON.parse(json);
 
   const handleDelete = () => {
-    const removed = store
+    const removed = restaurantStore
       .get()
       .restaurants.filter(({ name }) => props.name !== name);
 
-    store.set({
-      ...store.get(),
+    restaurantStore.set({
+      ...restaurantStore.get(),
       restaurants: removed,
     });
   };
 
-  store.set({
-    ...store.get(),
+  bottomSheetStore.set({
+    ...bottomSheetStore.get(),
     isBottomSheetOpen: true,
     bottomSheetLeftButtonText: '삭제하기',
     bottomSheetRightButtonText: '닫기',
