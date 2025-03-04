@@ -43,10 +43,11 @@ addEvent('click', '.restaurant', (event) => {
 
   const props = JSON.parse(json);
 
+  const { restaurants, favorites } = restaurantStore.get();
+  const checked = favorites.some((id) => id === props.id);
+
   const handleDelete = () => {
-    const removed = restaurantStore
-      .get()
-      .restaurants.filter(({ name }) => props.name !== name);
+    const removed = restaurants.filter(({ name }) => props.name !== name);
 
     restaurantStore.set({
       ...restaurantStore.get(),
@@ -59,7 +60,7 @@ addEvent('click', '.restaurant', (event) => {
     isBottomSheetOpen: true,
     bottomSheetLeftButtonText: '삭제하기',
     bottomSheetRightButtonText: '닫기',
-    bottomSheetContent: RestaurantInfo(props),
+    bottomSheetContent: RestaurantInfo({ ...props, checked }),
     bottomSheetConfirm: handleDelete,
   });
 });

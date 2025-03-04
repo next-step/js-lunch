@@ -1,5 +1,6 @@
 import { List } from '../../components/List';
 import { Select } from '../../components/Select';
+import { Tabs } from '../../components/Tabs';
 import { RestaurantItem } from '../../domains/restaurant/components/RestaurantItem';
 import {
   RESTAURANT_CATEGORIES,
@@ -14,6 +15,13 @@ export const Home = () => {
 
   return `
     <section id="home-container" style="padding: 20px 16px; display: flex; flex-direction: column; flex: 1; gap: 16px;">
+      ${Tabs({
+        tabs: [
+          { label: '모든 음식점', value: 'ALL_TAB' },
+          { label: '자주 가는 음식점', value: 'FAVORITE_TAB' },
+        ],
+      })}
+
       <div style="width: 100%; display:flex; justify-content: space-between;">
         ${Select({
           name: 'category_filter',
