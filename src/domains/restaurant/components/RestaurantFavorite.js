@@ -1,11 +1,12 @@
 import { Icon } from '../../../components/Icon';
 import { addEvent } from '../../../utils';
+import { restaurantStore } from '../stores';
 
 export const RestaurantFavorite = (props) => {
   const { id, checked = false } = props;
 
   return `
-    <div data-id='${id}'>
+    <div id="favorite-icon-container" data-id="${id}">
       ${
         checked
           ? Icon({
@@ -28,10 +29,19 @@ export const RestaurantFavorite = (props) => {
   `;
 };
 
-addEvent('click', '#favorite-icon-lined_icon', (event) => {
-  console.log(event.target);
-});
+addEvent('click', '#favorite-icon-container', (event) => {
+  const iconContainerElement = event.target.parentElement.parentElement;
 
-addEvent('click', '#favorite-icon-filled_icon', (event) => {
-  console.log(event.target);
+  const { id } = iconContainerElement.dataset;
+  const { favorites } = restaurantStore.get();
+
+  const isChecked = favorites.some((favoriteId) => favoriteId === id);
+  const updatedFavorites = isChecked
+    ? favorites.filter((favoriteId) => favoriteId !== id)
+    : [...favorites, id];
+
+  restaurantStore.set({
+    ...restaurantStore.get(),
+    favorites: updatedFavorites,
+  });
 });

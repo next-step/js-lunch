@@ -8,7 +8,10 @@ import { RestaurantInfo } from './RestaurantInfo';
 export const RestaurantItem = (props) => {
   const { id, icon, name, distance, description } = props;
 
+  const { favorites } = restaurantStore.get();
   const json = JSON.stringify(props);
+
+  const isChecked = favorites.some((favoriteId) => favoriteId === id);
 
   return `
     <div class="restaurant" style="gap: 16px;" data-json='${json}'>
@@ -23,7 +26,7 @@ export const RestaurantItem = (props) => {
             >
           </div>
 
-          ${RestaurantFavorite({ id, checked: false })}
+          ${RestaurantFavorite({ id, checked: isChecked })}
         </div>
         <p class="restaurant__description">${description}</p>
       </div>
