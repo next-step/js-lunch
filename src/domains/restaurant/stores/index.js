@@ -16,6 +16,13 @@ export const restaurantStore = createObserver(
     sorting: sessionStorageUtil.get('sorting', RESTAURANT_SORTINGS[0].value),
     restaurants: sessionStorageUtil.get('restaurants', RESTAURANTS),
     favorites: sessionStorageUtil.get('favorites', []),
+
+    // Tabs
+    activeTab: sessionStorageUtil.get('activeTab', 'ALL_TAB'),
+    filteredRestaurants: sessionStorageUtil.get(
+      'filteredRestaurants',
+      RESTAURANTS,
+    ),
   },
   { enableStorage: true },
 );

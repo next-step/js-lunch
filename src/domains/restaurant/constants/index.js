@@ -122,3 +122,8 @@ export const RESTAURANT_DISTANCES = [
     value: 30,
   },
 ];
+
+export const RESTAURANT_TABS = [
+  { label: '모든 음식점', value: 'ALL_TAB' },
+  { label: '자주 가는 음식점', value: 'FAVORITE_TAB' },
+];

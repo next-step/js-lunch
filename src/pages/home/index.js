@@ -5,21 +5,21 @@ import { RestaurantItem } from '../../domains/restaurant/components/RestaurantIt
 import {
   RESTAURANT_CATEGORIES,
   RESTAURANT_SORTINGS,
+  RESTAURANT_TABS,
   RESTAURANTS,
 } from '../../domains/restaurant/constants';
 import { restaurantStore } from '../../domains/restaurant/stores';
 import { addEvent } from '../../utils';
 
 export const Home = () => {
-  const { category, sorting, restaurants } = restaurantStore.get();
+  const { category, sorting, filteredRestaurants, activeTab } =
+    restaurantStore.get();
 
   return `
     <section id="home-container" style="padding: 20px 16px; display: flex; flex-direction: column; flex: 1; gap: 16px;">
       ${Tabs({
-        tabs: [
-          { label: '모든 음식점', value: 'ALL_TAB' },
-          { label: '자주 가는 음식점', value: 'FAVORITE_TAB' },
-        ],
+        tabs: RESTAURANT_TABS,
+        activeTab,
       })}
 
       <div style="width: 100%; display:flex; justify-content: space-between;">
@@ -41,7 +41,7 @@ export const Home = () => {
       
       ${List({
         children: () =>
-          restaurants.map((props) => RestaurantItem(props)).join(''),
+          filteredRestaurants.map((props) => RestaurantItem(props)).join(''),
       })}
     </section>
   `;
@@ -60,14 +60,40 @@ const render = () => {
 
 restaurantStore.subscribe(render);
 
+// Events
+
+addEvent('click', '.tab_button', (event) => {
+  const { value } = event.target.dataset;
+  const previousStore = restaurantStore.get();
+
+  if (previousStore.activeTab === value) return;
+
+  const filteredRestaurants = (() => {
+    if (value === 'FAVORITE_TAB')
+      return previousStore.restaurants.filter(({ id }) =>
+        previousStore.favorites.includes(id),
+      );
+
+    return previousStore.restaurants;
+  })();
+
+  restaurantStore.set({
+    ...previousStore,
+    activeTab: value,
+    filteredRestaurants,
+  });
+});
+
 addEvent('change', `#category_filter`, (event) => {
   event.preventDefault();
   const selectedCategory = event.target.value;
 
+  const previousStore = restaurantStore.get();
+
   restaurantStore.set({
     ...restaurantStore.get(),
     category: selectedCategory,
-    restaurants: RESTAURANTS.filter(
+    filteredRestaurants: previousStore.restaurants.filter(
       ({ category }) =>
         category === selectedCategory || selectedCategory === 'ALL',
     ),
