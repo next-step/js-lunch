@@ -6,7 +6,7 @@ export const RestaurantFavorite = (props) => {
   const { id, checked = false } = props;
 
   return `
-    <div id="favorite-icon-container" data-id="${id}">
+    <div class="favorite-icon-container" data-id="${id}">
       ${
         checked
           ? Icon({
@@ -29,7 +29,7 @@ export const RestaurantFavorite = (props) => {
   `;
 };
 
-addEvent('click', '#favorite-icon-container', (event) => {
+addEvent('click', '.favorite-icon-container', (event) => {
   const iconContainerElement = event.target.parentElement.parentElement;
 
   const { id } = iconContainerElement.dataset;

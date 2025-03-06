@@ -14,7 +14,7 @@ export const RestaurantItem = (props) => {
   const isChecked = favorites.some((favoriteId) => favoriteId === id);
 
   return `
-    <div class="restaurant" style="gap: 16px;" data-json='${json}'>
+    <div class="restaurant" style="gap: 16px;" data-id="${id}" data-json='${json}'>
       ${Icon({ ...icon, size: 'lg' })}
 
       <div class="restaurant__info" style="flex: 1;">
