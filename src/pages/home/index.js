@@ -6,7 +6,6 @@ import {
   RESTAURANT_CATEGORIES,
   RESTAURANT_SORTINGS,
   RESTAURANT_TABS,
-  RESTAURANTS,
 } from '../../domains/restaurant/constants';
 import { restaurantStore } from '../../domains/restaurant/stores';
 import { addEvent } from '../../utils';
