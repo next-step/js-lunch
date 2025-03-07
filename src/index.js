@@ -20,7 +20,7 @@ console.log(
 
 const modal = new Modal();
 
-addEventListener("DOMContentLoaded", () => {
+function main() {
   const app = document.querySelector("main");
 
   const header = createHeader("점심 뭐 먹지");
@@ -91,4 +91,7 @@ addEventListener("DOMContentLoaded", () => {
   });
 
   app.append(modal.rendered);
-});
+}
+
+document.addEventListener("DOMContentLoaded", main);
+main();
