@@ -22,7 +22,7 @@ class Index {
       headerRender("점심 뭐 먹지");
       categoryRender("전체", "#category-filter", new CategoryListModel());
       this.#restaurantRender(this.#restaurantListInstance.restaurants);
-      this.#clickEvent();
+      this.#enrollClickEvent();
       this.#modalClosedEvent();
     });
   }
@@ -42,7 +42,7 @@ class Index {
     this.#restaurantRender(this.#restaurantListInstance.restaurants);
   }
 
-  #clickEvent() {
+  #enrollClickEvent() {
     this.#gnbButtonClick();
     this.#categoryFilterChange();
     this.#sortFilterChange();

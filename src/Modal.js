@@ -16,10 +16,10 @@ class Modal {
 
   #init() {
     categoryRender("선택해 주세요", "#category", new CategoryListModel());
-    this.#clickEvent();
+    this.#enrollClickEvent();
   }
 
-  #clickEvent() {
+  #enrollClickEvent() {
     this.#cancelButtonClick();
     this.#submitButtonClick();
   }

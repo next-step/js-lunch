@@ -1,16 +1,4 @@
-const categoryImages = {
-  한식: "./templates/category-korean.png",
-  일식: "./templates/category-japanese.png",
-  중식: "./templates/category-chinese.png",
-  아시안: "./templates/category-asian.png",
-  양식: "./templates/category-western.png",
-  기타: "./templates/category-etc.png",
-};
-
-const favoriteImages = {
-  true: "./templates/favorite-icon-filled.png",
-  false: "./templates/favorite-icon-lined.png",
-};
+import { categoryImages, favoriteImages } from "../Image.js";
 
 export function detailRender(restaurantListInstance, id) {
   const detailContainer = document.querySelector(".modal-detail-container");
@@ -40,12 +28,4 @@ function createDetail(restaurant) {
     `;
 
   return template.content.cloneNode(true);
-}
-
-export function filterRestaurant(restaurantListInstance) {
-  const categoryValue = document.getElementById("category-filter").value;
-  const sortingValue = document.getElementById("sorting-filter").value;
-
-  restaurantListInstance.filterByCategory(categoryValue);
-  restaurantListInstance.sortBy(sortingValue);
 }

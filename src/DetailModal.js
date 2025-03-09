@@ -1,5 +1,4 @@
 import { detailRender } from "./components/Detail.js";
-import { restaurantRender } from "./components/Restaurant.js";
 
 class DetailModal {
   #restaurantListInstance;
@@ -23,10 +22,10 @@ class DetailModal {
   }
 
   #init() {
-    this.#clickEvent();
+    this.#enrollClickEvent();
   }
 
-  #clickEvent() {
+  #enrollClickEvent() {
     this.#cancelButtonClick();
     this.#removeButtionClick();
   }
