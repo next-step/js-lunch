@@ -1,52 +1,49 @@
-export function createRestaurantFilter(
-  selectedCategory = "전체",
-  onCategoryChange,
-  selectedSort = "name",
-  onSortChange,
-) {
-  const section = document.createElement("section");
-  section.className = "restaurant-filter-container";
+import { toHTML } from "../utils/dom.js";
 
-  const categorySelect = document.createElement("select");
-  categorySelect.name = "category";
-  categorySelect.id = "category-filter";
-  categorySelect.className = "restaurant-filter";
-  categorySelect.value = selectedCategory;
+const CATEGORY_OPTIONS = [
+  "전체",
+  "한식",
+  "중식",
+  "일식",
+  "양식",
+  "아시안",
+  "기타",
+];
+const SORT_OPTIONS = [
+  { value: "name", text: "이름순" },
+  { value: "distance", text: "거리순" },
+];
 
-  const categories = ["전체", "한식", "중식", "일식", "양식", "아시안", "기타"];
-  categories.forEach((cat) => {
-    const option = document.createElement("option");
-    option.value = cat;
-    option.textContent = cat;
-    categorySelect.appendChild(option);
-  });
+export function RestaurantFilter(state, onChange) {
+  const filterHTML = `
+    <section class="restaurant-filter-container">
+      <select id="category-filter" class="restaurant-filter">
+        ${CATEGORY_OPTIONS.map(
+          (value) =>
+            `<option value="${value}" ${value === state.category ? "selected" : ""}>${value}</option>`,
+        ).join("")}
+      </select>
+      <select id="sorting-filter" class="restaurant-filter">
+        ${SORT_OPTIONS.map(
+          ({ value, text }) =>
+            `<option value="${value}" ${value === state.sort ? "selected" : ""}>${text}</option>`,
+        ).join("")}
+      </select>
+    </section>
+  `;
+  const filterElement = toHTML(filterHTML);
+
+  const categorySelect = filterElement.querySelector("#category-filter");
+  const sortSelect = filterElement.querySelector("#sorting-filter");
 
   categorySelect.addEventListener("change", (e) => {
-    onCategoryChange(e.target.value);
+    const newState = { category: e.target.value, sort: state.sort };
+    onChange(newState);
   });
-  section.appendChild(categorySelect);
-
-  const sortSelect = document.createElement("select");
-  sortSelect.name = "sorting";
-  sortSelect.id = "sorting-filter";
-  sortSelect.className = "restaurant-filter";
-  sortSelect.value = selectedSort;
-
-  const sortOptions = [
-    { value: "name", text: "이름순" },
-    { value: "distance", text: "거리순" },
-  ];
-  sortOptions.forEach((opt) => {
-    const option = document.createElement("option");
-    option.value = opt.value;
-    option.textContent = opt.text;
-    sortSelect.appendChild(option);
-  });
-
   sortSelect.addEventListener("change", (e) => {
-    onSortChange(e.target.value);
+    const newState = { category: state.category, sort: e.target.value };
+    onChange(newState);
   });
-  section.appendChild(sortSelect);
 
-  return section;
+  return filterElement;
 }
