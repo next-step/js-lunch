@@ -4,7 +4,6 @@ import { Header } from "./components/Header.js";
 import Modal from "./components/Modal.js";
 import { restaurantsData } from "./data/restaurants.js";
 import { RestaurantList } from "./components/RestaurantList.js";
-import { RestaurantFilter } from "./components/RestaurantFilter.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
@@ -20,18 +19,18 @@ console.log(
 
 function main() {
   const app = document.querySelector("main");
-  const state = { category: "전체", sort: "name" };
 
   const header = Header("점심 뭐 먹지");
   app.append(header);
+
   const restaurantList = RestaurantList(restaurantsData);
-  const filter = RestaurantFilter(state, (newState) => {
-    state.category = newState.category;
-    state.sort = newState.sort;
-    restaurantList.update(state);
-  });
+  app.appendChild(restaurantList.restaurantList);
+
   const modal = new Modal();
-  app.append(filter, restaurantList.container);
+  const restaurantAddButton = document.querySelector(".gnb__button");
+  restaurantAddButton.addEventListener("click", () => {
+    modal.toggle();
+  });
 
   if (!document.querySelector(".modal")) {
     app.append(modal.rendered);
