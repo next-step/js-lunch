@@ -24,7 +24,7 @@ function main() {
   app.append(header);
 
   const restaurantList = RestaurantList(restaurantsData);
-  app.appendChild(restaurantList.restaurantList);
+  app.append(restaurantList);
 
   const modal = new Modal();
   const restaurantAddButton = document.querySelector(".gnb__button");
