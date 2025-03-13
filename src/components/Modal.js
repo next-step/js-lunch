@@ -1,7 +1,7 @@
 class Modal {
   #container;
   #backdrop;
-  #isOpen = false;
+  #opened = false;
 
   constructor() {
     this.#container = document.createElement("div");
@@ -75,9 +75,7 @@ class Modal {
   }
 
   toggle() {
-    this.#isOpen = !this.#isOpen;
-    console.log("toggled", this.#isOpen);
-
+    this.#opened = !this.#opened;
     this.rendered.classList.toggle("modal--open");
   }
 

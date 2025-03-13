@@ -4,15 +4,15 @@ import { RestaurantFilter } from "./RestaurantFilter.js";
 export function RestaurantList(restaurantsData) {
   const state = { category: "전체", sort: "name" };
 
-  const restaurantList = document.createElement("section");
-  restaurantList.classList.add("restaurant-list-container");
+  const $restaurantContainer = document.createElement("section");
+  $restaurantContainer.classList.add("restaurant-list-container");
 
-  const filterElement = RestaurantFilter(state.category, state.sort);
-  restaurantList.appendChild(filterElement);
+  const $filter = RestaurantFilter(state.category, state.sort);
+  $restaurantContainer.appendChild($filter);
 
-  const listElement = document.createElement("ul");
-  listElement.classList.add("restaurant-list");
-  restaurantList.appendChild(listElement);
+  const $restaurantList = document.createElement("ul");
+  $restaurantList.classList.add("restaurant-list");
+  $restaurantContainer.appendChild($restaurantList);
 
   const sortedData = () => {
     const filtered =
@@ -25,14 +25,14 @@ export function RestaurantList(restaurantsData) {
   };
 
   const updateRestaurantList = () => {
-    listElement.innerHTML = "";
+    $restaurantList.innerHTML = "";
     sortedData().forEach((restaurant) => {
-      listElement.appendChild(RestaurantItem(restaurant));
+      $restaurantList.appendChild(RestaurantItem(restaurant));
     });
   };
 
-  const categorySelect = filterElement.querySelector("#category-filter");
-  const sortSelect = filterElement.querySelector("#sorting-filter");
+  const categorySelect = $filter.querySelector("#category-filter");
+  const sortSelect = $filter.querySelector("#sorting-filter");
 
   categorySelect.addEventListener("change", (e) => {
     state.category = e.target.value;
@@ -45,5 +45,5 @@ export function RestaurantList(restaurantsData) {
 
   updateRestaurantList();
 
-  return restaurantList;
+  return $restaurantContainer;
 }

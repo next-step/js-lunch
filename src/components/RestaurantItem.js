@@ -1,12 +1,13 @@
 import { toHTML } from "../utils/dom.js";
+import { categories } from "../data/filters.js";
 
 const CATEGORY_IMAGE_RESOURCES = {
-  한식: "./src/assets/category-korean.png",
-  아시안: "./src/assets/category-chinese.png",
-  중식: "./src/assets/category-chinese.png",
-  일식: "./src/assets/category-japanese.png",
-  양식: "./src/assets/category-western.png",
-  기타: "./src/assets/category-etc.png",
+  [categories.KOREAN]: "./src/assets/category-korean.png",
+  [categories.ASIAN]: "./src/assets/category-chinese.png",
+  [categories.CHINESE]: "./src/assets/category-chinese.png",
+  [categories.JAPANESE]: "./src/assets/category-japanese.png",
+  [categories.WESTERN]: "./src/assets/category-western.png",
+  [categories.ETC]: "./src/assets/category-etc.png",
 };
 
 export function RestaurantItem({ category, name, distance, description }) {

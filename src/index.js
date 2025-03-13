@@ -18,22 +18,22 @@ console.log(
 );
 
 function main() {
-  const app = document.querySelector("main");
+  const $app = document.querySelector("main");
 
-  const header = Header("점심 뭐 먹지");
-  app.append(header);
+  const $header = Header("점심 뭐 먹지");
+  $app.append($header);
 
-  const restaurantList = RestaurantList(restaurantsData);
-  app.append(restaurantList);
+  const $restaurantList = RestaurantList(restaurantsData);
+  $app.append($restaurantList);
 
   const modal = new Modal();
-  const restaurantAddButton = document.querySelector(".gnb__button");
-  restaurantAddButton.addEventListener("click", () => {
+  const $restaurantAddButton = document.querySelector(".gnb__button");
+  $restaurantAddButton.addEventListener("click", () => {
     modal.toggle();
   });
 
   if (!document.querySelector(".modal")) {
-    app.append(modal.rendered);
+    $app.append(modal.rendered);
   }
 }
 
