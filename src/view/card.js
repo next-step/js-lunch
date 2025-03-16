@@ -26,7 +26,7 @@ export const makeRestaurant = (restaurant) => {
 
 	card.addEventListener('click', () => showRestaurantDetail(restaurant))
 
-	const favoriteIcon = makeFavoriteIcon(false)
+	const favoriteIcon = makeFavoriteIcon(restaurant.isFavorite)
 	card.appendChild(favoriteIcon)
 	return card
 }

@@ -1,8 +1,9 @@
 import { makeIcon, makeFavoriteIcon } from './icon.js'
 import { makeTitle, makeDistance } from './card.js'
 import { removeRestaurantDetail } from '../controller/restaurantDetailController.js'
-
 import { changeFavoriteState } from '../model/restaurant.js'
+
+import { reRender } from './render.js'
 
 export const makeModalContent = (restaurant) => {
 	const modalContent = document.createElement('div')
@@ -73,7 +74,7 @@ const makeModalBottomBtns = () => {
 	return btnContainer
 }
 
-export const updateFavoriteIcon = (iconElement, isFavorite) => {
+export const updateFavoriteIcon = (iconElement, isFavorite, restaurant) => {
 	const icon = iconElement.querySelector('.favorite-icon')
 	if (icon) {
 		if (isFavorite) {
@@ -82,4 +83,5 @@ export const updateFavoriteIcon = (iconElement, isFavorite) => {
 			icon.setAttribute('src', './public/assets/favorite-icon-lined.png')
 		}
 	}
+	reRender()
 }
