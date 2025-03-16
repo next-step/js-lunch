@@ -19,3 +19,11 @@ export const removeRestaurantDetail = () => {
 	modal.classList.remove('modal__open')
 	removeModalContent()
 }
+
+const addFavoriteList = (restaurant) => {
+	const favoriteIcon = document.querySelector('.modal__favorite')
+
+	favoriteIcon.addEventListener('click', () => {
+		changeFavoriteState(restaurant)
+	})
+}

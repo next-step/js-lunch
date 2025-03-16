@@ -1,4 +1,4 @@
-import { addData } from './saveData.js'
+import { addData, editData } from './saveData.js'
 
 export default class restaurant {
 	constructor() {
@@ -7,7 +7,8 @@ export default class restaurant {
 			distance: 0,
 			name: '',
 			description: '',
-			link: ''
+			link: '',
+			isFavorite: false
 		}
 	}
 
@@ -47,4 +48,17 @@ export const sortingByName = (data) => {
 export const filteringByCategory = (category, data) => {
 	if (!category.length) return data.storeList
 	return data.slice().filter((item) => item.category === category)
+}
+
+export const filteringFavorite = (data) => {
+	return data.slice().filter((item) => item.isFavorite === true)
+}
+
+export const changeFavoriteState = (restaurant) => {
+	const data = getData()
+	const newData = data.map((item) => {
+		if (item.name === restaurant.name) item.isFavorite = !item.isFavorite
+	})
+
+	editData(newData)
 }

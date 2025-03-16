@@ -1,4 +1,4 @@
-import { makeIcon } from './icon.js'
+import { makeIcon, makeFavoriteIcon } from './icon.js'
 import { showRestaurantDetail } from '../controller/restaurantDetailController.js'
 
 export const makeRestaurant = (restaurant) => {
@@ -11,6 +11,7 @@ export const makeRestaurant = (restaurant) => {
 
 	const icon = makeIcon(restaurant.category)
 	card.appendChild(icon)
+
 	const title = makeTitle(restaurant.name)
 	card.appendChild(title)
 
@@ -22,8 +23,11 @@ export const makeRestaurant = (restaurant) => {
 
 	info.append(title, distance, description)
 	card.appendChild(info)
+
 	card.addEventListener('click', () => showRestaurantDetail(restaurant))
 
+	const favoriteIcon = makeFavoriteIcon(false)
+	card.appendChild(favoriteIcon)
 	return card
 }
 

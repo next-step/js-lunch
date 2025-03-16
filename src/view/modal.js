@@ -1,4 +1,4 @@
-import { makeIcon } from './icon.js'
+import { makeIcon, makeFavoriteIcon } from './icon.js'
 import { makeTitle, makeDistance } from './card.js'
 import { removeRestaurantDetail } from '../controller/restaurantDetailController.js'
 
@@ -10,8 +10,16 @@ export const makeModalContent = (restaurant) => {
 	const info = document.createElement('div')
 	info.setAttribute('class', 'restaurant__info')
 
+	const iconContainer = document.createElement('div')
+	iconContainer.classList = 'modal-icon-container'
+
 	const icon = makeIcon(restaurant.category)
-	modalContent.appendChild(icon)
+	iconContainer.appendChild(icon)
+	const favoriteIcon = makeFavoriteIcon(restaurant.isFavorite)
+	favoriteIcon.setAttribute('class', 'modal__favorite')
+	iconContainer.appendChild(favoriteIcon)
+
+	modalContent.appendChild(iconContainer)
 	const title = makeTitle(restaurant.name)
 	modalContent.appendChild(title)
 
