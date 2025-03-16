@@ -2,6 +2,8 @@ import { makeIcon, makeFavoriteIcon } from './icon.js'
 import { makeTitle, makeDistance } from './card.js'
 import { removeRestaurantDetail } from '../controller/restaurantDetailController.js'
 
+import { changeFavoriteState } from '../model/restaurant.js'
+
 export const makeModalContent = (restaurant) => {
 	const modalContent = document.createElement('div')
 
@@ -15,8 +17,17 @@ export const makeModalContent = (restaurant) => {
 
 	const icon = makeIcon(restaurant.category)
 	iconContainer.appendChild(icon)
+
 	const favoriteIcon = makeFavoriteIcon(restaurant.isFavorite)
 	favoriteIcon.setAttribute('class', 'modal__favorite')
+
+	favoriteIcon.addEventListener('click', () => {
+		const updatedRestaurant = changeFavoriteState(restaurant)
+
+		if (updatedRestaurant) {
+			updateFavoriteIcon(favoriteIcon, updatedRestaurant.isFavorite)
+		}
+	})
 	iconContainer.appendChild(favoriteIcon)
 
 	modalContent.appendChild(iconContainer)
@@ -60,4 +71,15 @@ const makeModalBottomBtns = () => {
 	btnContainer.append(leftBtn, rightBtn)
 
 	return btnContainer
+}
+
+export const updateFavoriteIcon = (iconElement, isFavorite) => {
+	const icon = iconElement.querySelector('.favorite-icon')
+	if (icon) {
+		if (isFavorite) {
+			icon.setAttribute('src', './public/assets/favorite-icon-filled.png')
+		} else {
+			icon.setAttribute('src', './public/assets/favorite-icon-lined.png')
+		}
+	}
 }

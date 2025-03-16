@@ -1,4 +1,4 @@
-import { addData, editData } from './saveData.js'
+import { addData, editData, getData } from './saveData.js'
 
 export default class restaurant {
 	constructor() {
@@ -57,8 +57,12 @@ export const filteringFavorite = (data) => {
 export const changeFavoriteState = (restaurant) => {
 	const data = getData()
 	const newData = data.map((item) => {
-		if (item.name === restaurant.name) item.isFavorite = !item.isFavorite
+		if (item.name === restaurant.name) {
+			return { ...item, isFavorite: !item.isFavorite }
+		}
+		return item
 	})
 
 	editData(newData)
+	return newData.find((item) => item.name === restaurant.name)
 }

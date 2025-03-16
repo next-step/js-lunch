@@ -1,4 +1,5 @@
 import { makeModalContent } from '../view/modal.js'
+import { changeFavoriteState } from '../model/restaurant.js'
 
 export const showRestaurantDetail = (restaurant) => {
 	const modal = document.querySelector('.modal')
@@ -21,9 +22,15 @@ export const removeRestaurantDetail = () => {
 }
 
 const addFavoriteList = (restaurant) => {
-	const favoriteIcon = document.querySelector('.modal__favorite')
+	const favoriteIcon = document.querySelector('.favorite-icon')
 
 	favoriteIcon.addEventListener('click', () => {
-		changeFavoriteState(restaurant)
+		const updatedRestaurant = changeFavoriteState(restaurant)
+		// 아이콘 업데이트
+		if (updatedRestaurant && updatedRestaurant.isFavorite) {
+			favoriteIcon.setAttribute('src', './public/assets/favorite-icon-filled.png')
+		} else {
+			favoriteIcon.setAttribute('src', './public/assets/favorite-icon-lined.png')
+		}
 	})
 }
