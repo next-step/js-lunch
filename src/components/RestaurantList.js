@@ -8,27 +8,25 @@ export function RestaurantList(restaurantsData) {
   $restaurantContainer.classList.add("restaurant-list-container");
 
   const $filter = RestaurantFilter(state.category, state.sort);
-  $restaurantContainer.appendChild($filter);
-
   const $restaurantList = document.createElement("ul");
   $restaurantList.classList.add("restaurant-list");
-  $restaurantContainer.appendChild($restaurantList);
+  $restaurantContainer.append($filter, $restaurantList);
 
   const sortedData = () => {
     const filtered =
       state.category === "전체"
         ? restaurantsData
-        : restaurantsData.filter((r) => r.category === state.category);
+        : restaurantsData.filter((v) => v.category === state.category);
     return state.sort === "name"
       ? [...filtered].sort((a, b) => a.name.localeCompare(b.name))
       : [...filtered].sort((a, b) => a.distance - b.distance);
   };
 
   const updateRestaurantList = () => {
-    $restaurantList.innerHTML = "";
-    sortedData().forEach((restaurant) => {
-      $restaurantList.appendChild(RestaurantItem(restaurant));
-    });
+    const updatedRestaurantList = sortedData().map((restaurant) =>
+      RestaurantItem(restaurant),
+    );
+    $restaurantList.replaceChildren(...updatedRestaurantList);
   };
 
   const categorySelect = $filter.querySelector("#category-filter");
