@@ -1,5 +1,5 @@
 import restaurant from '../model/restaurant.js'
-import { render } from '../view/render'
+import { render } from '../view/render.js'
 import { addData } from '../model/saveData.js'
 
 export const setEventhandler = () => {
