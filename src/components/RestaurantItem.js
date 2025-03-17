@@ -1,14 +1,5 @@
 import { toHTML } from "../utils/dom.js";
-import { CATEGORIES } from "../data/filters.js";
-
-const CATEGORY_IMAGE_RESOURCES = {
-  [CATEGORIES.KOREAN]: "./src/assets/category-korean.png",
-  [CATEGORIES.ASIAN]: "./src/assets/category-chinese.png",
-  [CATEGORIES.CHINESE]: "./src/assets/category-chinese.png",
-  [CATEGORIES.JAPANESE]: "./src/assets/category-japanese.png",
-  [CATEGORIES.WESTERN]: "./src/assets/category-western.png",
-  [CATEGORIES.ETC]: "./src/assets/category-etc.png",
-};
+import { CATEGORY_IMAGE_RESOURCES } from "../data/restaurants.js";
 
 export function RestaurantItem({ category, name, distance, description }) {
   return toHTML(`

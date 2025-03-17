@@ -1,4 +1,5 @@
 import { toHTML } from "../utils/dom.js";
+import { CATEGORY_IMAGE_RESOURCES } from "../data/restaurants.js";
 
 export default class DetailModal {
   #container;
@@ -9,6 +10,9 @@ export default class DetailModal {
       <div class="modal detail-modal">
         <div class="modal-backdrop"></div>
         <div class="modal-container">
+          <div class="restaurant__category">
+            <img id="detail-image" class="category-icon" alt="카테고리 아이콘">
+          </div>
           <h2 class="modal-title text-title" id="detail-title"></h2>
           <p class="detail-distance text-body" id="detail-distance"></p>
           <p class="detail-description text-body" id="detail-description"></p>
@@ -30,19 +34,25 @@ export default class DetailModal {
   }
 
   setRestaurant(restaurant) {
-    const titleEl = this.#container.querySelector("#detail-title");
-    const distanceEl = this.#container.querySelector("#detail-distance");
-    const descEl = this.#container.querySelector("#detail-description");
-    const linkEl = this.#container.querySelector("#detail-link");
+    const $image = this.#container.querySelector("#detail-image");
+    const $title = this.#container.querySelector("#detail-title");
+    const $distance = this.#container.querySelector("#detail-distance");
+    const $description = this.#container.querySelector("#detail-description");
+    const $link = this.#container.querySelector("#detail-link");
 
-    titleEl.textContent = restaurant.name || "이름 없음";
-    distanceEl.textContent = `캠퍼스부터 ${restaurant.distance}분 내`;
-    descEl.textContent = restaurant.description || "";
+    const categoryImage = CATEGORY_IMAGE_RESOURCES[restaurant.category] || "";
+    if (categoryImage) {
+      $image.src = categoryImage;
+      $image.style.display = "block";
+    }
+    $title.textContent = restaurant.name || "이름 없음";
+    $distance.textContent = `캠퍼스부터 ${restaurant.distance}분 내`;
+    $description.textContent = restaurant.description || "";
 
     if (restaurant.link) {
-      linkEl.textContent = restaurant.link;
-      linkEl.href = restaurant.link;
-      linkEl.style.display = "block";
+      $link.textContent = restaurant.link;
+      $link.href = restaurant.link;
+      $link.style.display = "block";
     }
   }
 

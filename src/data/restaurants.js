@@ -1,3 +1,5 @@
+import { CATEGORIES } from "./filters.js";
+
 export const RESTAURANTS_DATA = [
   {
     id: 1,
@@ -46,4 +48,11 @@ export const RESTAURANTS_DATA = [
   },
 ];
 
-const STORAGE_KEY = "restaurantsData";
+export const CATEGORY_IMAGE_RESOURCES = {
+  [CATEGORIES.KOREAN]: "./src/assets/category-korean.png",
+  [CATEGORIES.ASIAN]: "./src/assets/category-chinese.png",
+  [CATEGORIES.CHINESE]: "./src/assets/category-chinese.png",
+  [CATEGORIES.JAPANESE]: "./src/assets/category-japanese.png",
+  [CATEGORIES.WESTERN]: "./src/assets/category-western.png",
+  [CATEGORIES.ETC]: "./src/assets/category-etc.png",
+};
