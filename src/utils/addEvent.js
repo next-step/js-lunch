@@ -1,7 +1,7 @@
 import Modal from "../components/modal/Modal";
 import { createRestaurantList } from "../components/restaurantList/RestaurantList";
-import { restaurantData } from "../data/restaurantData";
 import { filterByCategory } from "../domain/restaurant/filterByCategory";
+import { restaurantManagerInstance } from '../domain/restaurant/restaurantManager';
 import { sortingBy } from "../domain/restaurant/sortingBy";
 
 export const addEvent = () => {
@@ -10,9 +10,10 @@ export const addEvent = () => {
 
   const updateRestaurantList = () => {
     const selectedCategory = categoryFilter.value;
+    const restaurants = restaurantManagerInstance.getRestaurantList();
     const filteredRestaurants = filterByCategory(
       selectedCategory,
-      restaurantData,
+      restaurants,
     );
 
     const selectedSort = sortingFilter.value;
