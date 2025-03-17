@@ -1,11 +1,11 @@
 import { toHTML } from "../utils/dom.js";
-import { categories, sortOptions } from "../data/filters.js";
+import { CATEGORIES, SORT_OPTIONS } from "../data/filters.js";
 
 export function RestaurantFilter(selectedCategory, selectedSort) {
   return toHTML(`
     <section class="restaurant-filter-container">
       <select id="category-filter" class="restaurant-filter">
-        ${[...Object.values(categories)]
+        ${[...Object.values(CATEGORIES)]
           .map(
             (value) =>
               `<option value="${value}" ${value === selectedCategory ? "selected" : ""}>${value}</option>`,
@@ -13,12 +13,10 @@ export function RestaurantFilter(selectedCategory, selectedSort) {
           .join("")}
       </select>
       <select id="sorting-filter" class="restaurant-filter">
-        ${sortOptions
-          .map(
-            ({ value, text }) =>
-              `<option value="${value}" ${value === selectedSort ? "selected" : ""}>${text}</option>`,
-          )
-          .join("")}
+        ${SORT_OPTIONS.map(
+          ({ value, text }) =>
+            `<option value="${value}" ${value === selectedSort ? "selected" : ""}>${text}</option>`,
+        ).join("")}
       </select>
     </section>
   `);

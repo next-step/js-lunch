@@ -2,7 +2,7 @@
 // index.html 파일의 html 구조를 수정하셔도 됩니다.
 import { Header } from "./components/Header.js";
 import Modal from "./components/Modal.js";
-import { restaurantsData } from "./data/restaurants.js";
+import { RESTAURANTS_DATA } from "./data/restaurants.js";
 import { RestaurantList } from "./components/RestaurantList.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
@@ -23,8 +23,8 @@ function main() {
   const $header = Header("점심 뭐 먹지");
   $app.append($header);
 
-  const $restaurantList = RestaurantList(restaurantsData);
-  $app.append($restaurantList);
+  const { $restaurantContainer } = RestaurantList(RESTAURANTS_DATA);
+  $app.append($restaurantContainer);
 
   const modal = new Modal();
   const $restaurantAddButton = document.querySelector(".gnb__button");

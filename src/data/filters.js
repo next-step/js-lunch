@@ -1,4 +1,4 @@
-export const categories = {
+export const CATEGORIES = {
   ALL: "전체",
   KOREAN: "한식",
   ASIAN: "아시안",
@@ -8,7 +8,7 @@ export const categories = {
   ETC: "기타",
 };
 
-export const sortOptions = [
+export const SORT_OPTIONS = [
   { value: "name", text: "이름순" },
   { value: "distance", text: "거리순" },
 ];

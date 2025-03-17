@@ -1,4 +1,4 @@
-export const restaurantsData = [
+export const RESTAURANTS_DATA = [
   {
     id: 1,
     category: "한식",
@@ -45,3 +45,5 @@ export const restaurantsData = [
     description: "멕시칸 캐주얼 그릴",
   },
 ];
+
+const STORAGE_KEY = "restaurantsData";
