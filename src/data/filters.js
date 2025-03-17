@@ -8,6 +8,15 @@ export const CATEGORIES = {
   ETC: "기타",
 };
 
+export const DISTANCE = {
+  5: "5분",
+  10: "10분",
+  15: "15분",
+  20: "20분",
+  25: "25분",
+  30: "30분",
+};
+
 export const SORT_OPTIONS = [
   { value: "name", text: "이름순" },
   { value: "distance", text: "거리순" },

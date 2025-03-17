@@ -23,7 +23,8 @@ function main() {
   const $header = Header("점심 뭐 먹지");
   $app.append($header);
 
-  const { $restaurantContainer } = RestaurantList(RESTAURANTS_DATA);
+  const { $restaurantContainer, addRestaurant } =
+    RestaurantList(RESTAURANTS_DATA);
   $app.append($restaurantContainer);
 
   const modal = new Modal();
@@ -35,6 +36,9 @@ function main() {
   if (!document.querySelector(".modal")) {
     $app.append(modal.rendered);
   }
+  modal.onAdd = (newRestaurant) => {
+    addRestaurant(newRestaurant);
+  };
 }
 
 document.readyState === "loading"
