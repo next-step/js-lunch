@@ -33,7 +33,7 @@ function main() {
     modal.toggle();
   });
 
-  if (!document.querySelector(".modal")) {
+  if (!document.querySelector(".modal registration-modal")) {
     $app.append(modal.rendered);
   }
   modal.onAdd = (newRestaurant) => {

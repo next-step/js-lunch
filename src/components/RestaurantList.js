@@ -1,6 +1,7 @@
 import { RestaurantItem } from "./RestaurantItem.js";
 import { RestaurantFilter } from "./RestaurantFilter.js";
 import { loadRestaurants, saveRestaurants } from "../utils/storage.js";
+import DetailModal from "./DetailModal.js";
 
 export function RestaurantList(restaurantsData) {
   const restaurants = loadRestaurants() || restaurantsData;
@@ -15,6 +16,9 @@ export function RestaurantList(restaurantsData) {
   $restaurantList.classList.add("restaurant-list");
   $restaurantContainer.append($filter, $restaurantList);
 
+  const detailModal = new DetailModal();
+  $restaurantContainer.appendChild(detailModal.container);
+
   const sortedData = () => {
     const filtered =
       state.category === "전체"
@@ -26,9 +30,13 @@ export function RestaurantList(restaurantsData) {
   };
 
   const updateRestaurantList = () => {
-    const updatedRestaurantList = sortedData().map((restaurant) =>
-      RestaurantItem(restaurant),
-    );
+    const updatedRestaurantList = sortedData().map((restaurant) => {
+      const $restaurantItem = RestaurantItem(restaurant);
+      $restaurantItem.addEventListener("click", () => {
+        detailModal.open(restaurant);
+      });
+      return $restaurantItem;
+    });
     $restaurantList.replaceChildren(...updatedRestaurantList);
   };
 
