@@ -1,4 +1,4 @@
-describe("Modal 컴포넌트 테스트", () => {
+describe("Detail Modal 컴포넌트 테스트", () => {
   beforeEach(() => {
     cy.visit("localhost:5173");
   });
