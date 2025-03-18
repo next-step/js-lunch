@@ -18,7 +18,8 @@ export default class DetailModal {
           <p class="detail-description text-body" id="detail-description"></p>
           <a class="detail-link text-body" id="detail-link" target="_blank" rel="noopener"></a>
           <div class="button-container">
-            <button type="button" class="button button--secondary text-caption" id="close-btn">닫기</button>
+            <button type="button" class="button button--secondary text-caption" id="delete-btn">삭제하기</button>
+            <button type="button" class="button button--primary text-caption" id="close-btn">닫기</button>
           </div>
         </div>
       </div>
@@ -31,9 +32,19 @@ export default class DetailModal {
     this.#container
       .querySelector("#close-btn")
       .addEventListener("click", () => this.toggle());
+
+    this.#container
+      .querySelector("#delete-btn")
+      .addEventListener("click", () => {
+        if (this.currentRestaurant && this.onDelete) {
+          this.onDelete(this.currentRestaurant);
+        }
+        this.toggle();
+      });
   }
 
   setRestaurant(restaurant) {
+    this.currentRestaurant = restaurant;
     const $image = this.#container.querySelector("#detail-image");
     const $title = this.#container.querySelector("#detail-title");
     const $distance = this.#container.querySelector("#detail-distance");
@@ -66,10 +77,6 @@ export default class DetailModal {
     if (!this.#opened) {
       this.toggle();
     }
-  }
-
-  close() {
-    if (this.#opened) this.toggle();
   }
 
   get container() {

@@ -4,7 +4,7 @@ import { loadRestaurants, saveRestaurants } from "../utils/storage.js";
 import DetailModal from "./DetailModal.js";
 
 export function RestaurantList(restaurantsData) {
-  const restaurants = loadRestaurants() || restaurantsData;
+  let restaurants = loadRestaurants() || restaurantsData;
 
   const state = { category: "전체", sort: "name" };
 
@@ -42,6 +42,12 @@ export function RestaurantList(restaurantsData) {
 
   const addRestaurant = (restaurant) => {
     restaurants.push(restaurant);
+    saveRestaurants(restaurants);
+    updateRestaurantList();
+  };
+
+  detailModal.onDelete = (restaurant) => {
+    restaurants = restaurants.filter((v) => v !== restaurant);
     saveRestaurants(restaurants);
     updateRestaurantList();
   };
