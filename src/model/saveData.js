@@ -1,8 +1,16 @@
 import data from '../data.js'
 
 export const getInitData = () => {
-	localStorage.setItem('restaurantData', JSON.stringify(data.storeList))
-	return JSON.parse(localStorage.getItem('restaurantData'))
+	try {
+		const existingData = localStorage.getItem('restaurantData')
+		if (!existingData) {
+			localStorage.setItem('restaurantData', JSON.stringify(data.storeList))
+		}
+		return JSON.parse(localStorage.getItem('restaurantData'))
+	} catch (error) {
+		console.error('LocalStorage 접근 오류:', error)
+		return data.storeList
+	}
 }
 
 export const addData = (newItem) => {
