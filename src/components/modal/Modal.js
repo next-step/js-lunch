@@ -50,8 +50,6 @@ class Modal {
       link,
     });
 
-    restaurantManager.renderRestaurantList();
-
     alert("레스토랑 추가 완료!");
     this.toggle();
   }

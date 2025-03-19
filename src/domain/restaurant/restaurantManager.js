@@ -1,13 +1,17 @@
 import { createRestaurantList } from "../../components/restaurantList/RestaurantList";
 import { restaurantData } from "../../data/restaurantData";
+import { loadRestaurantData, saveRestaurantData } from '../../utils/storage';
 import { filterByCategory } from './filterByCategory';
 import { sortingBy } from "./sortingBy";
 
 export const restaurantManager = (() => {
-  let restaurants = [...restaurantData];
+  let restaurants = [...(loadRestaurantData() || restaurantData)];
 
   const addRestaurant = ({ category, name, distance, description, link }) => {
     restaurants.push({ category, name, distance, description, link });
+    
+    saveRestaurantData(restaurants);
+    renderRestaurantList();
   };
 
   const renderRestaurantList = () => {
@@ -23,7 +27,7 @@ export const restaurantManager = (() => {
     const restaurantListSection = document.querySelector(
       ".restaurant-list-container",
     );
-    
+
     restaurantListSection.innerHTML = '';
     restaurantListSection.appendChild(restaurantList);
   };
