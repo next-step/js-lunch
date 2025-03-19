@@ -1,9 +1,9 @@
 import { createRestaurantList } from "../../components/restaurantList/RestaurantList";
 import { restaurantData } from "../../data/restaurantData";
+import { filterByCategory } from './filterByCategory';
 import { sortingBy } from "./sortingBy";
 
-const restaurantManager = (() => {
-  let instance;
+export const restaurantManager = (() => {
   let restaurants = [...restaurantData];
 
   const addRestaurant = ({ category, name, distance, description, link }) => {
@@ -11,30 +11,27 @@ const restaurantManager = (() => {
   };
 
   const renderRestaurantList = () => {
+    const categoryFilter = document.getElementById("category-filter");
+    const selectedCategory = categoryFilter.value;
     const sortingFilter = document.getElementById("sorting-filter");
     const selectedSort = sortingFilter.value;
 
-    const sortedRestaurantData = sortingBy(selectedSort, restaurants);
+    const filteredRestaurants = filterByCategory(selectedCategory, restaurants);
+    const sortedRestaurantData = sortingBy(selectedSort, filteredRestaurants);
     const restaurantList = createRestaurantList(sortedRestaurantData);
 
     const restaurantListSection = document.querySelector(
       ".restaurant-list-container",
     );
+    
+    restaurantListSection.innerHTML = '';
     restaurantListSection.appendChild(restaurantList);
   };
 
-  const getRestaurantList = () =>{
+  const getRestaurantList = () => {
     return [...restaurants];
-  }
-
-  const getInstance = () => {
-    if (!instance) {
-      instance = { addRestaurant, renderRestaurantList, getRestaurantList };
-    }
-    return instance;
   };
 
-  return { getInstance };
+  return { addRestaurant, renderRestaurantList, getRestaurantList };
 })();
 
-export const restaurantManagerInstance = restaurantManager.getInstance();
