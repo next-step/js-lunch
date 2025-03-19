@@ -1,10 +1,9 @@
 // 자바스크립트 코드에서 이미지 리소스 로드 테스트
 // index.html 파일의 html 구조를 수정하셔도 됩니다.
-import { createHeader } from "./components/Header.js";
-import { createRestaurantItem } from "./components/RestaurantItem.js";
+import { Header } from "./components/Header.js";
 import Modal from "./components/Modal.js";
-import { restaurantsData } from "./data/restaurants.js";
-import { categoryOptions, sortOptions } from "./data/filters.js";
+import { RESTAURANTS_DATA } from "./data/restaurants.js";
+import { RestaurantList } from "./components/RestaurantList.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
@@ -18,77 +17,30 @@ console.log(
   "color: #d81b60; font-size: 14px; font-weight: bold;",
 );
 
-const modal = new Modal();
+function main() {
+  const $app = document.querySelector("main");
 
-addEventListener("DOMContentLoaded", () => {
-  const app = document.querySelector("main");
+  const $header = Header("점심 뭐 먹지");
+  $app.append($header);
 
-  const header = createHeader("점심 뭐 먹지");
-  app.prepend(header);
+  const { $restaurantContainer, addRestaurant } =
+    RestaurantList(RESTAURANTS_DATA);
+  $app.append($restaurantContainer);
 
-  const restaurantAddButton = document.querySelector(".gnb__button");
-  restaurantAddButton.addEventListener("click", () => {
+  const modal = new Modal();
+  const $restaurantAddButton = document.querySelector(".gnb__button");
+  $restaurantAddButton.addEventListener("click", () => {
     modal.toggle();
   });
 
-  const restaurantList = document.querySelector(".restaurant-list");
-  restaurantsData.forEach((restaurant) => {
-    const restaurantItem = createRestaurantItem(restaurant);
-    restaurantList.append(restaurantItem);
-  });
-
-  const categorySelect = document.querySelector("#category-filter");
-  const sortSelect = document.querySelector("#sorting-filter");
-
-  categoryOptions.forEach((category) => {
-    const option = document.createElement("option");
-    option.value = category;
-    option.textContent = category;
-    categorySelect.appendChild(option);
-  });
-
-  sortOptions.forEach(({ value, text }) => {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = text;
-    sortSelect.appendChild(option);
-  });
-
-  const state = {
-    category: "전체",
-    sort: "name",
+  if (!document.querySelector(".modal registration-modal")) {
+    $app.append(modal.rendered);
+  }
+  modal.onAdd = (newRestaurant) => {
+    addRestaurant(newRestaurant);
   };
+}
 
-  const updateRestaurantList = () => {
-    const filteredData =
-      state.category === "전체"
-        ? restaurantsData
-        : restaurantsData.filter((value) => value.category === state.category);
-
-    const sortedData =
-      state.sort === "name"
-        ? [...filteredData].sort((a, b) => a.name.localeCompare(b.name))
-        : [...filteredData].sort((a, b) => a.distance - b.distance);
-
-    const restaurantList = document.querySelector(".restaurant-list");
-    restaurantList.innerHTML = "";
-    sortedData.forEach((restaurant) => {
-      const restaurantItem = createRestaurantItem(restaurant);
-      restaurantList.append(restaurantItem);
-    });
-  };
-
-  updateRestaurantList();
-
-  categorySelect.addEventListener("change", (e) => {
-    state.category = e.target.value;
-    updateRestaurantList();
-  });
-
-  sortSelect.addEventListener("change", (e) => {
-    state.sort = e.target.value;
-    updateRestaurantList();
-  });
-
-  app.append(modal.rendered);
-});
+document.readyState === "loading"
+  ? document.addEventListener("DOMContentLoaded", main)
+  : main();
