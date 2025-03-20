@@ -1,5 +1,5 @@
 import { restaurantData } from "../../src/data/restaurantData";
-import { sortingBy } from "../../src/utils/sorting";
+import { sortingBy } from "../../src/domain/restaurant/sortingBy";
 
 describe("필터 & 정렬 테스트", () => {
   beforeEach(() => {
@@ -43,7 +43,7 @@ describe("필터 & 정렬 테스트", () => {
   });
 
   describe("동작 테스트", () => {
-    it("카테고리 필터가 잘 동작하는지 확인한다.", () => {
+    it("카테고리 필터가 정상적으로 동작해야 한다.", () => {
       cy.get("#category-filter").select("한식");
 
       cy.get(".restaurant-list")
@@ -55,8 +55,8 @@ describe("필터 & 정렬 테스트", () => {
         });
     });
 
-    describe("거리별 정렬 필터가 제대로 동작하는지 확인한다.", () => {
-      it("거리순으로 오름차순 정렬하면 첫번째 요소가 가장 가깝다.", () => {
+    describe("거리별 정렬 필터가 정상적으로 동작해야 한다.", () => {
+      it("거리순으로 오름차순 정렬하면 가장 가까운 식당이 첫번째에 위치한다.", () => {
         const sortedRestaurantData = sortingBy("distance", restaurantData);
 
         cy.get("#sorting-filter").select("거리순");
@@ -74,7 +74,7 @@ describe("필터 & 정렬 테스트", () => {
           });
       });
 
-      it("거리순으로 오름차순 정렬하면 마지막 요소가 가장 멀다.", () => {
+      it("거리순으로 오름차순 정렬하면 가장 멀리 있는 식당이 마지막에 위치한다.", () => {
         const sortedRestaurantData = sortingBy("distance", restaurantData);
 
         cy.get("#sorting-filter").select("거리순");
@@ -95,7 +95,7 @@ describe("필터 & 정렬 테스트", () => {
     });
   });
   describe("이름별 정렬 필터가 제대로 동작하는지 확인한다.", () => {
-    it("이름순으로 정렬하면 첫번째 요소 알파벳 순서가 가장 앞에 있다.", () => {
+    it("이름순으로 정렬하면 알파벳 순서상 가장 앞에 있는 식당이 첫번째에 위치한다.", () => {
       const sortedRestaurantData = sortingBy("name", restaurantData);
 
       cy.get("#sorting-filter").select("이름순");
@@ -112,7 +112,7 @@ describe("필터 & 정렬 테스트", () => {
         });
     });
 
-    it("이름순으로 정렬하면 마지막 요소 알파벳 순서가 가장 뒤에 있다.", () => {
+    it("이름순으로 정렬하면 알파벳 순서상 가장 뒤에 있는 식당이 마지막에 위치한다.", () => {
       const sortedRestaurantData = sortingBy("name", restaurantData);
 
       cy.get("#sorting-filter").select("이름순");

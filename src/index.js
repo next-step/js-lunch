@@ -1,6 +1,6 @@
 import { createHeader } from "./components/Header";
-import { createRestaurantListSection } from "./components/RestaurantListSection";
-import { restaurantData } from './data/restaurantData';
+import { restaurantManager } from './domain/restaurant/restaurantManager';
+
 import { addEvent } from "./utils/addEvent";
 
 addEventListener("load", () => {
@@ -8,9 +8,7 @@ addEventListener("load", () => {
   const header = createHeader();
   body.prepend(header);
 
-  const main = document.querySelector("main");
-  const restaurantListSection = createRestaurantListSection(restaurantData);
-  main.appendChild(restaurantListSection);
+  restaurantManager.renderRestaurantList();
 
   addEvent();
 });

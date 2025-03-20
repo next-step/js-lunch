@@ -5,7 +5,7 @@ describe("헤더 컴포넌트", () => {
     cy.visit("http://localhost:5173/");
   });
 
-  it("헤더 컴포넌트 로딩 확인", () => {
+  it("헤더 컴포넌트가 정상적으로 렌더 되어야 한다.", () => {
     cy.get(".gnb").should("exist");
     cy.get(".gnb__title").contains("점심 뭐 먹지");
   });

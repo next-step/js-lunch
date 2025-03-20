@@ -6,3 +6,5 @@ export const CATEGORY_IMG_SRC = {
   '아시안': `./assets/category-asian.png`,
   '기타': `./assets/category-etc.png`,
 };
+
+export const RESTAURANT_DATA = "RESTAURANT_DATA";
