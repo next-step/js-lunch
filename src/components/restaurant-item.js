@@ -20,10 +20,10 @@ export function restaurantItem({ title, category, distance, description }) {
 }
 
 const CATEGORY_ICON_SRC_MAP = {
-  asian: "../../public/assets/category-asian.png",
-  chinese: "../../public/assets/category-chinese.png",
-  etc: "../../public/assets/category-etc.png",
-  japanese: "../../public/assets/category-japanese.png",
-  korean: "../../public/assets/category-korean.png",
-  western: "../../public/assets/category-western.png",
+  asian: "assets/category-asian.png",
+  chinese: "assets/category-chinese.png",
+  etc: "assets/category-etc.png",
+  japanese: "assets/category-japanese.png",
+  korean: "assets/category-korean.png",
+  western: "assets/category-western.png",
 };
