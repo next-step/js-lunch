@@ -1,5 +1,8 @@
 import { restaurantList } from "./components/restaurant-list.js";
 import { RESTAURANTS_MOCK } from "./data/restaurant.js";
+import { filterRestaurant } from "./domain/filter-restaurant.js";
+import { sortRestaurant } from "./domain/sort-restaurant.js";
+import { $ } from "./utils/dom.js";
 
 main();
 
@@ -9,28 +12,14 @@ function main() {
 }
 
 function render() {
-  const app = document.querySelector("#app");
+  const app = $("#app");
 
-  const filter = document.querySelector("#category-filter").value;
-  const sorting = document.querySelector("#sorting-filter").value;
+  const filter = $("#category-filter").value;
+  const sorting = $("#sorting-filter").value;
 
-  const restaurants = RESTAURANTS_MOCK.filter((restaurant) => {
-    if (filter === "all") {
-      return true;
-    }
-
-    return restaurant.category === filter;
-  }).sort((a, b) => {
-    if (sorting === "name") {
-      return a.title.localeCompare(b.title, "ko-KR");
-    }
-
-    if (sorting === "distance") {
-      return a.distance - b.distance;
-    }
-
-    return 0;
-  });
+  const restaurants = RESTAURANTS_MOCK.filter((restaurant) =>
+    filterRestaurant({ restaurant, filter })
+  ).sort((a, b) => sortRestaurant({ a, b, sorting }));
 
   const htmlString = `${restaurantList({ restaurants })}`;
 
@@ -38,15 +27,13 @@ function render() {
 }
 
 function initEvents() {
-  const filterSelectBox = document.querySelector("#category-filter");
-  const sortingSelectBox = document.querySelector("#sorting-filter");
+  const filterSelectBox = $("#category-filter");
+  const sortingSelectBox = $("#sorting-filter");
 
-  filterSelectBox.addEventListener("change", (event) => {
-    console.log(event.target.value);
-
+  filterSelectBox.addEventListener("change", () => {
     render();
   });
-  sortingSelectBox.addEventListener("change", (event) => {
+  sortingSelectBox.addEventListener("change", () => {
     console.log(event.target.value);
 
     render();
