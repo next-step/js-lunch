@@ -15,6 +15,22 @@
           <img src="./public/assets/add-button.png" alt="음식점 추가" />
         </button>
       </header>
+      <section class="restaurant-filter-container">
+        <select name="category" id="category-filter" class="restaurant-filter">
+          <option value="all">전체</option>
+          <option value="korean">한식</option>
+          <option value="chinese">중식</option>
+          <option value="japanese">일식</option>
+          <option value="western">양식</option>
+          <option value="asian">아시안</option>
+          <option value="etc">기타</option>
+        </select>
+
+        <select name="sorting" id="sorting-filter" class="restaurant-filter">
+          <option value="name">이름순</option>
+          <option value="distance">거리순</option>
+        </select>
+      </section>
     </div>
     <script type="module" src="./src/index.js"></script>
   </body>
