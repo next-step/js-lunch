@@ -22,7 +22,6 @@ function render() {
   ).sort((a, b) => sortRestaurant({ a, b, sorting }));
 
   const htmlString = `${restaurantList({ restaurants })}`;
-
   app.insertAdjacentHTML("beforeend", htmlString);
 }
 
@@ -34,8 +33,6 @@ function initEvents() {
     render();
   });
   sortingSelectBox.addEventListener("change", () => {
-    console.log(event.target.value);
-
     render();
   });
 }
