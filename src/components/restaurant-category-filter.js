@@ -24,17 +24,17 @@ export class RestaurantCategoryFilter {
   }
 
   onChange(event) {
-    const filter = event.target.value;
+    const category = event.target.value;
 
     const restaurants = restaurantStore
       .getState()
       .initialRestaurants.filter((restaurant) =>
-        filterRestaurant({ restaurant, filter })
+        filterRestaurant({ restaurant, category })
       );
 
     categoryFilterStore.setState({
       ...categoryFilterStore.getState(),
-      value: filter,
+      value: category,
     });
     restaurantStore.setState({ ...restaurantStore.getState(), restaurants });
   }

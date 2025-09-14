@@ -1,7 +1,7 @@
-export function filterRestaurant({ restaurant, filter }) {
-  if (filter === "all") {
+export function filterRestaurant({ restaurant, category }) {
+  if (category === "all") {
     return true;
   }
 
-  return restaurant.category === filter;
+  return restaurant.category === category;
 }
