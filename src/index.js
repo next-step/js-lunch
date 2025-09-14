@@ -38,7 +38,7 @@ const restaurantData = [
       "평양 출신의 할머니가 수십 년간 운영해온 비지 전문점 피양콩\n할마니. 두부를 빼지 않은 되비지를 맛볼 수 있는 곳으로, ‘피양’은\n평안도 사투리로 ‘평양’을 의미한다. 딸과 함께 운영하는 이곳에선\n맷돌로 직접 간 콩만을 사용하며, 일체의 조미료를 넣지 않은\n건강식을 선보인다. 콩비지와 피양 만두가 이곳의 대표 메뉴지만,\n할머니가 옛날 방식을 고수하며 만들어내는 비지전골 또한 이 집의\n역사를 느낄 수 있는 특별한 메뉴다. 반찬은 손님들이 먹고 싶은\n만큼 덜어 먹을 수 있게 준비돼 있다.",
   },
   {
-    icon: "category-asia.png",
+    icon: "category-asian.png",
     category: "아시안",
     name: "호아빈 삼성점",
     distance: 15,
@@ -94,7 +94,7 @@ function renderList(list) {
     categoryDiv.className = "restaurant__category";
     const image = document.createElement("img");
     image.className = "category-icon";
-    image.src = `/${restaurant.image}`;
+    image.src = `/js-lunch/assets/${restaurant.icon}`;
     image.alt = restaurant.category;
     categoryDiv.appendChild(image);
     li.appendChild(categoryDiv);
