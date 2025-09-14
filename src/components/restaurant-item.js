@@ -1,10 +1,10 @@
 const CATEGORY_ICON_SRC_MAP = {
-  asian: "assets/category-asian.png",
-  chinese: "assets/category-chinese.png",
-  etc: "assets/category-etc.png",
-  japanese: "assets/category-japanese.png",
-  korean: "assets/category-korean.png",
-  western: "assets/category-western.png",
+  asian: "src/assets/category-asian.png",
+  chinese: "src/assets/category-chinese.png",
+  etc: "src/assets/category-etc.png",
+  japanese: "src/assets/category-japanese.png",
+  korean: "src/assets/category-korean.png",
+  western: "src/assets/category-western.png",
 };
 
 export class RestaurantItem {
