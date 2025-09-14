@@ -1,12 +1,3 @@
-const CATEGORY_ICON_SRC_MAP = {
-  asian: "src/assets/category-asian.png",
-  chinese: "src/assets/category-chinese.png",
-  etc: "src/assets/category-etc.png",
-  japanese: "src/assets/category-japanese.png",
-  korean: "src/assets/category-korean.png",
-  western: "src/assets/category-western.png",
-};
-
 export class RestaurantItem {
   constructor({ title, category, distance, description }) {
     this.title = title;
@@ -36,3 +27,12 @@ export class RestaurantItem {
     `;
   }
 }
+
+const CATEGORY_ICON_SRC_MAP = {
+  asian: "src/assets/category-asian.png",
+  chinese: "src/assets/category-chinese.png",
+  etc: "src/assets/category-etc.png",
+  japanese: "src/assets/category-japanese.png",
+  korean: "src/assets/category-korean.png",
+  western: "src/assets/category-western.png",
+};
