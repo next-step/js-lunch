@@ -8,7 +8,6 @@ export class RestaurantStore extends Store {
 }
 
 const initialState = {
-  initialRestaurants: RESTAURANTS_MOCK,
   restaurants: RESTAURANTS_MOCK,
 };
 

@@ -12,7 +12,7 @@ export class RestaurantList {
 
     this.restaurants = restaurantStore
       .getState()
-      .initialRestaurants.filter((restaurant) => {
+      .restaurants.filter((restaurant) => {
         return filterRestaurant({ restaurant, category });
       })
       .sort((a, b) => {

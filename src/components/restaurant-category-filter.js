@@ -1,8 +1,5 @@
 import { Select } from "./common/select.js";
 import { categoryFilterStore } from "../data/category-filter-store.js";
-import { restaurantStore } from "../data/restaurant-store.js";
-import { filterRestaurant } from "../domain/filter-restaurant.js";
-
 export class RestaurantCategoryFilter {
   constructor() {
     this.options = categoryFilterStore.getState().options;
@@ -26,16 +23,9 @@ export class RestaurantCategoryFilter {
   onChange(event) {
     const category = event.target.value;
 
-    const restaurants = restaurantStore
-      .getState()
-      .initialRestaurants.filter((restaurant) =>
-        filterRestaurant({ restaurant, category })
-      );
-
     categoryFilterStore.setState({
       ...categoryFilterStore.getState(),
       value: category,
     });
-    restaurantStore.setState({ ...restaurantStore.getState(), restaurants });
   }
 }
