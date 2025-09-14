@@ -9,13 +9,13 @@ describe("List", () => {
     cy.get(".restaurant")
       .eq(0)
       .within(() => {
-        cy.get(".restaurant__name").should("contain", "피양콩할마니");
-        cy.get(".restaurant__distance").should("contain", "10분");
+        cy.get(".restaurant__name").should("contain", "도스타코스 선릉점");
+        cy.get(".restaurant__distance").should("contain", "5분");
         cy.get(".restaurant__description").should(
           "contain",
-          "평양 출신의 할머니"
+          "맥시칸 캐주얼 그릴"
         );
-        cy.get("img.category-icon").should("have.attr", "alt", "한식");
+        cy.get("img.category-icon").should("have.attr", "alt", "기타");
       });
   });
 });
