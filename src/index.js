@@ -86,6 +86,8 @@ function renderList(list) {
   const ul = document.querySelector(".restaurant-list");
   ul.innerHTML = "";
 
+  const fragment = document.createDocumentFragment();
+
   list.forEach((restaurant) => {
     const li = document.createElement("li");
     li.className = "restaurant";
@@ -119,8 +121,10 @@ function renderList(list) {
     infoDiv.appendChild(description);
     li.appendChild(infoDiv);
 
-    ul.appendChild(li);
+    fragment.appendChild(li);
   });
+
+  ul.appendChild(fragment);
 }
 
 addEventListener("load", main);
