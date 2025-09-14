@@ -1,38 +1,37 @@
-import { restaurantList } from "./components/restaurant-list.js";
-import { RESTAURANTS_MOCK } from "./data/restaurant.js";
-import { filterRestaurant } from "./domain/filter-restaurant.js";
-import { sortRestaurant } from "./domain/sort-restaurant.js";
+import { Gnb } from "./components/gnb.js";
+import { RestaurantFilterContainer } from "./components/restaurant-filter-container.js";
+import { RestaurantList } from "./components/restaurant-list.js";
+
+import { restaurantStore } from "./data/restaurant-store.js";
+import { categoryFilterStore } from "./data/category-filter-store.js";
+import { sortingFilterStore } from "./data/sorting-filter-store.js";
+
 import { $ } from "./utils/dom.js";
 
 main();
 
 function main() {
   render();
-  initEvents();
+
+  restaurantStore.subscribe(render);
+  categoryFilterStore.subscribe(render);
+  sortingFilterStore.subscribe(render);
 }
 
 function render() {
   const app = $("#app");
 
-  const filter = $("#category-filter").value;
-  const sorting = $("#sorting-filter").value;
+  const gnb = new Gnb();
+  const restaurantFilterContainer = new RestaurantFilterContainer();
+  const restaurantList = new RestaurantList();
 
-  const restaurants = RESTAURANTS_MOCK.filter((restaurant) =>
-    filterRestaurant({ restaurant, filter })
-  ).sort((a, b) => sortRestaurant({ a, b, sorting }));
+  const htmlString = `
+  ${gnb.getTemplate()}
+  ${restaurantFilterContainer.getTemplate()}
+  ${restaurantList.getTemplate()}
+  `;
 
-  const htmlString = `${restaurantList({ restaurants })}`;
-  app.insertAdjacentHTML("beforeend", htmlString);
-}
+  app.innerHTML = htmlString;
 
-function initEvents() {
-  const filterSelectBox = $("#category-filter");
-  const sortingSelectBox = $("#sorting-filter");
-
-  filterSelectBox.addEventListener("change", () => {
-    render();
-  });
-  sortingSelectBox.addEventListener("change", () => {
-    render();
-  });
+  restaurantFilterContainer.bindEvents();
 }
