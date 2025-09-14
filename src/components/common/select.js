@@ -1,4 +1,4 @@
-import { $ } from "../../utils/dom";
+import { $ } from "../../utils/dom.js";
 
 export class Select {
   constructor({ id, className, options, value, onChange }) {
