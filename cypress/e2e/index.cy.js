@@ -30,7 +30,7 @@ describe("점심 뭐 먹지 앱 E2E 테스트", () => {
     cy.get(".restaurant__distance").each(($el) => {
       const match = $el.text().match(/(\d+)분/);
       if (match) {
-        const dist = parseInt(match[1], 10);
+        const dist = Number(match[1]);
         expect(dist).to.be.at.least(prev);
         prev = dist;
       }
