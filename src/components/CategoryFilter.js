@@ -1,12 +1,30 @@
-export function createCategoryFilter({ id, name, options }) {
-  const selectElement = document.createElement("select");
-  selectElement.name = name;
-  selectElement.id = id;
-  selectElement.className = "restaurant-filter";
+export class CategoryFilter {
+  #element;
+  #category;
 
-  selectElement.innerHTML = `${options
-    .map((option) => `<option value="${option}">${option}</option>`)
-    .join("\n")}`;
+  constructor({ id, name, options, onChange }) {
+    this.#element = document.createElement("select");
+    this.#element.name = name;
+    this.#element.id = id;
+    this.#element.className = "restaurant-filter";
 
-  return selectElement;
+    this.#element.innerHTML = `${options
+      .map((option) => `<option value="${option}">${option}</option>`)
+      .join("\n")}`;
+
+    this.#category = options[0];
+
+    this.#element.addEventListener("change", (event) => {
+      this.#category = event.target.value;
+      onChange?.(event.target.value);
+    });
+  }
+
+  get element() {
+    return this.#element;
+  }
+
+  get category() {
+    return this.#category;
+  }
 }

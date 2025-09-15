@@ -1,4 +1,4 @@
-import { createCategoryFilter } from "./components/CategoryFilter.js";
+import { CategoryFilter } from "./components/CategoryFilter.js";
 import { createRestaurantListItem } from "./components/RestaurantListItem.js";
 import { RESTAURANTS } from "./constants/restaurants.js";
 import { CATEGORIES } from "./constants/categories.js";
@@ -21,12 +21,20 @@ addEventListener("load", () => {
   const body = document.querySelector("body");
 
   const filterContainer = body.querySelector(".restaurant-filter-container");
-  const categoryFilter = createCategoryFilter({
+  const categoryFilter = new CategoryFilter({
     id: "category-filter",
     name: "category",
     options: CATEGORIES,
+    onChange: (category) => {
+      const restaurantList = body.querySelector(".restaurant-list");
+      const restaurantItems = RESTAURANTS.filter((restaurant) =>
+        category === "전체" ? true : restaurant.category === category
+      ).map((restaurant) => createRestaurantListItem(restaurant));
+
+      restaurantList.replaceChildren(...restaurantItems);
+    },
   });
-  filterContainer.append(categoryFilter);
+  filterContainer.append(categoryFilter.element);
 
   const restaurantList = body.querySelector(".restaurant-list");
   const restaurantItems = RESTAURANTS.map((restaurant) =>
