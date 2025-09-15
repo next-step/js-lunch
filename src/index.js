@@ -2,6 +2,7 @@ import { CategoryFilter } from "./components/CategoryFilter.js";
 import { createRestaurantListItem } from "./components/RestaurantListItem.js";
 import { RESTAURANTS } from "./constants/restaurants.js";
 import { CATEGORIES } from "./constants/categories.js";
+import { SortingFilter } from "./components/SortingFilter.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
@@ -26,15 +27,18 @@ addEventListener("load", () => {
     name: "category",
     options: CATEGORIES,
     onChange: (category) => {
-      const restaurantList = body.querySelector(".restaurant-list");
-      const restaurantItems = RESTAURANTS.filter((restaurant) =>
-        category === "전체" ? true : restaurant.category === category
-      ).map((restaurant) => createRestaurantListItem(restaurant));
-
-      restaurantList.replaceChildren(...restaurantItems);
+      renderRestaurantList({ category, sorting: sortingFilter.sorting });
     },
   });
-  filterContainer.append(categoryFilter.element);
+  const sortingFilter = new SortingFilter({
+    id: "sorting-filter",
+    name: "sorting",
+    options: ["기본순", "이름순", "거리순"],
+    onChange: (sorting) => {
+      renderRestaurantList({ category: categoryFilter.category, sorting });
+    },
+  });
+  filterContainer.append(categoryFilter.element, sortingFilter.element);
 
   const restaurantList = body.querySelector(".restaurant-list");
   const restaurantItems = RESTAURANTS.map((restaurant) =>
@@ -43,3 +47,25 @@ addEventListener("load", () => {
 
   restaurantList.append(...restaurantItems);
 });
+
+function renderRestaurantList({ category, sorting }) {
+  const body = document.querySelector("body");
+  const restaurantList = body.querySelector(".restaurant-list");
+
+  const restaurantItems = RESTAURANTS.filter((restaurant) =>
+    category === "전체" ? true : restaurant.category === category
+  )
+    .sort((a, b) => {
+      if (sorting === "이름순") {
+        return a.name.localeCompare(b.name);
+      }
+      if (sorting === "거리순") {
+        return a.distanceTime - b.distanceTime;
+      }
+
+      return 0;
+    })
+    .map((restaurant) => createRestaurantListItem(restaurant));
+
+  restaurantList.replaceChildren(...restaurantItems);
+}
