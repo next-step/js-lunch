@@ -1,10 +1,10 @@
 const RESTAURANT_CATEGORY_IMAGES = {
-  한식: "/assets/category-korean.png",
-  중식: "/assets/category-chinese.png",
-  일식: "/assets/category-japanese.png",
-  양식: "/assets/category-western.png",
-  아시안: "/assets/category-asian.png",
-  기타: "/assets/category-etc.png",
+  한식: `${import.meta.env.BASE_URL}assets/category-korean.png`,
+  중식: `${import.meta.env.BASE_URL}assets/category-chinese.png`,
+  일식: `${import.meta.env.BASE_URL}assets/category-japanese.png`,
+  양식: `${import.meta.env.BASE_URL}assets/category-western.png`,
+  아시안: `${import.meta.env.BASE_URL}assets/category-asian.png`,
+  기타: `${import.meta.env.BASE_URL}assets/category-etc.png`,
 };
 
 export function createRestaurantListItem({
