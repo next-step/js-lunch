@@ -30,3 +30,13 @@ describe("음식점 목록 아이템 컴포넌트", () => {
     });
   });
 });
+
+describe("카테고리 필터 컴포넌트", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:5173");
+  });
+
+  it("카테고리 필터 컴포넌트가 불러와졌는지 확인한다", () => {
+    cy.get("#category-filter").should("exist");
+  });
+});

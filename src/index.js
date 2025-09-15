@@ -1,5 +1,7 @@
+import { createCategoryFilter } from "./components/CategoryFilter.js";
 import { createRestaurantListItem } from "./components/RestaurantListItem.js";
 import { RESTAURANTS } from "./constants/restaurants.js";
+import { CATEGORIES } from "./constants/categories.js";
 
 console.log("npm run dev 명령어를 통해 점심 뭐 먹지 미션을 시작하세요");
 console.log(
@@ -18,8 +20,15 @@ console.log(
 addEventListener("load", () => {
   const body = document.querySelector("body");
 
-  const restaurantList = body.querySelector(".restaurant-list");
+  const filterContainer = body.querySelector(".restaurant-filter-container");
+  const categoryFilter = createCategoryFilter({
+    id: "category-filter",
+    name: "category",
+    options: CATEGORIES,
+  });
+  filterContainer.append(categoryFilter);
 
+  const restaurantList = body.querySelector(".restaurant-list");
   const restaurantItems = RESTAURANTS.map((restaurant) =>
     createRestaurantListItem(restaurant)
   );
