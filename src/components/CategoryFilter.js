@@ -1,30 +1,23 @@
+import { Select } from "./Select.js";
+
 export class CategoryFilter {
-  #element;
-  #category;
+  #select;
 
   constructor({ id, name, options, onChange }) {
-    this.#element = document.createElement("select");
-    this.#element.name = name;
-    this.#element.id = id;
-    this.#element.className = "restaurant-filter";
-
-    this.#element.innerHTML = `${options
-      .map((option) => `<option value="${option}">${option}</option>`)
-      .join("\n")}`;
-
-    this.#category = options[0];
-
-    this.#element.addEventListener("change", (event) => {
-      this.#category = event.target.value;
-      onChange?.(event.target.value);
+    this.#select = new Select({
+      id,
+      name,
+      options,
+      onChange,
+      className: "restaurant-filter",
     });
   }
 
   get element() {
-    return this.#element;
+    return this.#select.element;
   }
 
   get category() {
-    return this.#category;
+    return this.#select.value;
   }
 }
