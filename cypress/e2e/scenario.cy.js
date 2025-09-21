@@ -46,4 +46,35 @@ describe("Scenario", () => {
         cy.get("h3.restaurant__name").should("contain.text", "크론");
       });
   });
+  it("새로운 음식점을 추가할 수 있는 모달에서 카테고리, 이름, 거리를 입력해야만 추가할 수 있습니다.", () => {
+    cy.get("header.gnb .gnb__add-button").click();
+
+    cy.get(".modal select[name='category'").select("한식", { force: true });
+    cy.get(".modal .button-container .button--primary").click();
+
+    cy.on("window:alert", (text) => {
+      expect(text).to.equal("카테고리, 이름, 거리가 모두 입력되어야 합니다.");
+    });
+
+    cy.get(".modal input[name='name']").type("크론");
+    cy.get(".modal .button-container .button--primary").click();
+
+    cy.on("window:alert", (text) => {
+      expect(text).to.equal("카테고리, 이름, 거리가 모두 입력되어야 합니다.");
+    });
+
+    cy.get(".modal select[name='distance'").select("5");
+    cy.get(".modal .button-container .button--primary").click();
+
+    cy.get(".restaurant")
+      .last()
+      .within(() => {
+        cy.get("img.category-icon").should("have.attr", "alt", "한식");
+        cy.get("h3.restaurant__name").should("contain.text", "크론");
+        cy.get("span.restaurant__distance").should(
+          "contain.text",
+          "캠퍼스부터 5분 내"
+        );
+      });
+  });
 });

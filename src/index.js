@@ -226,11 +226,21 @@ function createButtonContainer() {
     modal.remove();
   });
   addButton.addEventListener("click", () => {
+    if (!isRequired()) {
+      return;
+    }
+
     const modal = document.querySelector(".modal");
-    const categorySelect = document.querySelector('.modal select[name="category"');
+    const categorySelect = document.querySelector(
+      '.modal select[name="category"]'
+    );
     const nameInput = document.querySelector('.modal input[name="name"]');
-    const distanceSelect = document.querySelector('.modal select[name="distance"]');
-    const description = document.querySelector('.modal textarea[name="description"]');
+    const distanceSelect = document.querySelector(
+      '.modal select[name="distance"]'
+    );
+    const description = document.querySelector(
+      '.modal textarea[name="description"]'
+    );
     restaurantData.push({
       icon: getCategoryIcon(categorySelect.value),
       category: categorySelect.value,
@@ -299,6 +309,25 @@ function showNewRestaurantModal() {
   );
   modal.append(backdrop, container);
   document.body.appendChild(modal);
+}
+
+function isRequired() {
+  const container = document.querySelector(".modal-container");
+  const requiredFormItems = container.querySelectorAll(".form-item--required");
+
+  for (const requiredFormItem of requiredFormItems) {
+    const requiredElements =
+      requiredFormItem.querySelectorAll("input , select");
+
+    for (const requiredElement of requiredElements) {
+      if (!requiredElement.value.trim()) {
+        alert("카테고리, 이름, 거리가 모두 입력되어야 합니다.");
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 addEventListener("load", main);
