@@ -131,6 +131,13 @@ function renderList(list) {
   ul.appendChild(fragment);
 }
 
+function createFormItemLabel(labelText) {
+  const label = document.createElement("label");
+  label.textContent = labelText;
+  label.classList.add("text-caption");
+  return label;
+}
+
 function showNewRestaurantModal() {
   const prevModal = document.querySelector(".modal");
   if (prevModal) {
@@ -154,9 +161,7 @@ function showNewRestaurantModal() {
   const category = document.createElement("div");
   category.className = "form-item";
   category.classList.add("form-item--required");
-  const categoryLabel = document.createElement("label");
-  categoryLabel.textContent = "카테고리";
-  categoryLabel.classList.add("text-caption");
+  const categoryLabel = createFormItemLabel("카테고리");
   const categorySelect = document.createElement("select");
   ["선택해주세요", "한식", "중식", "일식", "양식", "아시안", "기타"].forEach(
     (category, index) => {
@@ -172,9 +177,7 @@ function showNewRestaurantModal() {
   const name = document.createElement("div");
   name.className = "form-item";
   name.classList.add("form-item--required");
-  const nameLabel = document.createElement("label");
-  nameLabel.textContent = "이름";
-  nameLabel.classList.add("text-caption");
+  const nameLabel = createFormItemLabel("이름");
   const nameInput = document.createElement("input");
   nameInput.name = "name";
   nameInput.type = "text";
@@ -183,9 +186,7 @@ function showNewRestaurantModal() {
   const distance = document.createElement("div");
   distance.className = "form-item";
   distance.classList.add("form-item--required");
-  const distanceLabel = document.createElement("label");
-  distanceLabel.textContent = "거리(도보 이동 시간)";
-  distanceLabel.classList.add("text-caption");
+  const distanceLabel = createFormItemLabel("거리(도보 이동 시간)");
   const distanceSelect = document.createElement("select");
   ["선택해주세요", "5", "10", "15", "20", "30"].forEach((distance, index) => {
     const value = index === 0 ? "" : distance;
@@ -198,9 +199,7 @@ function showNewRestaurantModal() {
 
   const description = document.createElement("div");
   description.className = "form-item";
-  const descriptionLabel = document.createElement("label");
-  descriptionLabel.textContent = "설명";
-  descriptionLabel.classList.add("text-caption");
+  const descriptionLabel = createFormItemLabel("설명");
   const descriptionTextArea = document.createElement("textarea");
   const descriptionHelpText = document.createElement("p");
   descriptionHelpText.classList.add("help-text");
@@ -213,9 +212,7 @@ function showNewRestaurantModal() {
 
   const link = document.createElement("div");
   link.className = "form-item";
-  const linkLabel = document.createElement("label");
-  linkLabel.textContent = "참고 링크";
-  linkLabel.classList.add("text-caption");
+  const linkLabel = createFormItemLabel("참고 링크")
   const linkInput = document.createElement("input");
   linkInput.name = "link";
   linkInput.type = "url";
