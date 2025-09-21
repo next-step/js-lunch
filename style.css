@@ -203,11 +203,19 @@ main {
 
 .form-item input,
 .form-item select {
-  appearance: none;
-  -webkit-appearance: none;
-
   height: 44px;
+  margin-top: 6px;
+  padding: 8px;
 
+  border: 1px solid var(--grey-200);
+  border-radius: 8px;
+
+  color: var(--grey-300);
+}
+
+.form-item textarea {
+  height: 90px;
+  margin-top: 6px;
   padding: 8px;
 
   border: 1px solid var(--grey-200);
@@ -218,4 +226,13 @@ main {
 
 input[name="name"] {
   height: 44px;
+}
+
+.form-item textarea {
+  resize: none;
+}
+
+.form-item .help-text {
+  margin-top: 6px;
+  color: var(--grey-300);
 }

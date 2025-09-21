@@ -197,7 +197,22 @@ function showNewRestaurantModal() {
   });
   distance.append(distanceLabel, distanceSelect);
 
-  container.append(title, category, name, distance);
+  const description = document.createElement("div");
+  description.className = "form-item";
+  const descriptionLabel = document.createElement("label");
+  descriptionLabel.textContent = "설명";
+  descriptionLabel.classList.add("text-caption");
+  const descriptionTextArea = document.createElement("textarea");
+  const descriptionHelpText = document.createElement("label");
+  descriptionHelpText.classList.add("help-text");
+  descriptionHelpText.textContent = "메뉴 등 추가 정보를 입력해 주세요.";
+  description.append(
+    descriptionLabel,
+    descriptionTextArea,
+    descriptionHelpText
+  );
+
+  container.append(title, category, name, distance, description);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 }
