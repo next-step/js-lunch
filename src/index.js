@@ -159,6 +159,13 @@ function createFormItemInput({ name, type }) {
   return input;
 }
 
+function createFormItemHelpText(text) {
+  const helpText = document.createElement("p");
+  helpText.classList.add("help-text");
+  helpText.textContent = text;
+  return helpText;
+}
+
 function showNewRestaurantModal() {
   const prevModal = document.querySelector(".modal");
   if (prevModal) {
@@ -222,9 +229,9 @@ function showNewRestaurantModal() {
   description.className = "form-item";
   const descriptionLabel = createFormItemLabel("설명");
   const descriptionTextArea = document.createElement("textarea");
-  const descriptionHelpText = document.createElement("p");
-  descriptionHelpText.classList.add("help-text");
-  descriptionHelpText.textContent = "메뉴 등 추가 정보를 입력해 주세요.";
+  const descriptionHelpText = createFormItemHelpText(
+    "메뉴 등 추가 정보를 입력해 주세요."
+  );
   description.append(
     descriptionLabel,
     descriptionTextArea,
@@ -238,9 +245,9 @@ function showNewRestaurantModal() {
     name: "link",
     type: "url",
   });
-  const linkHelpText = document.createElement("p");
-  linkHelpText.classList.add("help-text");
-  linkHelpText.textContent = "매장 정보를 확인할 수 있는 링크를 입력해 주세요.";
+  const linkHelpText = createFormItemHelpText(
+    "매장 정보를 확인할 수 있는 링크를 입력해 주세요."
+  );
   link.append(linkLabel, linkInput, linkHelpText);
 
   const buttonContainer = document.createElement("div");
