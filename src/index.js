@@ -151,7 +151,25 @@ function showNewRestaurantModal() {
   title.className = "modal-title text-subtitle";
   title.textContent = "새로운 음식점";
 
-  container.append(title);
+  const category = document.createElement("div");
+  category.className = "form-item";
+  category.classList.add("form-item--required");
+  const categoryLabel = document.createElement("label");
+  categoryLabel.textContent = "카테고리";
+  categoryLabel.classList.add("text-caption");
+  const categorySelect = document.createElement("select");
+  ["선택해주세요", "한식", "중식", "일식", "양식", "아시안", "기타"].forEach(
+    (category, index) => {
+      const value = index === 0 ? "" : category;
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = category;
+      categorySelect.appendChild(option);
+    }
+  );
+  category.append(categoryLabel, categorySelect);
+
+  container.append(title, category);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 }

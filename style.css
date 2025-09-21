@@ -8,6 +8,7 @@
   --primary-color: #ec4a0a;
   --lighten-color: #f6a88a;
   --grey-100: #ffffff;
+  --grey-300: #667085;
 }
 
 .text-subtitle {
@@ -19,6 +20,12 @@
 .text-body {
   font-size: 16px;
   line-height: 24px;
+  font-weight: 400;
+}
+
+.text-caption {
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
 }
 
@@ -162,4 +169,44 @@ main {
 
 .modal-title {
   margin-bottom: 36px;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 36px;
+}
+
+.form-item label {
+  color: var(--grey-400);
+  font-size: 14px;
+}
+
+.form-item--required label::after {
+  padding-left: 4px;
+
+  color: var(--primary-color);
+  content: "*";
+}
+
+.form-item select {
+  padding: 8px;
+  margin: 6px 0;
+
+  border: 1px solid var(--grey-200);
+  border-radius: 8px;
+
+  font-size: 16px;
+}
+
+.form-item select {
+  height: 44px;
+
+  padding: 8px;
+
+  border: 1px solid var(--grey-200);
+  border-radius: 8px;
+
+  color: var(--grey-300);
 }
