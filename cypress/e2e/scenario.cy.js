@@ -20,4 +20,8 @@ describe("Scenario", () => {
       expect(distances).to.deep.equal(sorted);
     });
   });
+  it("헤더 영역에서 추가 버튼을 클릭하면 음식점 추가 모달이 노출됩니다.", () => {
+    cy.get("header.gnb .gnb__add-button").click();
+    cy.get(".modal").should("exist");
+  });
 });

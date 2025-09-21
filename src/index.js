@@ -141,6 +141,18 @@ function showNewRestaurantModal() {
   modal.className = "modal";
   modal.classList.add("modal--open");
 
+  const backdrop = document.createElement("div");
+  backdrop.className = "modal-backdrop";
+
+  const container = document.createElement("div");
+  container.className = "modal-container";
+
+  const title = document.createElement("h3");
+  title.className = "modal-title text-subtitle";
+  title.textContent = "새로운 음식점";
+
+  container.append(title);
+  modal.append(backdrop, container);
   document.body.appendChild(modal);
 }
 

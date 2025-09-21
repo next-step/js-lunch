@@ -1,6 +1,25 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 :root {
   --primary-color: #ec4a0a;
   --lighten-color: #f6a88a;
+  --grey-100: #ffffff;
+}
+
+.text-subtitle {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.text-body {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
 }
 
 .gnb {
@@ -115,4 +134,32 @@ main {
 
 .modal--open {
   display: block;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.modal-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+  padding: 32px 16px;
+
+  border-radius: 8px 8px 0px 0px;
+  background: var(--grey-100);
+  box-sizing: border-box;
+}
+
+.modal-title {
+  margin-bottom: 36px;
 }
