@@ -138,6 +138,20 @@ function createFormItemLabel(labelText) {
   return label;
 }
 
+function createFormItemSelect(options) {
+  const select = document.createElement("select");
+  const fragment = document.createDocumentFragment();
+  options.forEach((option, index) => {
+    const value = index === 0 ? "" : option;
+    const optionElement = document.createElement("option");
+    optionElement.value = value;
+    optionElement.textContent = option;
+    fragment.appendChild(optionElement);
+  });
+  select.appendChild(fragment);
+  return select;
+}
+
 function showNewRestaurantModal() {
   const prevModal = document.querySelector(".modal");
   if (prevModal) {
@@ -162,16 +176,15 @@ function showNewRestaurantModal() {
   category.className = "form-item";
   category.classList.add("form-item--required");
   const categoryLabel = createFormItemLabel("카테고리");
-  const categorySelect = document.createElement("select");
-  ["선택해주세요", "한식", "중식", "일식", "양식", "아시안", "기타"].forEach(
-    (category, index) => {
-      const value = index === 0 ? "" : category;
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = category;
-      categorySelect.appendChild(option);
-    }
-  );
+  const categorySelect = createFormItemSelect([
+    "선택해주세요",
+    "한식",
+    "중식",
+    "일식",
+    "양식",
+    "아시안",
+    "기타",
+  ]);
   category.append(categoryLabel, categorySelect);
 
   const name = document.createElement("div");
@@ -187,14 +200,14 @@ function showNewRestaurantModal() {
   distance.className = "form-item";
   distance.classList.add("form-item--required");
   const distanceLabel = createFormItemLabel("거리(도보 이동 시간)");
-  const distanceSelect = document.createElement("select");
-  ["선택해주세요", "5", "10", "15", "20", "30"].forEach((distance, index) => {
-    const value = index === 0 ? "" : distance;
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = distance;
-    distanceSelect.appendChild(option);
-  });
+  const distanceSelect = createFormItemSelect([
+    "선택해주세요",
+    "5",
+    "10",
+    "15",
+    "20",
+    "30",
+  ]);
   distance.append(distanceLabel, distanceSelect);
 
   const description = document.createElement("div");
@@ -212,7 +225,7 @@ function showNewRestaurantModal() {
 
   const link = document.createElement("div");
   link.className = "form-item";
-  const linkLabel = createFormItemLabel("참고 링크")
+  const linkLabel = createFormItemLabel("참고 링크");
   const linkInput = document.createElement("input");
   linkInput.name = "link";
   linkInput.type = "url";
