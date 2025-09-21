@@ -181,7 +181,23 @@ function showNewRestaurantModal() {
   nameInput.type = "text";
   name.append(nameLabel, nameInput);
 
-  container.append(title, category, name);
+  const distance = document.createElement("div");
+  distance.className = "form-item";
+  distance.classList.add("form-item--required");
+  const distanceLabel = document.createElement("label");
+  distanceLabel.textContent = "거리(도보 이동 시간)";
+  distanceLabel.classList.add("text-caption");
+  const distanceSelect = document.createElement("select");
+  ["선택해주세요", "5", "10", "15", "20", "30"].forEach((distance, index) => {
+    const value = index === 0 ? "" : distance;
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = distance;
+    distanceSelect.appendChild(option);
+  });
+  distance.append(distanceLabel, distanceSelect);
+
+  container.append(title, category, name, distance);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 }
