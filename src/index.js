@@ -55,8 +55,6 @@ const restaurantData = [
 ];
 
 function main() {
-  renderList(restaurantData);
-
   document
     .getElementById("category-filter")
     .addEventListener("change", changeCategory);
@@ -209,6 +207,38 @@ function createLinkItem() {
   return link;
 }
 
+const addRestaurant = () => {
+  if (!isRequired()) {
+    return;
+  }
+
+  const modal = document.querySelector(".modal");
+  const categorySelect = document.querySelector(
+    '.modal select[name="category"]'
+  );
+  const nameInput = document.querySelector('.modal input[name="name"]');
+  const distanceSelect = document.querySelector(
+    '.modal select[name="distance"]'
+  );
+  const description = document.querySelector(
+    '.modal textarea[name="description"]'
+  );
+  const newRestaurant = {
+    icon: getCategoryIcon(categorySelect.value),
+    category: categorySelect.value,
+    name: nameInput.value,
+    distance: parseInt(distanceSelect.value),
+    description: description.value,
+  };
+
+  const localData = JSON.parse(localStorage.getItem("newRestaurants")) || [];
+  localData.push(newRestaurant);
+  localStorage.setItem("newRestaurants", JSON.stringify(localData));
+
+  renderList([...restaurantData, ...localData]);
+  modal.remove();
+};
+
 function createButtonContainer() {
   const buttonContainer = document.createElement("div");
   buttonContainer.className = "button-container";
@@ -225,33 +255,7 @@ function createButtonContainer() {
     const modal = document.querySelector(".modal");
     modal.remove();
   });
-  addButton.addEventListener("click", () => {
-    if (!isRequired()) {
-      return;
-    }
-
-    const modal = document.querySelector(".modal");
-    const categorySelect = document.querySelector(
-      '.modal select[name="category"]'
-    );
-    const nameInput = document.querySelector('.modal input[name="name"]');
-    const distanceSelect = document.querySelector(
-      '.modal select[name="distance"]'
-    );
-    const description = document.querySelector(
-      '.modal textarea[name="description"]'
-    );
-    restaurantData.push({
-      icon: getCategoryIcon(categorySelect.value),
-      category: categorySelect.value,
-      name: nameInput.value,
-      distance: parseInt(distanceSelect.value),
-      description: description.value,
-    });
-
-    renderList(restaurantData);
-    modal.remove();
-  });
+  addButton.addEventListener("click", addRestaurant);
 
   buttonContainer.append(cancelButton, addButton);
   return buttonContainer;
@@ -331,3 +335,8 @@ function isRequired() {
 }
 
 addEventListener("load", main);
+
+addEventListener("DOMContentLoaded", () => {
+  const localData = JSON.parse(localStorage.getItem("newRestaurants")) || [];
+  renderList([...restaurantData, ...localData]);
+});
