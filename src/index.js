@@ -212,7 +212,21 @@ function showNewRestaurantModal() {
     descriptionHelpText
   );
 
-  container.append(title, category, name, distance, description);
+  const link = document.createElement("div");
+  link.className = "form-item";
+  const linkLabel = document.createElement("label");
+  linkLabel.textContent = "참고 링크";
+  linkLabel.classList.add("text-caption");
+  const linkInput = document.createElement("input");
+  linkInput.name = "link";
+  linkInput.type = "url";
+  const linkHelpText = document.createElement("label");
+  linkHelpText.classList.add("help-text");
+  linkHelpText.textContent = "메뉴 등 추가 정보를 입력해 주세요.";
+
+  link.append(linkLabel, linkInput, linkHelpText);
+
+  container.append(title, category, name, distance, description, link);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 }
