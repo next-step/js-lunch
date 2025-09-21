@@ -1,3 +1,11 @@
+import {
+  createFormItem,
+  createFormItemHelpText,
+  createFormItemInput,
+  createFormItemLabel,
+  createFormItemSelect,
+} from "./form-item.js";
+
 const restaurantData = [
   {
     icon: "category-etc.png",
@@ -131,48 +139,96 @@ function renderList(list) {
   ul.appendChild(fragment);
 }
 
-function createFormItemLabel(labelText) {
-  const label = document.createElement("label");
-  label.textContent = labelText;
-  label.classList.add("text-caption");
-  return label;
-}
-
-function createFormItemSelect(options) {
-  const select = document.createElement("select");
-  const fragment = document.createDocumentFragment();
-  options.forEach((option, index) => {
-    const value = index === 0 ? "" : option;
-    const optionElement = document.createElement("option");
-    optionElement.value = value;
-    optionElement.textContent = option;
-    fragment.appendChild(optionElement);
+function createCategoryItem() {
+  const category = createFormItem({
+    required: true,
   });
-  select.appendChild(fragment);
-  return select;
+  const categoryLabel = createFormItemLabel("카테고리");
+  const categorySelect = createFormItemSelect([
+    "선택해주세요",
+    "한식",
+    "중식",
+    "일식",
+    "양식",
+    "아시안",
+    "기타",
+  ]);
+  category.append(categoryLabel, categorySelect);
+  return category;
 }
 
-function createFormItemInput({ name, type }) {
-  const input = document.createElement("input");
-  input.name = name;
-  input.type = type;
-  return input;
+function createNameItem() {
+  const name = createFormItem({
+    required: true,
+  });
+  const nameLabel = createFormItemLabel("이름");
+  const nameInput = createFormItemInput({
+    name: "name",
+    type: "text",
+  });
+  name.append(nameLabel, nameInput);
+  return name;
 }
 
-function createFormItemHelpText(text) {
-  const helpText = document.createElement("p");
-  helpText.classList.add("help-text");
-  helpText.textContent = text;
-  return helpText;
+function createDistanceItem() {
+  const distance = createFormItem({
+    required: true,
+  });
+  const distanceLabel = createFormItemLabel("거리(도보 이동 시간)");
+  const distanceSelect = createFormItemSelect([
+    "선택해주세요",
+    "5",
+    "10",
+    "15",
+    "20",
+    "30",
+  ]);
+  distance.append(distanceLabel, distanceSelect);
+  return distance;
 }
 
-function createFormItem({ required = false } = {}) {
-  const formItem = document.createElement("div");
-  formItem.className = "form-item";
-  if (required) {
-    formItem.classList.add("form-item--required");
-  }
-  return formItem;
+function createDescriptionItem() {
+  const description = createFormItem();
+  const descriptionLabel = createFormItemLabel("설명");
+  const descriptionTextArea = document.createElement("textarea");
+  const descriptionHelpText = createFormItemHelpText(
+    "메뉴 등 추가 정보를 입력해 주세요."
+  );
+  description.append(
+    descriptionLabel,
+    descriptionTextArea,
+    descriptionHelpText
+  );
+  return description;
+}
+
+function createLinkItem() {
+  const link = createFormItem();
+  const linkLabel = createFormItemLabel("참고 링크");
+  const linkInput = createFormItemInput({
+    name: "link",
+    type: "url",
+  });
+  const linkHelpText = createFormItemHelpText(
+    "매장 정보를 확인할 수 있는 링크를 입력해 주세요."
+  );
+  link.append(linkLabel, linkInput, linkHelpText);
+  return link;
+}
+
+function createButtonContainer() {
+  const buttonContainer = document.createElement("div");
+  buttonContainer.className = "button-container";
+  const cancelButton = document.createElement("button");
+  cancelButton.className = "button";
+  cancelButton.classList.add("button--secondary");
+  cancelButton.textContent = "취소하기";
+  const addButton = document.createElement("button");
+  addButton.className = "button";
+  addButton.classList.add("button--primary");
+  addButton.textContent = "추가하기";
+  buttonContainer.append(cancelButton, addButton);
+  return buttonContainer;
 }
 
 function showNewRestaurantModal() {
@@ -195,79 +251,13 @@ function showNewRestaurantModal() {
   title.className = "modal-title text-subtitle";
   title.textContent = "새로운 음식점";
 
-  const category = createFormItem({
-    required: true,
-  });
-  const categoryLabel = createFormItemLabel("카테고리");
-  const categorySelect = createFormItemSelect([
-    "선택해주세요",
-    "한식",
-    "중식",
-    "일식",
-    "양식",
-    "아시안",
-    "기타",
-  ]);
-  category.append(categoryLabel, categorySelect);
+  const category = createCategoryItem();
+  const name = createNameItem();
+  const distance = createDistanceItem();
+  const description = createDescriptionItem();
+  const link = createLinkItem();
 
-  const name = createFormItem({
-    required: true,
-  });
-  const nameLabel = createFormItemLabel("이름");
-  const nameInput = createFormItemInput({
-    name: "name",
-    type: "text",
-  });
-  name.append(nameLabel, nameInput);
-
-  const distance = createFormItem({
-    required: true,
-  });
-  const distanceLabel = createFormItemLabel("거리(도보 이동 시간)");
-  const distanceSelect = createFormItemSelect([
-    "선택해주세요",
-    "5",
-    "10",
-    "15",
-    "20",
-    "30",
-  ]);
-  distance.append(distanceLabel, distanceSelect);
-
-  const description = createFormItem();
-  const descriptionLabel = createFormItemLabel("설명");
-  const descriptionTextArea = document.createElement("textarea");
-  const descriptionHelpText = createFormItemHelpText(
-    "메뉴 등 추가 정보를 입력해 주세요."
-  );
-  description.append(
-    descriptionLabel,
-    descriptionTextArea,
-    descriptionHelpText
-  );
-
-  const link = createFormItem();
-  const linkLabel = createFormItemLabel("참고 링크");
-  const linkInput = createFormItemInput({
-    name: "link",
-    type: "url",
-  });
-  const linkHelpText = createFormItemHelpText(
-    "매장 정보를 확인할 수 있는 링크를 입력해 주세요."
-  );
-  link.append(linkLabel, linkInput, linkHelpText);
-
-  const buttonContainer = document.createElement("div");
-  buttonContainer.className = "button-container";
-  const cancelButton = document.createElement("button");
-  cancelButton.className = "button";
-  cancelButton.classList.add("button--secondary");
-  cancelButton.textContent = "취소하기";
-  const addButton = document.createElement("button");
-  addButton.className = "button";
-  addButton.classList.add("button--primary");
-  addButton.textContent = "추가하기";
-  buttonContainer.append(cancelButton, addButton);
+  const buttonContainer = createButtonContainer();
 
   container.append(
     title,
