@@ -56,6 +56,10 @@ function main() {
   document
     .getElementById("sorting-filter")
     .addEventListener("change", changeSorting);
+
+  document
+    .querySelector(".gnb__add-button")
+    .addEventListener("click", showNewRestaurantModal);
 }
 
 function changeCategory() {
@@ -125,6 +129,19 @@ function renderList(list) {
   });
 
   ul.appendChild(fragment);
+}
+
+function showNewRestaurantModal() {
+  const prevModal = document.querySelector(".modal");
+  if (prevModal) {
+    prevModal.remove();
+    return;
+  }
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.classList.add("modal--open");
+
+  document.body.appendChild(modal);
 }
 
 addEventListener("load", main);
