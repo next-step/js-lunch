@@ -155,6 +155,7 @@ function showNewRestaurantModal() {
   category.className = "form-item";
   category.classList.add("form-item--required");
   const categoryLabel = document.createElement("label");
+  categoryLabel.id = "category-label";
   categoryLabel.textContent = "카테고리";
   categoryLabel.classList.add("text-caption");
   const categorySelect = document.createElement("select");
@@ -169,7 +170,18 @@ function showNewRestaurantModal() {
   );
   category.append(categoryLabel, categorySelect);
 
-  container.append(title, category);
+  const name = document.createElement("div");
+  name.className = "form-item";
+  name.classList.add("form-item--required");
+  const nameLabel = document.createElement("label");
+  nameLabel.textContent = "이름";
+  nameLabel.classList.add("text-caption");
+  const nameInput = document.createElement("input");
+  nameInput.name = "name";
+  nameInput.type = "text";
+  name.append(nameLabel, nameInput);
+
+  container.append(title, category, name);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 }
