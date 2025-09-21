@@ -222,11 +222,30 @@ function showNewRestaurantModal() {
   linkInput.type = "url";
   const linkHelpText = document.createElement("label");
   linkHelpText.classList.add("help-text");
-  linkHelpText.textContent = "메뉴 등 추가 정보를 입력해 주세요.";
-
+  linkHelpText.textContent = "매장 정보를 확인할 수 있는 링크를 입력해 주세요.";
   link.append(linkLabel, linkInput, linkHelpText);
 
-  container.append(title, category, name, distance, description, link);
+  const buttonContainer = document.createElement("div");
+  buttonContainer.className = "button-container";
+  const cancelButton = document.createElement("button");
+  cancelButton.className = "button";
+  cancelButton.classList.add("button--secondary");
+  cancelButton.textContent = "취소하기";
+  const addButton = document.createElement("button");
+  addButton.className = "button";
+  addButton.classList.add("button--primary");
+  addButton.textContent = "추가하기";
+  buttonContainer.append(cancelButton, addButton);
+
+  container.append(
+    title,
+    category,
+    name,
+    distance,
+    description,
+    link,
+    buttonContainer
+  );
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 }
