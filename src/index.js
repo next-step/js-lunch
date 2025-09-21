@@ -152,6 +152,13 @@ function createFormItemSelect(options) {
   return select;
 }
 
+function createFormItemInput({ name, type }) {
+  const input = document.createElement("input");
+  input.name = name;
+  input.type = type;
+  return input;
+}
+
 function showNewRestaurantModal() {
   const prevModal = document.querySelector(".modal");
   if (prevModal) {
@@ -191,9 +198,10 @@ function showNewRestaurantModal() {
   name.className = "form-item";
   name.classList.add("form-item--required");
   const nameLabel = createFormItemLabel("이름");
-  const nameInput = document.createElement("input");
-  nameInput.name = "name";
-  nameInput.type = "text";
+  const nameInput = createFormItemInput({
+    name: "name",
+    type: "text",
+  });
   name.append(nameLabel, nameInput);
 
   const distance = document.createElement("div");
@@ -226,9 +234,10 @@ function showNewRestaurantModal() {
   const link = document.createElement("div");
   link.className = "form-item";
   const linkLabel = createFormItemLabel("참고 링크");
-  const linkInput = document.createElement("input");
-  linkInput.name = "link";
-  linkInput.type = "url";
+  const linkInput = createFormItemInput({
+    name: "link",
+    type: "url",
+  });
   const linkHelpText = document.createElement("p");
   linkHelpText.classList.add("help-text");
   linkHelpText.textContent = "매장 정보를 확인할 수 있는 링크를 입력해 주세요.";
