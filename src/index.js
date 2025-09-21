@@ -144,15 +144,11 @@ function createCategoryItem() {
     required: true,
   });
   const categoryLabel = createFormItemLabel("카테고리");
-  const categorySelect = createFormItemSelect([
-    "선택해주세요",
-    "한식",
-    "중식",
-    "일식",
-    "양식",
-    "아시안",
-    "기타",
-  ]);
+  const categorySelect = createFormItemSelect({
+    category: "category",
+    options: ["선택해주세요", "한식", "중식", "일식", "양식", "아시안", "기타"],
+  });
+  categorySelect.name = "category";
   category.append(categoryLabel, categorySelect);
   return category;
 }
@@ -175,14 +171,10 @@ function createDistanceItem() {
     required: true,
   });
   const distanceLabel = createFormItemLabel("거리(도보 이동 시간)");
-  const distanceSelect = createFormItemSelect([
-    "선택해주세요",
-    "5",
-    "10",
-    "15",
-    "20",
-    "30",
-  ]);
+  const distanceSelect = createFormItemSelect({
+    name: "distance",
+    options: ["선택해주세요", "5", "10", "15", "20", "30"],
+  });
   distance.append(distanceLabel, distanceSelect);
   return distance;
 }
@@ -191,6 +183,7 @@ function createDescriptionItem() {
   const description = createFormItem();
   const descriptionLabel = createFormItemLabel("설명");
   const descriptionTextArea = document.createElement("textarea");
+  descriptionTextArea.name = "description";
   const descriptionHelpText = createFormItemHelpText(
     "메뉴 등 추가 정보를 입력해 주세요."
   );
@@ -227,8 +220,44 @@ function createButtonContainer() {
   addButton.className = "button";
   addButton.classList.add("button--primary");
   addButton.textContent = "추가하기";
+
+  cancelButton.addEventListener("click", () => {
+    const modal = document.querySelector(".modal");
+    modal.remove();
+  });
+  addButton.addEventListener("click", () => {
+    const modal = document.querySelector(".modal");
+    const categorySelect = document.querySelector('.modal select[name="category"');
+    const nameInput = document.querySelector('.modal input[name="name"]');
+    const distanceSelect = document.querySelector('.modal select[name="distance"]');
+    const description = document.querySelector('.modal textarea[name="description"]');
+    restaurantData.push({
+      icon: getCategoryIcon(categorySelect.value),
+      category: categorySelect.value,
+      name: nameInput.value,
+      distance: parseInt(distanceSelect.value),
+      description: description.value,
+    });
+
+    renderList(restaurantData);
+    modal.remove();
+  });
+
   buttonContainer.append(cancelButton, addButton);
   return buttonContainer;
+}
+
+function getCategoryIcon(category) {
+  const iconMap = {
+    기타: "category-etc.png",
+    양식: "category-western.png",
+    일식: "category-japanese.png",
+    중식: "category-chinese.png",
+    한식: "category-korean.png",
+    아시안: "category-asian.png",
+  };
+
+  return iconMap[category] ?? "category-etc.png";
 }
 
 function showNewRestaurantModal() {

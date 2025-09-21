@@ -5,8 +5,9 @@ export function createFormItemLabel(labelText) {
   return label;
 }
 
-export function createFormItemSelect(options) {
+export function createFormItemSelect({ name, options }) {
   const select = document.createElement("select");
+  select.name = name;
   const fragment = document.createDocumentFragment();
   options.forEach((option, index) => {
     const value = index === 0 ? "" : option;
