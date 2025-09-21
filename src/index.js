@@ -155,7 +155,6 @@ function showNewRestaurantModal() {
   category.className = "form-item";
   category.classList.add("form-item--required");
   const categoryLabel = document.createElement("label");
-  categoryLabel.id = "category-label";
   categoryLabel.textContent = "카테고리";
   categoryLabel.classList.add("text-caption");
   const categorySelect = document.createElement("select");
@@ -203,7 +202,7 @@ function showNewRestaurantModal() {
   descriptionLabel.textContent = "설명";
   descriptionLabel.classList.add("text-caption");
   const descriptionTextArea = document.createElement("textarea");
-  const descriptionHelpText = document.createElement("label");
+  const descriptionHelpText = document.createElement("p");
   descriptionHelpText.classList.add("help-text");
   descriptionHelpText.textContent = "메뉴 등 추가 정보를 입력해 주세요.";
   description.append(
@@ -220,7 +219,7 @@ function showNewRestaurantModal() {
   const linkInput = document.createElement("input");
   linkInput.name = "link";
   linkInput.type = "url";
-  const linkHelpText = document.createElement("label");
+  const linkHelpText = document.createElement("p");
   linkHelpText.classList.add("help-text");
   linkHelpText.textContent = "매장 정보를 확인할 수 있는 링크를 입력해 주세요.";
   link.append(linkLabel, linkInput, linkHelpText);
