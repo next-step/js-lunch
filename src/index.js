@@ -1,3 +1,11 @@
+import {
+  createFormItem,
+  createFormItemHelpText,
+  createFormItemInput,
+  createFormItemLabel,
+  createFormItemSelect,
+} from "./form-item.js";
+
 const restaurantData = [
   {
     icon: "category-etc.png",
@@ -47,8 +55,6 @@ const restaurantData = [
 ];
 
 function main() {
-  renderList(restaurantData);
-
   document
     .getElementById("category-filter")
     .addEventListener("change", changeCategory);
@@ -56,6 +62,10 @@ function main() {
   document
     .getElementById("sorting-filter")
     .addEventListener("change", changeSorting);
+
+  document
+    .querySelector(".gnb__add-button")
+    .addEventListener("click", showNewRestaurantModal);
 }
 
 function changeCategory() {
@@ -85,6 +95,8 @@ function changeSorting() {
 function renderList(list) {
   const ul = document.querySelector(".restaurant-list");
   ul.innerHTML = "";
+
+  const fragment = document.createDocumentFragment();
 
   list.forEach((restaurant) => {
     const li = document.createElement("li");
@@ -119,8 +131,212 @@ function renderList(list) {
     infoDiv.appendChild(description);
     li.appendChild(infoDiv);
 
-    ul.appendChild(li);
+    fragment.appendChild(li);
   });
+
+  ul.appendChild(fragment);
+}
+
+function createCategoryItem() {
+  const category = createFormItem({
+    required: true,
+  });
+  const categoryLabel = createFormItemLabel("카테고리");
+  const categorySelect = createFormItemSelect({
+    category: "category",
+    options: ["선택해주세요", "한식", "중식", "일식", "양식", "아시안", "기타"],
+  });
+  categorySelect.name = "category";
+  category.append(categoryLabel, categorySelect);
+  return category;
+}
+
+function createNameItem() {
+  const name = createFormItem({
+    required: true,
+  });
+  const nameLabel = createFormItemLabel("이름");
+  const nameInput = createFormItemInput({
+    name: "name",
+    type: "text",
+  });
+  name.append(nameLabel, nameInput);
+  return name;
+}
+
+function createDistanceItem() {
+  const distance = createFormItem({
+    required: true,
+  });
+  const distanceLabel = createFormItemLabel("거리(도보 이동 시간)");
+  const distanceSelect = createFormItemSelect({
+    name: "distance",
+    options: ["선택해주세요", "5", "10", "15", "20", "30"],
+  });
+  distance.append(distanceLabel, distanceSelect);
+  return distance;
+}
+
+function createDescriptionItem() {
+  const description = createFormItem();
+  const descriptionLabel = createFormItemLabel("설명");
+  const descriptionTextArea = document.createElement("textarea");
+  descriptionTextArea.name = "description";
+  const descriptionHelpText = createFormItemHelpText(
+    "메뉴 등 추가 정보를 입력해 주세요."
+  );
+  description.append(
+    descriptionLabel,
+    descriptionTextArea,
+    descriptionHelpText
+  );
+  return description;
+}
+
+function createLinkItem() {
+  const link = createFormItem();
+  const linkLabel = createFormItemLabel("참고 링크");
+  const linkInput = createFormItemInput({
+    name: "link",
+    type: "url",
+  });
+  const linkHelpText = createFormItemHelpText(
+    "매장 정보를 확인할 수 있는 링크를 입력해 주세요."
+  );
+  link.append(linkLabel, linkInput, linkHelpText);
+  return link;
+}
+
+const addRestaurant = () => {
+  if (!isRequired()) {
+    return;
+  }
+
+  const modal = document.querySelector(".modal");
+  const categorySelect = document.querySelector(
+    '.modal select[name="category"]'
+  );
+  const nameInput = document.querySelector('.modal input[name="name"]');
+  const distanceSelect = document.querySelector(
+    '.modal select[name="distance"]'
+  );
+  const description = document.querySelector(
+    '.modal textarea[name="description"]'
+  );
+  const newRestaurant = {
+    icon: getCategoryIcon(categorySelect.value),
+    category: categorySelect.value,
+    name: nameInput.value,
+    distance: parseInt(distanceSelect.value),
+    description: description.value,
+  };
+
+  const localData = JSON.parse(localStorage.getItem("newRestaurants")) || [];
+  localData.push(newRestaurant);
+  localStorage.setItem("newRestaurants", JSON.stringify(localData));
+
+  renderList([...restaurantData, ...localData]);
+  modal.remove();
+};
+
+function createButtonContainer() {
+  const buttonContainer = document.createElement("div");
+  buttonContainer.className = "button-container";
+  const cancelButton = document.createElement("button");
+  cancelButton.className = "button";
+  cancelButton.classList.add("button--secondary");
+  cancelButton.textContent = "취소하기";
+  const addButton = document.createElement("button");
+  addButton.className = "button";
+  addButton.classList.add("button--primary");
+  addButton.textContent = "추가하기";
+
+  cancelButton.addEventListener("click", () => {
+    const modal = document.querySelector(".modal");
+    modal.remove();
+  });
+  addButton.addEventListener("click", addRestaurant);
+
+  buttonContainer.append(cancelButton, addButton);
+  return buttonContainer;
+}
+
+function getCategoryIcon(category) {
+  const iconMap = {
+    기타: "category-etc.png",
+    양식: "category-western.png",
+    일식: "category-japanese.png",
+    중식: "category-chinese.png",
+    한식: "category-korean.png",
+    아시안: "category-asian.png",
+  };
+
+  return iconMap[category] ?? "category-etc.png";
+}
+
+function showNewRestaurantModal() {
+  const prevModal = document.querySelector(".modal");
+  if (prevModal) {
+    prevModal.remove();
+    return;
+  }
+  const modal = document.createElement("div");
+  modal.className = "modal";
+  modal.classList.add("modal--open");
+
+  const backdrop = document.createElement("div");
+  backdrop.className = "modal-backdrop";
+
+  const container = document.createElement("div");
+  container.className = "modal-container";
+
+  const title = document.createElement("h3");
+  title.className = "modal-title text-subtitle";
+  title.textContent = "새로운 음식점";
+
+  const category = createCategoryItem();
+  const name = createNameItem();
+  const distance = createDistanceItem();
+  const description = createDescriptionItem();
+  const link = createLinkItem();
+
+  const buttonContainer = createButtonContainer();
+
+  container.append(
+    title,
+    category,
+    name,
+    distance,
+    description,
+    link,
+    buttonContainer
+  );
+  modal.append(backdrop, container);
+  document.body.appendChild(modal);
+}
+
+function isRequired() {
+  const container = document.querySelector(".modal-container");
+  const requiredFormItems = container.querySelectorAll(".form-item--required");
+
+  for (const requiredFormItem of requiredFormItems) {
+    const requiredElements =
+      requiredFormItem.querySelectorAll("input , select");
+
+    for (const requiredElement of requiredElements) {
+      if (!requiredElement.value.trim()) {
+        alert("카테고리, 이름, 거리가 모두 입력되어야 합니다.");
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 addEventListener("load", main);
+
+addEventListener("DOMContentLoaded", () => {
+  const localData = JSON.parse(localStorage.getItem("newRestaurants")) || [];
+  renderList([...restaurantData, ...localData]);
+});
