@@ -4,7 +4,7 @@ import {
   createFormItemInput,
   createFormItemLabel,
   createFormItemSelect,
-} from "./form-item.js";
+} from "./components/form-item.js";
 
 import asianCategoryIcon from "../images/category-asian.png";
 import chineseCategoryIcon from "../images/category-chinese.png";
@@ -12,6 +12,7 @@ import etcCategoryIcon from "../images/category-etc.png";
 import japaneseCategoryIcon from "../images/category-japanese.png";
 import koreanCategoryIcon from "../images/category-korean.png";
 import westernCategoryIcon from "../images/category-western.png";
+import { createButtonContainer } from "./components/button-container.js";
 
 const restaurantData = [
   {
@@ -261,28 +262,6 @@ const addRestaurant = () => {
   modal.remove();
 };
 
-function createButtonContainer() {
-  const buttonContainer = document.createElement("div");
-  buttonContainer.className = "button-container";
-  const cancelButton = document.createElement("button");
-  cancelButton.className = "button";
-  cancelButton.classList.add("button--secondary");
-  cancelButton.textContent = "취소하기";
-  const addButton = document.createElement("button");
-  addButton.className = "button";
-  addButton.classList.add("button--primary");
-  addButton.textContent = "추가하기";
-
-  cancelButton.addEventListener("click", () => {
-    const modal = document.querySelector(".modal");
-    modal.remove();
-  });
-  addButton.addEventListener("click", addRestaurant);
-
-  buttonContainer.append(cancelButton, addButton);
-  return buttonContainer;
-}
-
 function getCategoryIcon(category) {
   const iconMap = {
     기타: etcCategoryIcon,
@@ -322,7 +301,15 @@ function showNewRestaurantModal() {
   const description = createDescriptionItem();
   const link = createLinkItem();
 
-  const buttonContainer = createButtonContainer();
+  const buttonContainer = createButtonContainer({
+    negative: {
+      onClick: () => {
+        const modal = document.querySelector(".modal");
+        modal.remove();
+      },
+    },
+    positive: { text: "추가하기", onClick: addRestaurant },
+  });
 
   container.append(
     title,
