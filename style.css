@@ -132,6 +132,7 @@ main {
   flex-direction: column;
   justify-content: flex-start;
   gap: 8px;
+  width: 100%;
 }
 
 .restaurant__name {
@@ -156,6 +157,12 @@ main {
   -webkit-box-orient: vertical;
 }
 
+.restaurant__header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .restaurant__title {
   display: flex;
   flex-direction: column;
@@ -166,6 +173,14 @@ main {
   flex-direction: column;
   gap: 16px;
   margin-bottom: 32px;
+}
+
+.restaurant__favorite-button {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .modal {

@@ -12,6 +12,9 @@ import etcCategoryIcon from "../images/category-etc.png";
 import japaneseCategoryIcon from "../images/category-japanese.png";
 import koreanCategoryIcon from "../images/category-korean.png";
 import westernCategoryIcon from "../images/category-western.png";
+import favoriteFilledIcon from "../images/favorite-icon-filled.png";
+import favoriteLinedIcon from "../images/favorite-icon-lined.png";
+
 import { createButtonContainer } from "./components/button-container.js";
 
 const KEY_LOCAL_STORAGE = "restaurants";
@@ -133,6 +136,9 @@ function renderList(list) {
     const infoDiv = document.createElement("div");
     infoDiv.className = "restaurant__info";
 
+    const header = document.createElement("div");
+    header.className = "restaurant__header";
+
     const title = document.createElement("div");
     title.className = "restaurant__title";
 
@@ -144,6 +150,19 @@ function renderList(list) {
     distance.className = "restaurant__distance text-body";
     distance.textContent = `캠퍼스부터 ${restaurant.distance}분 내`;
 
+    const favoriteButton = document.createElement("button");
+    favoriteButton.className = "restaurant__favorite-button";
+    const favoriteIcon = document.createElement("img");
+    favoriteIcon.src = restaurant.isFavorite
+      ? favoriteFilledIcon
+      : favoriteLinedIcon;
+    favoriteButton.appendChild(favoriteIcon);
+
+    favoriteButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+      alert("좋아요 버튼 클릭!");
+    });
+
     const description = document.createElement("p");
     description.className = "restaurant__description text-body";
     description.textContent = restaurant.description;
@@ -153,9 +172,11 @@ function renderList(list) {
     li.dataset.distance = restaurant.distance;
     li.dataset.description = restaurant.description;
     li.dataset.link = restaurant.link;
+    li.dataset.isFavorite = restaurant.isFavorite;
 
     title.append(name, distance);
-    infoDiv.append(title, description);
+    header.append(title, favoriteButton);
+    infoDiv.append(header, description);
     li.appendChild(infoDiv);
 
     fragment.appendChild(li);
@@ -347,6 +368,22 @@ function showRestaurantDetailModal(event) {
   image.alt = restaurant.category;
   categoryDiv.appendChild(image);
 
+  const header = document.createElement("div");
+  header.className = "restaurant__header";
+
+  const favoriteButton = document.createElement("button");
+  favoriteButton.className = "restaurant__favorite-button";
+  const favoriteIcon = document.createElement("img");
+  favoriteIcon.src = restaurant.isFavorite
+    ? favoriteFilledIcon
+    : favoriteLinedIcon;
+  favoriteButton.appendChild(favoriteIcon);
+
+  favoriteButton.addEventListener("click", (event) => {
+    event.stopPropagation();
+    alert("좋아요 버튼 클릭!");
+  });
+
   const infoDiv = document.createElement("div");
   infoDiv.className = "restaurant__info";
 
@@ -381,8 +418,9 @@ function showRestaurantDetailModal(event) {
     },
   });
 
+  header.append(categoryDiv, favoriteButton);
   infoDiv.append(name, distance, description, link);
-  detailContainer.append(categoryDiv, infoDiv);
+  detailContainer.append(header, infoDiv);
   container.append(detailContainer, buttonContainer);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
@@ -400,6 +438,7 @@ addEventListener("DOMContentLoaded", () => {
         distance: 5,
         description: "맥시칸 캐주얼 그릴",
         link: "https://naver.me/Gn0yLQ8K",
+        isFavorite: false,
       },
       {
         icon: westernCategoryIcon,
@@ -408,6 +447,7 @@ addEventListener("DOMContentLoaded", () => {
         distance: 20,
         description: "늘 변화를 추구하는 이태리키친입니다.",
         link: "https://naver.me/5huapW2k",
+        isFavorite: false,
       },
       {
         icon: japaneseCategoryIcon,
@@ -417,6 +457,7 @@ addEventListener("DOMContentLoaded", () => {
         description:
           "잇쇼우는 정통 자가제면 사누끼 우동이 대표메뉴입니다. 기술은\n정성을 이길 수 없다는 신념으로 모든 음식에 최선을 다하는\n잇쇼우는 고객 한분 한분께 최선을 다하겠습니다",
         link: "https://naver.me/FLyTJ4dC",
+        isFavorite: false,
       },
       {
         icon: chineseCategoryIcon,
@@ -426,6 +467,7 @@ addEventListener("DOMContentLoaded", () => {
         description:
           "Since 2004 편리한 교통과 주차, 그리고 관록만큼 깊은 맛과\n정성으로 정통 중식의 세계를 펼쳐갑니다",
         link: "https://naver.me/FV7Y4RTm",
+        isFavorite: false,
       },
       {
         icon: koreanCategoryIcon,
@@ -435,6 +477,7 @@ addEventListener("DOMContentLoaded", () => {
         description:
           "평양 출신의 할머니가 수십 년간 운영해온 비지 전문점 피양콩\n할마니. 두부를 빼지 않은 되비지를 맛볼 수 있는 곳으로, ‘피양’은\n평안도 사투리로 ‘평양’을 의미한다. 딸과 함께 운영하는 이곳에선\n맷돌로 직접 간 콩만을 사용하며, 일체의 조미료를 넣지 않은\n건강식을 선보인다. 콩비지와 피양 만두가 이곳의 대표 메뉴지만,\n할머니가 옛날 방식을 고수하며 만들어내는 비지전골 또한 이 집의\n역사를 느낄 수 있는 특별한 메뉴다. 반찬은 손님들이 먹고 싶은\n만큼 덜어 먹을 수 있게 준비돼 있다.",
         link: "https://naver.me/5Rh0ttMw",
+        isFavorite: false,
       },
       {
         icon: asianCategoryIcon,
@@ -443,6 +486,7 @@ addEventListener("DOMContentLoaded", () => {
         distance: 15,
         description: "푸짐한 양에 국물이 일품인 쌀국수",
         link: "https://naver.me/5WOQLjn6",
+        isFavorite: false,
       },
     ];
     localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantData));
