@@ -16,6 +16,58 @@ import { createButtonContainer } from "./components/button-container.js";
 
 const KEY_LOCAL_STORAGE = "restaurants";
 
+const closeModal = () => {
+  const modal = document.querySelector(".modal");
+  modal.remove();
+};
+
+const addRestaurant = () => {
+  if (!checkRequiredForms()) {
+    return;
+  }
+
+  const modal = document.querySelector(".modal");
+  const categorySelect = document.querySelector(
+    '.modal select[name="category"]'
+  );
+  const nameInput = document.querySelector('.modal input[name="name"]');
+  const distanceSelect = document.querySelector(
+    '.modal select[name="distance"]'
+  );
+  const description = document.querySelector(
+    '.modal textarea[name="description"]'
+  );
+  const newRestaurant = {
+    icon: getCategoryIcon(categorySelect.value),
+    category: categorySelect.value,
+    name: nameInput.value,
+    distance: parseInt(distanceSelect.value),
+    description: description.value,
+  };
+
+  const restaurantList =
+    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+  restaurantList.push(newRestaurant);
+  localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantList));
+
+  renderList(restaurantList);
+  modal.remove();
+};
+
+const removeRestaurant = (restaurantName) => {
+  const restaurantList =
+    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+
+  const removedRestaurantList = restaurantList.filter(
+    (restaurant) => restaurant.name !== restaurantName
+  );
+  localStorage.setItem(
+    KEY_LOCAL_STORAGE,
+    JSON.stringify(removedRestaurantList)
+  );
+  renderList(removedRestaurantList);
+};
+
 function main() {
   document
     .getElementById("category-filter")
@@ -182,39 +234,6 @@ function createLinkItem() {
   return link;
 }
 
-const addRestaurant = () => {
-  if (!checkRequiredForms()) {
-    return;
-  }
-
-  const modal = document.querySelector(".modal");
-  const categorySelect = document.querySelector(
-    '.modal select[name="category"]'
-  );
-  const nameInput = document.querySelector('.modal input[name="name"]');
-  const distanceSelect = document.querySelector(
-    '.modal select[name="distance"]'
-  );
-  const description = document.querySelector(
-    '.modal textarea[name="description"]'
-  );
-  const newRestaurant = {
-    icon: getCategoryIcon(categorySelect.value),
-    category: categorySelect.value,
-    name: nameInput.value,
-    distance: parseInt(distanceSelect.value),
-    description: description.value,
-  };
-
-  const restaurantList =
-    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
-  restaurantList.push(newRestaurant);
-  localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantList));
-
-  renderList(restaurantList);
-  modal.remove();
-};
-
 function getCategoryIcon(category) {
   const iconMap = {
     기타: etcCategoryIcon,
@@ -255,12 +274,7 @@ function showNewRestaurantModal() {
   const link = createLinkItem();
 
   const buttonContainer = createButtonContainer({
-    negative: {
-      onClick: () => {
-        const modal = document.querySelector(".modal");
-        modal.remove();
-      },
-    },
+    negative: { onClick: closeModal },
     positive: { text: "추가하기", onClick: addRestaurant },
   });
 
@@ -353,9 +367,23 @@ function showRestaurantDetailModal(event) {
   link.href = restaurant.link;
   link.target = "_blank";
 
+  const buttonContainer = createButtonContainer({
+    negative: {
+      text: "삭제하기",
+      onClick: () => {
+        removeRestaurant(restaurant.name);
+        closeModal();
+      },
+    },
+    positive: {
+      text: "닫기",
+      onClick: closeModal,
+    },
+  });
+
   infoDiv.append(name, distance, description, link);
   detailContainer.append(categoryDiv, infoDiv);
-  container.appendChild(detailContainer);
+  container.append(detailContainer, buttonContainer);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 }

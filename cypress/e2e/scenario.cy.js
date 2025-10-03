@@ -77,4 +77,32 @@ describe("Scenario", () => {
         );
       });
   });
+  it("사용자가 음식점을 클릭하면 상세 정보를 볼 수 있습니다.", () => {
+    cy.get(".restaurant-list li").first().click();
+    cy.get(".modal").should("exist");
+  });
+  it("음식점 상세 정보를 볼 수 있는 모달에서 닫기 버튼을 누르면 모달이 사라집니다.", () => {
+    cy.get(".restaurant-list li").first().click();
+
+    cy.get(".button-container .button--primary").click();
+
+    cy.get(".modal").should("not.exist");
+  });
+  it("음식점 상세 정보를 볼 수 있는 모달에서 삭제 버튼을 누르면 음식점 목록에서 삭제됩니다.", () => {
+    cy.get(".restaurant-list li")
+      .first()
+      .find(".restaurant__name")
+      .invoke("text")
+      .then((restaurantName) => {
+        cy.log("첫 번째 음식점 이름:", restaurantName);
+        cy.get(".restaurant-list li").first().click();
+
+        cy.get(".button-container .button--secondary").click();
+
+        cy.get(".restaurant-list li")
+          .first()
+          .find(".restaurant__name")
+          .should("not.have.text", restaurantName);
+      });
+  });
 });
