@@ -132,6 +132,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  gap: 8px;
 }
 
 .restaurant__name {
@@ -144,14 +145,27 @@ main {
 
 .restaurant__description {
   display: -webkit-box;
-
-  margin-top: 8px;
-  margin-bottom: 0px;
-
   overflow: hidden;
   text-overflow: ellipsis;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+
+.restaurant__description.no-clamp {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.restaurant__title {
+  display: flex;
+  flex-direction: column;
+}
+
+.restaurant__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .modal {
