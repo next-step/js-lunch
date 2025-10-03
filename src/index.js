@@ -208,7 +208,7 @@ function createLinkItem() {
 }
 
 const addRestaurant = () => {
-  if (!isRequired()) {
+  if (!checkRequiredForms()) {
     return;
   }
 
@@ -315,7 +315,7 @@ function showNewRestaurantModal() {
   document.body.appendChild(modal);
 }
 
-function isRequired() {
+function checkRequiredForms() {
   const container = document.querySelector(".modal-container");
   const requiredFormItems = container.querySelectorAll(".form-item--required");
 
