@@ -160,7 +160,24 @@ function renderList(list) {
 
     favoriteButton.addEventListener("click", (event) => {
       event.stopPropagation();
-      alert("좋아요 버튼 클릭!");
+
+      const restaurantList =
+        JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+      const index = restaurantList.findIndex(
+        (item) => item.name === restaurant.name
+      );
+
+      if (index === -1) {
+        return;
+      }
+
+      restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
+      localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantList));
+      favoriteIcon.src = restaurantList[index].isFavorite
+        ? favoriteFilledIcon
+        : favoriteLinedIcon;
+
+      renderList(restaurantList);
     });
 
     const description = document.createElement("p");
@@ -168,6 +185,7 @@ function renderList(list) {
     description.textContent = restaurant.description;
 
     li.dataset.icon = restaurant.icon;
+    li.dataset.category = restaurant.category;
     li.dataset.name = restaurant.name;
     li.dataset.distance = restaurant.distance;
     li.dataset.description = restaurant.description;
@@ -340,7 +358,9 @@ function showRestaurantDetailModal(event) {
     distance: target.dataset.distance,
     description: target.dataset.description,
     link: target.dataset.link,
+    isFavorite: target.dataset.isFavorite === "true",
   };
+  console.log(restaurant);
   const prevModal = document.querySelector(".modal");
   if (prevModal) {
     prevModal.remove();
@@ -381,7 +401,24 @@ function showRestaurantDetailModal(event) {
 
   favoriteButton.addEventListener("click", (event) => {
     event.stopPropagation();
-    alert("좋아요 버튼 클릭!");
+
+    const restaurantList =
+      JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+    const index = restaurantList.findIndex(
+      (item) => item.name === restaurant.name
+    );
+
+    if (index === -1) {
+      return;
+    }
+
+    restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
+    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantList));
+    favoriteIcon.src = restaurantList[index].isFavorite
+      ? favoriteFilledIcon
+      : favoriteLinedIcon;
+
+    renderList(restaurantList);
   });
 
   const infoDiv = document.createElement("div");

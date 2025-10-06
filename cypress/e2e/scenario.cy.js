@@ -2,6 +2,32 @@ describe("Scenario", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173");
   });
+  it("음식점 목록에서 좋아요 아이콘을 클릭하면 아이콘이 변경됩니다.", () => {
+    cy.get(".restaurant__favorite-button").first().click();
+
+    cy.get(".restaurant__favorite-button img")
+      .first()
+      .should("have.attr", "src")
+      .and("include", "favorite-icon-filled");
+  });
+  it("음식점 상세 모달에서 좋아요 아이콘을 클릭하면 목록의 아이콘도 함께 변경됩니다.", () => {
+    cy.get(".restaurant-list li").first().click();
+
+    cy.get(".modal").within(() => {
+      cy.get(".restaurant__favorite-button").click();
+
+      cy.get(".restaurant__favorite-button img")
+        .should("have.attr", "src")
+        .and("include", "favorite-icon-filled");
+    });
+
+    cy.get(".modal .button-container .button--primary").click();
+
+    cy.get(".restaurant__favorite-button img")
+      .first()
+      .should("have.attr", "src")
+      .and("include", "favorite-icon-filled");
+  });
   it("카테고리에서 한식을 선택하면 한식 음식점만 노출됩니다.", () => {
     cy.get("#category-filter").select("한식");
     cy.get(".restaurant").each(($element) => {
