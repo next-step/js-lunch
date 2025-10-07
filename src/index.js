@@ -101,12 +101,17 @@ function changeSorting() {
 }
 
 function renderList(list) {
-  const ul = document.querySelector(".restaurant-list");
+  const activeTab = document.querySelector(".tab-content.active");
+  const restaurantList = activeTab.id.includes("favorite")
+    ? list.filter((item) => item.isFavorite === true)
+    : list;
+
+  const ul = activeTab.querySelector(".restaurant-list");
   ul.innerHTML = "";
 
   const fragment = document.createDocumentFragment();
 
-  list.forEach((restaurant) => {
+  restaurantList.forEach((restaurant) => {
     const li = document.createElement("li");
     li.className = "restaurant";
     li.addEventListener("click", showRestaurantDetailModal);
@@ -366,6 +371,24 @@ function toggleFavorite(restaurantName) {
   renderList(restaurantList);
 }
 
+function createTabContents() {
+  const tabs = document.querySelectorAll(".tab-button");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.getAttribute("data-tab");
+
+      tabs.forEach((tab) => tab.classList.remove("active"));
+      tabContents.forEach((content) => content.classList.remove("active"));
+
+      tab.classList.add("active");
+      document.getElementById(target).classList.add("active");
+      renderList(getRestaurantList());
+    });
+  });
+}
+
 addEventListener("load", main);
 
 addEventListener("DOMContentLoaded", () => {
@@ -431,5 +454,7 @@ addEventListener("DOMContentLoaded", () => {
     ];
     saveRestaurantList(restaurantData);
   }
+
+  createTabContents();
   renderList(getRestaurantList());
 });
