@@ -1,3 +1,10 @@
+import asianCategoryIcon from "../../images/category-asian.png";
+import chineseCategoryIcon from "../../images/category-chinese.png";
+import etcCategoryIcon from "../../images/category-etc.png";
+import japaneseCategoryIcon from "../../images/category-japanese.png";
+import koreanCategoryIcon from "../../images/category-korean.png";
+import westernCategoryIcon from "../../images/category-western.png";
+
 export function createRestaurantTitle({ name, distance }) {
   const container = document.createElement("div");
   container.className = "restaurant__title";
@@ -35,4 +42,31 @@ export function createRestaurantLink(link) {
   container.target = "_blank";
 
   return container;
+}
+
+export function createRestaurantCategoryIcon({ icon, category }) {
+  const container = document.createElement("div");
+  container.className = "restaurant__category";
+
+  const image = document.createElement("img");
+  image.className = "category-icon";
+  image.src = icon;
+  image.alt = category;
+
+  container.appendChild(image);
+
+  return container;
+}
+
+export function getRestaurantCategoryIcon(category) {
+  const iconMap = {
+    기타: etcCategoryIcon,
+    양식: westernCategoryIcon,
+    일식: japaneseCategoryIcon,
+    중식: chineseCategoryIcon,
+    한식: koreanCategoryIcon,
+    아시안: asianCategoryIcon,
+  };
+
+  return iconMap[category] ?? "category-etc.png";
 }

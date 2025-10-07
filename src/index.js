@@ -6,13 +6,6 @@ import {
   createFormItemSelect,
 } from "./components/form-item.js";
 
-import asianCategoryIcon from "../images/category-asian.png";
-import chineseCategoryIcon from "../images/category-chinese.png";
-import etcCategoryIcon from "../images/category-etc.png";
-import japaneseCategoryIcon from "../images/category-japanese.png";
-import koreanCategoryIcon from "../images/category-korean.png";
-import westernCategoryIcon from "../images/category-western.png";
-
 import { createButtonContainer } from "./components/button-container.js";
 import {
   getRestaurantList,
@@ -20,9 +13,11 @@ import {
 } from "./services/restaurant-service.js";
 import { createFavoriteButton } from "./components/favorite-button.js";
 import {
+  createRestaurantCategoryIcon,
   createRestaurantDescription,
   createRestaurantLink,
   createRestaurantTitle,
+  getRestaurantCategoryIcon,
 } from "./components/restaurant-item.js";
 import { closeExistingModal, createModal } from "./components/modal.js";
 
@@ -43,7 +38,7 @@ const addRestaurant = () => {
     '.modal textarea[name="description"]'
   );
   const newRestaurant = {
-    icon: getCategoryIcon(categorySelect.value),
+    icon: getRestaurantCategoryIcon(categorySelect.value),
     category: categorySelect.value,
     name: nameInput.value,
     distance: parseInt(distanceSelect.value),
@@ -116,14 +111,11 @@ function renderList(list) {
     li.className = "restaurant";
     li.addEventListener("click", showRestaurantDetailModal);
 
-    const categoryDiv = document.createElement("div");
-    categoryDiv.className = "restaurant__category";
-    const image = document.createElement("img");
-    image.className = "category-icon";
-    image.src = restaurant.icon;
-    image.alt = restaurant.category;
-    categoryDiv.appendChild(image);
-    li.appendChild(categoryDiv);
+    const categoryIcon = createRestaurantCategoryIcon({
+      icon: restaurant.icon,
+      category: restaurant.category,
+    });
+    li.appendChild(categoryIcon);
 
     const infoDiv = document.createElement("div");
     infoDiv.className = "restaurant__info";
@@ -234,19 +226,6 @@ function createLinkItem() {
   return link;
 }
 
-function getCategoryIcon(category) {
-  const iconMap = {
-    기타: etcCategoryIcon,
-    양식: westernCategoryIcon,
-    일식: japaneseCategoryIcon,
-    중식: chineseCategoryIcon,
-    한식: koreanCategoryIcon,
-    아시안: asianCategoryIcon,
-  };
-
-  return iconMap[category] ?? "category-etc.png";
-}
-
 function showNewRestaurantModal() {
   if (closeExistingModal()) {
     return;
@@ -321,13 +300,10 @@ function showRestaurantDetailModal(event) {
   const detailContainer = document.createElement("div");
   detailContainer.className = "restaurant__detail";
 
-  const categoryDiv = document.createElement("div");
-  categoryDiv.className = "restaurant__category";
-  const image = document.createElement("img");
-  image.className = "category-icon";
-  image.src = restaurant.icon;
-  image.alt = restaurant.category;
-  categoryDiv.appendChild(image);
+  const categoryIcon = createRestaurantCategoryIcon({
+    icon: restaurant.icon,
+    category: restaurant.category,
+  });
 
   const header = document.createElement("div");
   header.className = "restaurant__header";
@@ -366,7 +342,7 @@ function showRestaurantDetailModal(event) {
     },
   });
 
-  header.append(categoryDiv, favoriteButton);
+  header.append(categoryIcon, favoriteButton);
   infoDiv.append(title, description, link);
   detailContainer.append(header, infoDiv);
   container.append(detailContainer, buttonContainer);
