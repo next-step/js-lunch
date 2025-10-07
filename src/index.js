@@ -19,6 +19,11 @@ import {
   saveRestaurantList,
 } from "./services/restaurant-service.js";
 import { createFavoriteButton } from "./components/favorite-button.js";
+import {
+  createRestaurantDescription,
+  createRestaurantLink,
+  createRestaurantTitle,
+} from "./components/restaurant-item.js";
 
 const closeModal = () => {
   const modal = document.querySelector(".modal");
@@ -130,25 +135,20 @@ function renderList(list) {
     const header = document.createElement("div");
     header.className = "restaurant__header";
 
-    const title = document.createElement("div");
-    title.className = "restaurant__title";
-
-    const name = document.createElement("h3");
-    name.className = "restaurant__name text-subtitle";
-    name.textContent = restaurant.name;
-
-    const distance = document.createElement("span");
-    distance.className = "restaurant__distance text-body";
-    distance.textContent = `캠퍼스부터 ${restaurant.distance}분 내`;
+    const title = createRestaurantTitle({
+      name: restaurant.name,
+      distance: restaurant.distance,
+    });
 
     const favoriteButton = createFavoriteButton({
       restaurant: restaurant,
       onToggle: () => toggleFavorite(restaurant.name),
     });
 
-    const description = document.createElement("p");
-    description.className = "restaurant__description text-body";
-    description.textContent = restaurant.description;
+    const description = createRestaurantDescription({
+      showFullDescription: false,
+      description: restaurant.description,
+    });
 
     li.dataset.icon = restaurant.icon;
     li.dataset.category = restaurant.category;
@@ -158,7 +158,6 @@ function renderList(list) {
     li.dataset.link = restaurant.link;
     li.dataset.isFavorite = restaurant.isFavorite;
 
-    title.append(name, distance);
     header.append(title, favoriteButton);
     infoDiv.append(header, description);
     li.appendChild(infoDiv);
@@ -365,22 +364,17 @@ function showRestaurantDetailModal(event) {
   const infoDiv = document.createElement("div");
   infoDiv.className = "restaurant__info";
 
-  const name = document.createElement("h3");
-  name.className = "restaurant__name text-subtitle";
-  name.textContent = restaurant.name;
+  const title = createRestaurantTitle({
+    name: restaurant.name,
+    distance: restaurant.distance,
+  });
 
-  const distance = document.createElement("span");
-  distance.className = "restaurant__distance text-body";
-  distance.textContent = `캠퍼스부터 ${restaurant.distance}분 내`;
+  const description = createRestaurantDescription({
+    showFullDescription: true,
+    description: restaurant.description,
+  });
 
-  const description = document.createElement("p");
-  description.className = "restaurant__description.no-clamp text-body";
-  description.textContent = restaurant.description;
-
-  const link = document.createElement("a");
-  link.textContent = restaurant.link;
-  link.href = restaurant.link;
-  link.target = "_blank";
+  const link = createRestaurantLink(restaurant.link);
 
   const buttonContainer = createButtonContainer({
     negative: {
@@ -397,7 +391,7 @@ function showRestaurantDetailModal(event) {
   });
 
   header.append(categoryDiv, favoriteButton);
-  infoDiv.append(name, distance, description, link);
+  infoDiv.append(title, description, link);
   detailContainer.append(header, infoDiv);
   container.append(detailContainer, buttonContainer);
   modal.append(backdrop, container);
