@@ -24,11 +24,7 @@ import {
   createRestaurantLink,
   createRestaurantTitle,
 } from "./components/restaurant-item.js";
-
-const closeModal = () => {
-  const modal = document.querySelector(".modal");
-  modal.remove();
-};
+import { closeExistingModal, createModal } from "./components/modal.js";
 
 const addRestaurant = () => {
   if (!checkRequiredForms()) {
@@ -252,20 +248,11 @@ function getCategoryIcon(category) {
 }
 
 function showNewRestaurantModal() {
-  const prevModal = document.querySelector(".modal");
-  if (prevModal) {
-    prevModal.remove();
+  if (closeExistingModal()) {
     return;
   }
-  const modal = document.createElement("div");
-  modal.className = "modal";
-  modal.classList.add("modal--open");
 
-  const backdrop = document.createElement("div");
-  backdrop.className = "modal-backdrop";
-
-  const container = document.createElement("div");
-  container.className = "modal-container";
+  const { modal, container } = createModal();
 
   const title = document.createElement("h3");
   title.className = "modal-title text-subtitle";
@@ -278,7 +265,7 @@ function showNewRestaurantModal() {
   const link = createLinkItem();
 
   const buttonContainer = createButtonContainer({
-    negative: { onClick: closeModal },
+    negative: { onClick: closeExistingModal },
     positive: { text: "추가하기", onClick: addRestaurant },
   });
 
@@ -315,6 +302,9 @@ function checkRequiredForms() {
 }
 
 function showRestaurantDetailModal(event) {
+  if (closeExistingModal()) {
+    return;
+  }
   const target = event.currentTarget;
   const restaurant = {
     icon: target.dataset.icon,
@@ -325,22 +315,8 @@ function showRestaurantDetailModal(event) {
     link: target.dataset.link,
     isFavorite: target.dataset.isFavorite === "true",
   };
-  console.log(restaurant);
-  const prevModal = document.querySelector(".modal");
-  if (prevModal) {
-    prevModal.remove();
-    return;
-  }
 
-  const modal = document.createElement("div");
-  modal.className = "modal";
-  modal.classList.add("modal--open");
-
-  const backdrop = document.createElement("div");
-  backdrop.className = "modal-backdrop";
-
-  const container = document.createElement("div");
-  container.className = "modal-container";
+  const { modal, container } = createModal();
 
   const detailContainer = document.createElement("div");
   detailContainer.className = "restaurant__detail";
@@ -381,12 +357,12 @@ function showRestaurantDetailModal(event) {
       text: "삭제하기",
       onClick: () => {
         removeRestaurant(restaurant.name);
-        closeModal();
+        closeExistingModal();
       },
     },
     positive: {
       text: "닫기",
-      onClick: closeModal,
+      onClick: closeExistingModal,
     },
   });
 
