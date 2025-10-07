@@ -12,14 +12,13 @@ import etcCategoryIcon from "../images/category-etc.png";
 import japaneseCategoryIcon from "../images/category-japanese.png";
 import koreanCategoryIcon from "../images/category-korean.png";
 import westernCategoryIcon from "../images/category-western.png";
-import favoriteFilledIcon from "../images/favorite-icon-filled.png";
-import favoriteLinedIcon from "../images/favorite-icon-lined.png";
 
 import { createButtonContainer } from "./components/button-container.js";
 import {
   getRestaurantList,
   saveRestaurantList,
 } from "./services/restaurant-service.js";
+import { createFavoriteButton } from "./components/favorite-button.js";
 
 const closeModal = () => {
   const modal = document.querySelector(".modal");
@@ -142,33 +141,9 @@ function renderList(list) {
     distance.className = "restaurant__distance text-body";
     distance.textContent = `캠퍼스부터 ${restaurant.distance}분 내`;
 
-    const favoriteButton = document.createElement("button");
-    favoriteButton.className = "restaurant__favorite-button";
-    const favoriteIcon = document.createElement("img");
-    favoriteIcon.src = restaurant.isFavorite
-      ? favoriteFilledIcon
-      : favoriteLinedIcon;
-    favoriteButton.appendChild(favoriteIcon);
-
-    favoriteButton.addEventListener("click", (event) => {
-      event.stopPropagation();
-
-      const restaurantList = getRestaurantList();
-      const index = restaurantList.findIndex(
-        (item) => item.name === restaurant.name
-      );
-
-      if (index === -1) {
-        return;
-      }
-
-      restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
-      saveRestaurantList(restaurantList);
-      favoriteIcon.src = restaurantList[index].isFavorite
-        ? favoriteFilledIcon
-        : favoriteLinedIcon;
-
-      renderList(restaurantList);
+    const favoriteButton = createFavoriteButton({
+      restaurant: restaurant,
+      onToggle: () => toggleFavorite(restaurant.name),
     });
 
     const description = document.createElement("p");
@@ -382,33 +357,9 @@ function showRestaurantDetailModal(event) {
   const header = document.createElement("div");
   header.className = "restaurant__header";
 
-  const favoriteButton = document.createElement("button");
-  favoriteButton.className = "restaurant__favorite-button";
-  const favoriteIcon = document.createElement("img");
-  favoriteIcon.src = restaurant.isFavorite
-    ? favoriteFilledIcon
-    : favoriteLinedIcon;
-  favoriteButton.appendChild(favoriteIcon);
-
-  favoriteButton.addEventListener("click", (event) => {
-    event.stopPropagation();
-
-    const restaurantList = getRestaurantList();
-    const index = restaurantList.findIndex(
-      (item) => item.name === restaurant.name
-    );
-
-    if (index === -1) {
-      return;
-    }
-
-    restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
-    saveRestaurantList(restaurantList);
-    favoriteIcon.src = restaurantList[index].isFavorite
-      ? favoriteFilledIcon
-      : favoriteLinedIcon;
-
-    renderList(restaurantList);
+  const favoriteButton = createFavoriteButton({
+    restaurant: restaurant,
+    onToggle: () => toggleFavorite(restaurant.name),
   });
 
   const infoDiv = document.createElement("div");
@@ -451,6 +402,22 @@ function showRestaurantDetailModal(event) {
   container.append(detailContainer, buttonContainer);
   modal.append(backdrop, container);
   document.body.appendChild(modal);
+}
+
+function toggleFavorite(restaurantName) {
+  const restaurantList = getRestaurantList();
+  const index = restaurantList.findIndex(
+    (item) => item.name === restaurantName
+  );
+
+  if (index === -1) {
+    return;
+  }
+
+  restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
+  saveRestaurantList(restaurantList);
+
+  renderList(restaurantList);
 }
 
 addEventListener("load", main);
