@@ -16,8 +16,10 @@ import favoriteFilledIcon from "../images/favorite-icon-filled.png";
 import favoriteLinedIcon from "../images/favorite-icon-lined.png";
 
 import { createButtonContainer } from "./components/button-container.js";
-
-const KEY_LOCAL_STORAGE = "restaurants";
+import {
+  getRestaurantList,
+  saveRestaurantList,
+} from "./services/restaurant-service.js";
 
 const closeModal = () => {
   const modal = document.querySelector(".modal");
@@ -48,26 +50,19 @@ const addRestaurant = () => {
     description: description.value,
   };
 
-  const restaurantList =
-    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+  const restaurantList = getRestaurantList();
   restaurantList.push(newRestaurant);
-  localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantList));
+  saveRestaurantList(restaurantList);
 
   renderList(restaurantList);
   modal.remove();
 };
 
 const removeRestaurant = (restaurantName) => {
-  const restaurantList =
-    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
-
-  const removedRestaurantList = restaurantList.filter(
+  const removedRestaurantList = getRestaurantList().filter(
     (restaurant) => restaurant.name !== restaurantName
   );
-  localStorage.setItem(
-    KEY_LOCAL_STORAGE,
-    JSON.stringify(removedRestaurantList)
-  );
+  saveRestaurantList(removedRestaurantList);
   renderList(removedRestaurantList);
 };
 
@@ -87,8 +82,7 @@ function main() {
 
 function changeCategory() {
   const selectedCategory = document.getElementById("category-filter").value;
-  const restaurantList =
-    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+  const restaurantList = getRestaurantList();
   const filteredRestaurants =
     selectedCategory === "전체"
       ? restaurantList
@@ -100,9 +94,7 @@ function changeCategory() {
 
 function changeSorting() {
   const selectedSorting = document.getElementById("sorting-filter").value;
-  const restaurantList =
-    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
-  const sortedRestaurants = [...restaurantList];
+  const sortedRestaurants = [...getRestaurantList()];
   if (selectedSorting === "name") {
     sortedRestaurants.sort((a, b) => a.name.localeCompare(b.name));
   } else if (selectedSorting === "distance") {
@@ -161,8 +153,7 @@ function renderList(list) {
     favoriteButton.addEventListener("click", (event) => {
       event.stopPropagation();
 
-      const restaurantList =
-        JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+      const restaurantList = getRestaurantList();
       const index = restaurantList.findIndex(
         (item) => item.name === restaurant.name
       );
@@ -172,7 +163,7 @@ function renderList(list) {
       }
 
       restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
-      localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantList));
+      saveRestaurantList(restaurantList);
       favoriteIcon.src = restaurantList[index].isFavorite
         ? favoriteFilledIcon
         : favoriteLinedIcon;
@@ -402,8 +393,7 @@ function showRestaurantDetailModal(event) {
   favoriteButton.addEventListener("click", (event) => {
     event.stopPropagation();
 
-    const restaurantList =
-      JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
+    const restaurantList = getRestaurantList();
     const index = restaurantList.findIndex(
       (item) => item.name === restaurant.name
     );
@@ -413,7 +403,7 @@ function showRestaurantDetailModal(event) {
     }
 
     restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
-    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantList));
+    saveRestaurantList(restaurantList);
     favoriteIcon.src = restaurantList[index].isFavorite
       ? favoriteFilledIcon
       : favoriteLinedIcon;
@@ -466,7 +456,7 @@ function showRestaurantDetailModal(event) {
 addEventListener("load", main);
 
 addEventListener("DOMContentLoaded", () => {
-  if (!localStorage.getItem(KEY_LOCAL_STORAGE)) {
+  if (getRestaurantList().length === 0) {
     const restaurantData = [
       {
         icon: etcCategoryIcon,
@@ -526,9 +516,7 @@ addEventListener("DOMContentLoaded", () => {
         isFavorite: false,
       },
     ];
-    localStorage.setItem(KEY_LOCAL_STORAGE, JSON.stringify(restaurantData));
+    saveRestaurantList(restaurantData);
   }
-  const restaurantList =
-    JSON.parse(localStorage.getItem(KEY_LOCAL_STORAGE)) || [];
-  renderList(restaurantList);
+  renderList(getRestaurantList());
 });
