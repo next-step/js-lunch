@@ -5,7 +5,12 @@ import {
   createFormItemLabel,
   createFormItemSelect,
 } from "./components/form-item.js";
-
+import asianCategoryIcon from "../images/category-asian.png";
+import chineseCategoryIcon from "../images/category-chinese.png";
+import etcCategoryIcon from "../images/category-etc.png";
+import japaneseCategoryIcon from "../images/category-japanese.png";
+import koreanCategoryIcon from "../images/category-korean.png";
+import westernCategoryIcon from "../images/category-western.png";
 import { createButtonContainer } from "./components/button-container.js";
 import {
   getRestaurantList,
