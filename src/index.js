@@ -20,7 +20,10 @@ import {
   createRestaurantLink,
   createRestaurantTitle,
 } from "./components/restaurant-item.js";
-import { closeExistingModal, createModal } from "./components/modal.js";
+import {
+  closeExistingModal,
+  createModalContainer,
+} from "./components/modal.js";
 import { getRestaurantCategoryIcon } from "./utils/restaurant-utils.js";
 
 function main() {
@@ -123,7 +126,7 @@ function renderList(list) {
   ul.appendChild(fragment);
 }
 
-function addRestaurant({ modal, formData }) {
+function addRestaurant(formData) {
   const newRestaurant = {
     icon: getRestaurantCategoryIcon(formData.category),
     category: formData.category,
@@ -138,7 +141,7 @@ function addRestaurant({ modal, formData }) {
   saveRestaurantList(updatedList);
   renderList(updatedList);
 
-  modal.remove();
+  closeExistingModal();
 }
 
 function showNewRestaurantModal() {
@@ -146,7 +149,7 @@ function showNewRestaurantModal() {
     return;
   }
 
-  const { modal, container } = createModal();
+  const container = createModalContainer();
 
   const title = document.createElement("h3");
   title.className = "modal-title text-subtitle";
@@ -172,7 +175,7 @@ function showNewRestaurantModal() {
 
     const formData = { category, name, distance, description, link };
 
-    addRestaurant({ modal: modal, formData: formData });
+    addRestaurant(formData);
   };
 
   const buttonContainer = createButtonContainer({
@@ -206,7 +209,7 @@ function showRestaurantDetailModal(event) {
     isFavorite: target.dataset.isFavorite === "true",
   };
 
-  const { modal, container } = createModal();
+  const container = createModalContainer();
 
   const detailContainer = document.createElement("div");
   detailContainer.className = "restaurant__detail";
