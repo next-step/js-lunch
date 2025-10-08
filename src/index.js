@@ -9,6 +9,7 @@ import { createButtonContainer } from "./components/button-container.js";
 import {
   getRestaurantList,
   initRestaurantList,
+  removeRestaurant,
   saveRestaurantList,
 } from "./services/restaurant-service.js";
 import { createFavoriteButton } from "./components/favorite-button.js";
@@ -20,14 +21,6 @@ import {
 } from "./components/restaurant-item.js";
 import { closeExistingModal, createModal } from "./components/modal.js";
 import { getRestaurantCategoryIcon } from "./utils/restaurant-utils.js";
-
-const removeRestaurant = (restaurantName) => {
-  const removedRestaurantList = getRestaurantList().filter(
-    (restaurant) => restaurant.name !== restaurantName
-  );
-  saveRestaurantList(removedRestaurantList);
-  renderList(removedRestaurantList);
-};
 
 function main() {
   document
@@ -240,7 +233,7 @@ function showNewRestaurantModal() {
     const distance = distanceItem.querySelector("select").value;
     const description = descriptionItem.querySelector("textarea").value;
     const link = linkItem.querySelector("input")?.value;
-    
+
     if (!(category && name && distance)) {
       alert("카테고리, 이름, 거리가 모두 입력되어야 합니다.");
       return;
@@ -319,8 +312,9 @@ function showRestaurantDetailModal(event) {
     negative: {
       text: "삭제하기",
       onClick: () => {
-        removeRestaurant(restaurant.name);
+        const restaurantList = removeRestaurant(restaurant.name);
         closeExistingModal();
+        renderList(restaurantList);
       },
     },
     positive: {

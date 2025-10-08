@@ -74,3 +74,11 @@ export function initRestaurantList() {
     saveRestaurantList(restaurantData);
   }
 }
+
+export function removeRestaurant(restaurantName) {
+  const removedRestaurantList = getRestaurantList().filter(
+    (restaurant) => restaurant.name !== restaurantName
+  );
+  saveRestaurantList(removedRestaurantList);
+  return removedRestaurantList;
+}
