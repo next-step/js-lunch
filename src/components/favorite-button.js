@@ -13,7 +13,7 @@ export function createFavoriteButton({ restaurant, onToggle }) {
 
     restaurant.isFavorite = !restaurant.isFavorite;
     changeFavoriteIcon({
-      favoriteIcon: favoriteIcon,
+      favoriteIconEl: favoriteIcon,
       isFavorite: restaurant.isFavorite,
     });
     onToggle(restaurant.name);
@@ -24,10 +24,10 @@ export function createFavoriteButton({ restaurant, onToggle }) {
 
 function createFavoriteIcon(isFavorite) {
   const favoriteIcon = document.createElement("img");
-  changeFavoriteIcon({ favoriteIcon: favoriteIcon, isFavorite: isFavorite });
+  changeFavoriteIcon({ favoriteIconEl: favoriteIcon, isFavorite: isFavorite });
   return favoriteIcon;
 }
 
-function changeFavoriteIcon({ favoriteIcon, isFavorite }) {
-  favoriteIcon.src = isFavorite ? favoriteFilledIcon : favoriteLinedIcon;
+function changeFavoriteIcon({ favoriteIconEl, isFavorite }) {
+  favoriteIconEl.src = isFavorite ? favoriteFilledIcon : favoriteLinedIcon;
 }
