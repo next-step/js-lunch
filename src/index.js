@@ -267,8 +267,6 @@ function showNewRestaurantModal() {
     link,
     buttonContainer
   );
-  modal.append(backdrop, container);
-  document.body.appendChild(modal);
 }
 
 function checkRequiredForms() {
@@ -356,8 +354,6 @@ function showRestaurantDetailModal(event) {
   infoDiv.append(title, description, link);
   detailContainer.append(header, infoDiv);
   container.append(detailContainer, buttonContainer);
-  modal.append(backdrop, container);
-  document.body.appendChild(modal);
 }
 
 function toggleFavorite(restaurantName) {
