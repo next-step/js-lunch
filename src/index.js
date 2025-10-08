@@ -18,43 +18,8 @@ import {
   createRestaurantLink,
   createRestaurantTitle,
 } from "./components/restaurant-item.js";
-import {
-  closeExistingModal,
-  createModalContainer,
-} from "./components/modal.js";
+import { closeExistingModal, createModal } from "./components/modal.js";
 import { getRestaurantCategoryIcon } from "./utils/restaurant-utils.js";
-
-const addRestaurant = () => {
-  if (!checkRequiredForms()) {
-    return;
-  }
-
-  const modal = document.querySelector(".modal");
-  const categorySelect = document.querySelector(
-    '.modal select[name="category"]'
-  );
-  const nameInput = document.querySelector('.modal input[name="name"]');
-  const distanceSelect = document.querySelector(
-    '.modal select[name="distance"]'
-  );
-  const description = document.querySelector(
-    '.modal textarea[name="description"]'
-  );
-  const newRestaurant = {
-    icon: getRestaurantCategoryIcon(categorySelect.value),
-    category: categorySelect.value,
-    name: nameInput.value,
-    distance: parseInt(distanceSelect.value),
-    description: description.value,
-  };
-
-  const restaurantList = getRestaurantList();
-  restaurantList.push(newRestaurant);
-  saveRestaurantList(restaurantList);
-
-  renderList(restaurantList);
-  modal.remove();
-};
 
 const removeRestaurant = (restaurantName) => {
   const removedRestaurantList = getRestaurantList().filter(
@@ -234,56 +199,72 @@ function createLinkItem() {
   return link;
 }
 
+function addRestaurant({ modal, formData }) {
+  const newRestaurant = {
+    icon: getRestaurantCategoryIcon(formData.category),
+    category: formData.category,
+    name: formData.name,
+    distance: parseInt(formData.distance),
+    description: formData.description,
+    link: formData.link,
+    isFavorite: false,
+  };
+
+  const updatedList = [...getRestaurantList(), newRestaurant];
+  saveRestaurantList(updatedList);
+  renderList(updatedList);
+
+  modal.remove();
+}
+
 function showNewRestaurantModal() {
   if (closeExistingModal()) {
     return;
   }
 
-  const container = createModalContainer();
+  const { modal, container } = createModal();
 
   const title = document.createElement("h3");
   title.className = "modal-title text-subtitle";
   title.textContent = "새로운 음식점";
 
-  const category = createCategoryItem();
-  const name = createNameItem();
-  const distance = createDistanceItem();
-  const description = createDescriptionItem();
-  const link = createLinkItem();
+  const categoryItem = createCategoryItem();
+  const nameItem = createNameItem();
+  const distanceItem = createDistanceItem();
+  const descriptionItem = createDescriptionItem();
+  const linkItem = createLinkItem();
+
+  const handleAdd = () => {
+    const category = categoryItem.querySelector("select").value;
+    const name = nameItem.querySelector("input").value.trim();
+    const distance = distanceItem.querySelector("select").value;
+    const description = descriptionItem.querySelector("textarea").value;
+    const link = linkItem.querySelector("input")?.value;
+    
+    if (!(category && name && distance)) {
+      alert("카테고리, 이름, 거리가 모두 입력되어야 합니다.");
+      return;
+    }
+
+    const formData = { category, name, distance, description, link };
+
+    addRestaurant({ modal: modal, formData: formData });
+  };
 
   const buttonContainer = createButtonContainer({
     negative: { onClick: closeExistingModal },
-    positive: { text: "추가하기", onClick: addRestaurant },
+    positive: { text: "추가하기", onClick: handleAdd },
   });
 
   container.append(
     title,
-    category,
-    name,
-    distance,
-    description,
-    link,
+    categoryItem,
+    nameItem,
+    distanceItem,
+    descriptionItem,
+    linkItem,
     buttonContainer
   );
-}
-
-function checkRequiredForms() {
-  const container = document.querySelector(".modal-container");
-  const requiredFormItems = container.querySelectorAll(".form-item--required");
-
-  for (const requiredFormItem of requiredFormItems) {
-    const requiredElements =
-      requiredFormItem.querySelectorAll("input , select");
-
-    for (const requiredElement of requiredElements) {
-      if (!requiredElement.value.trim()) {
-        alert("카테고리, 이름, 거리가 모두 입력되어야 합니다.");
-        return false;
-      }
-    }
-  }
-
-  return true;
 }
 
 function showRestaurantDetailModal(event) {
@@ -301,7 +282,7 @@ function showRestaurantDetailModal(event) {
     isFavorite: target.dataset.isFavorite === "true",
   };
 
-  const container = createModalContainer();
+  const { modal, container } = createModal();
 
   const detailContainer = document.createElement("div");
   detailContainer.className = "restaurant__detail";

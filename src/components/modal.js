@@ -1,4 +1,4 @@
-export function createModalContainer() {
+export function createModal() {
   const modal = document.createElement("div");
   modal.className = "modal modal--open";
 
@@ -11,7 +11,7 @@ export function createModalContainer() {
   modal.append(backdrop, container);
   document.body.appendChild(modal);
 
-  return container;
+  return { modal, container };
 }
 
 export function closeExistingModal() {
