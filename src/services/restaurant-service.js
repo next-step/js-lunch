@@ -82,3 +82,19 @@ export function removeRestaurant(restaurantName) {
   saveRestaurantList(removedRestaurantList);
   return removedRestaurantList;
 }
+
+export function toggleFavorite(restaurantName) {
+  const restaurantList = getRestaurantList();
+  const index = restaurantList.findIndex(
+    (item) => item.name === restaurantName
+  );
+
+  if (index === -1) {
+    return;
+  }
+
+  restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
+  saveRestaurantList(restaurantList);
+
+  return restaurantList;
+}

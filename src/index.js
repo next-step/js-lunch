@@ -11,6 +11,7 @@ import {
   initRestaurantList,
   removeRestaurant,
   saveRestaurantList,
+  toggleFavorite,
 } from "./services/restaurant-service.js";
 import { createFavoriteButton } from "./components/favorite-button.js";
 import {
@@ -96,7 +97,7 @@ function renderList(list) {
 
     const favoriteButton = createFavoriteButton({
       restaurant: restaurant,
-      onToggle: () => toggleFavorite(restaurant.name),
+      onToggle: () => renderList(toggleFavorite(restaurant.name)),
     });
 
     const description = createRestaurantDescription({
@@ -220,7 +221,7 @@ function showRestaurantDetailModal(event) {
 
   const favoriteButton = createFavoriteButton({
     restaurant: restaurant,
-    onToggle: () => toggleFavorite(restaurant.name),
+    onToggle: () => renderList(toggleFavorite(restaurant.name)),
   });
 
   const infoDiv = document.createElement("div");
@@ -257,22 +258,6 @@ function showRestaurantDetailModal(event) {
   infoDiv.append(title, description, link);
   detailContainer.append(header, infoDiv);
   container.append(detailContainer, buttonContainer);
-}
-
-function toggleFavorite(restaurantName) {
-  const restaurantList = getRestaurantList();
-  const index = restaurantList.findIndex(
-    (item) => item.name === restaurantName
-  );
-
-  if (index === -1) {
-    return;
-  }
-
-  restaurantList[index].isFavorite = !restaurantList[index].isFavorite;
-  saveRestaurantList(restaurantList);
-
-  renderList(restaurantList);
 }
 
 function createTabContents() {
