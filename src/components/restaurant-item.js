@@ -40,6 +40,7 @@ export function createRestaurantLink(link) {
   container.textContent = link;
   container.href = link;
   container.target = "_blank";
+  container.rel = "noopener noreferrer"
 
   return container;
 }
