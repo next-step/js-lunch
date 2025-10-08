@@ -2,6 +2,32 @@ describe("Scenario", () => {
   beforeEach(() => {
     cy.visit("http://localhost:5173");
   });
+  it("음식점 목록에서 좋아요 아이콘을 클릭하면 아이콘이 변경됩니다.", () => {
+    cy.get(".restaurant__favorite-button").first().click();
+
+    cy.get(".restaurant__favorite-button img")
+      .first()
+      .should("have.attr", "src")
+      .and("include", "favorite-icon-filled");
+  });
+  it("음식점 상세 모달에서 좋아요 아이콘을 클릭하면 목록의 아이콘도 함께 변경됩니다.", () => {
+    cy.get(".restaurant-list li").first().click();
+
+    cy.get(".modal").within(() => {
+      cy.get(".restaurant__favorite-button").click();
+
+      cy.get(".restaurant__favorite-button img")
+        .should("have.attr", "src")
+        .and("include", "favorite-icon-filled");
+    });
+
+    cy.get(".modal .button-container .button--primary").click();
+
+    cy.get(".restaurant__favorite-button img")
+      .first()
+      .should("have.attr", "src")
+      .and("include", "favorite-icon-filled");
+  });
   it("카테고리에서 한식을 선택하면 한식 음식점만 노출됩니다.", () => {
     cy.get("#category-filter").select("한식");
     cy.get(".restaurant").each(($element) => {
@@ -75,6 +101,34 @@ describe("Scenario", () => {
           "contain.text",
           "캠퍼스부터 5분 내"
         );
+      });
+  });
+  it("사용자가 음식점을 클릭하면 상세 정보를 볼 수 있습니다.", () => {
+    cy.get(".restaurant-list li").first().click();
+    cy.get(".modal").should("exist");
+  });
+  it("음식점 상세 정보를 볼 수 있는 모달에서 닫기 버튼을 누르면 모달이 사라집니다.", () => {
+    cy.get(".restaurant-list li").first().click();
+
+    cy.get(".button-container .button--primary").click();
+
+    cy.get(".modal").should("not.exist");
+  });
+  it("음식점 상세 정보를 볼 수 있는 모달에서 삭제 버튼을 누르면 음식점 목록에서 삭제됩니다.", () => {
+    cy.get(".restaurant-list li")
+      .first()
+      .find(".restaurant__name")
+      .invoke("text")
+      .then((restaurantName) => {
+        cy.log("첫 번째 음식점 이름:", restaurantName);
+        cy.get(".restaurant-list li").first().click();
+
+        cy.get(".button-container .button--secondary").click();
+
+        cy.get(".restaurant-list li")
+          .first()
+          .find(".restaurant__name")
+          .should("not.have.text", restaurantName);
       });
   });
 });
