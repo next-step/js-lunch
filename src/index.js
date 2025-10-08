@@ -24,7 +24,10 @@ import {
   createRestaurantTitle,
   getRestaurantCategoryIcon,
 } from "./components/restaurant-item.js";
-import { closeExistingModal, createModal } from "./components/modal.js";
+import {
+  closeExistingModal,
+  createModalContainer,
+} from "./components/modal.js";
 
 const addRestaurant = () => {
   if (!checkRequiredForms()) {
@@ -241,7 +244,7 @@ function showNewRestaurantModal() {
     return;
   }
 
-  const { modal, container } = createModal();
+  const container = createModalContainer();
 
   const title = document.createElement("h3");
   title.className = "modal-title text-subtitle";
@@ -303,7 +306,7 @@ function showRestaurantDetailModal(event) {
     isFavorite: target.dataset.isFavorite === "true",
   };
 
-  const { modal, container } = createModal();
+  const container = createModalContainer();
 
   const detailContainer = document.createElement("div");
   detailContainer.className = "restaurant__detail";
